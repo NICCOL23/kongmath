@@ -174,7 +174,8 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
 .intro-transition.is-enhanced::after {
   content: "";
   display: block;
-  height: clamp(560px, 88svh, 880px);
+  /* 메시지를 읽을 수 있도록 hold zone을 충분히 확보합니다. */
+  height: clamp(900px, 140svh, 1400px);
 }
 .is-enhanced .intro-transition-stage {
   position: sticky;
@@ -243,7 +244,7 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
   pointer-events: none;
 }
 @media (max-width: 768px) {
-  .intro-transition.is-enhanced::after { height: clamp(360px, 58svh, 540px); }
+  .intro-transition.is-enhanced::after { height: clamp(700px, 115svh, 1000px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro-transition-message {
