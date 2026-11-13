@@ -16,19 +16,18 @@ function draw(position, fill = 1) {
   const progress = position - current;
   const next = progress > 0 ? (current + 1) % photos.length : -1;
   const growth = ease(progress);
-  const startingScale = .70;
   const visible = next === -1 ? current : next;
   const incomingOpacity = ease(clamp(progress / .45));
   const outgoingTextOpacity = 1 - ease(clamp(progress / .18));
   // 새 사진과 제목은 전환 첫 프레임부터 같은 확대 진행률을 사용합니다.
   const titleGrowth = reducedMotion.matches ? 1 : growth;
 
-  // 기존 사진은 화면을 채운 채 남고, 다음 사진만 위에서 점차 커집니다.
+  // 사진은 장면 전환과 스크롤 전환 모두 크기를 바꾸지 않습니다.
   photos.forEach((photo, index) => {
     const incoming = index === next;
     photo.style.zIndex = incoming ? 2 : 1;
     photo.style.opacity = incoming ? incomingOpacity : Number(index === current);
-    photo.style.transform = incoming ? 'scale(' + (startingScale + (1 - startingScale) * growth) + ')' : '';
+    photo.style.transform = 'none';
     photo.setAttribute('aria-hidden', String(index !== visible));
 
     // 새 제목과 사진은 함께 선명해지고, 이전 제목은 먼저 옅어집니다.
@@ -41,7 +40,7 @@ function draw(position, fill = 1) {
 }
 
 
-// 기존 확대 동작에 시간을 연결합니다. 막대를 누르면 그 장면에서 다시 시작합니다.
+// 자동 재생 시간에 맞춰 장면을 교차 페이드합니다. 막대를 누르면 그 장면에서 다시 시작합니다.
 const dwell = 6000;
 const duration = 1800;
 // 첨부 화면에 나온 원본 사진을 PC와 모바일의 첫 장면에 사용합니다.
