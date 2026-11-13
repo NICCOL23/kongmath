@@ -158,14 +158,20 @@ function renderIntroTransition() {
   const controlsFade = ease(clamp((progress - .09) / .30));
   const titleFade = ease(clamp((progress - .18) / .28));
   // 기존 히어로가 정리된 뒤 전환 문구를 보여줍니다.
-  const messageFirst = ease(clamp((progress - .34) / .08));
-  const messageSecond = ease(clamp((progress - .40) / .08));
-  // 전환 문구가 먼저 완전히 사라진 뒤 다음 소개 영역을 보여줍니다.
-  const message = Number(messageSecond > 0) * (1 - ease(clamp((progress - .50) / .13)));
+  const messageFirst = ease(clamp((progress - .30) / .12));
+  const messageSecond = ease(clamp((progress - .34) / .08));
+  const messageEntry = ease(clamp((progress - .30) / .12));
+  const messageExit = ease(clamp((progress - .68) / .12));
+  // 메시지가 충분히 읽히도록 .42~.68 구간을 hold zone으로 유지합니다.
+  const message = progress < .42
+    ? messageEntry
+    : progress <= .68
+      ? 1
+      : 1 - messageExit;
   // 배경과 소개 글이 제자리에 닿기 전에 이동 속도를 천천히 줄입니다.
   const wipeProgress = clamp((progress - .52) / .34);
   const backgroundWipe = wipeProgress ** 3 * (10 - 15 * wipeProgress + 6 * wipeProgress ** 2);
-  const introReveal = ease(clamp((progress - .69) / .19));
+  const introReveal = ease(clamp((progress - .80) / .20));
 
   track.style.setProperty('--photo-scale', 1);
   track.style.setProperty('--photo-opacity', 1 - ease(clamp((progress - .20) / .25)));
