@@ -74,3 +74,5 @@ main [id] {
     scroll-margin-top: 70px;
   }
 }
+
+.armi-header .inner h1 a img.kong-header-logo { width: clamp(125px, 19vw, 230px); height: auto; border-radius: 0; object-fit: contain; }
