@@ -1,0 +1,1763 @@
+@charset "utf-8";
+
+main {
+  position: relative;
+  z-index: 0;
+}
+
+main #main-visual>.inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 0;
+}
+
+#main-visual .visual-img {
+  width: calc(100% / 2);
+  height: 650px;
+  border-radius: 50px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#main-visual .visual-img .swiper-slide {
+  height: 100%;
+  overflow: hidden;
+}
+
+#main-visual .visual-img .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#main-visual .visual-text {
+  width: calc(100% / 2);
+}
+
+#main-visual .visual-text h2 {
+  font-size: 5rem;
+  margin-bottom: 30px;
+  white-space: nowrap;
+}
+
+#main-visual h2 span {
+  color: var(--main-color);
+}
+
+#main-visual .visual-text .visual-en {
+  letter-spacing: 0.17em;
+  color: var(--main-color);
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+#main-visual .visual-text .visual-desc {
+  font-size: 1.6rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+#main-visual .visual-content {
+  width: calc(100% / 2);
+}
+
+#main-visual .visual-top {
+  width: 100%;
+}
+
+#main-visual .visual-text-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+#main-visual .visual-text-swiper .swiper-slide {
+  width: 100%;
+}
+
+#main-visual .visual-pagination {
+  gap: 30px;
+  margin: 30px 0;
+}
+
+#main-visual .visual-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  opacity: 1;
+  border-radius: 10px;
+  transition: all 0.6s;
+}
+
+#main-visual .visual-pagination .swiper-pagination-bullet-active {
+  width: 30px;
+  background: var(--main-color);
+}
+
+#main-visual .visual-content .visual-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+#main-visual .visual-content .visual-info>div {
+  flex: 1;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.06);
+  padding: 30px;
+}
+
+#main-visual .visual-content .visual-info .hours-card h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#main-visual .visual-content .visual-info .hours-card dl.hours-list div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+#main-visual .hours-list dt,
+#main-visual .hours-list dd {
+  white-space: nowrap;
+}
+
+#main-visual .visual-content .visual-info .hours-card dl.hours-list div dt .night {
+  display: inline-block;
+  background-color: var(--sub-color);
+  color: var(--main-color);
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-size: 1.4rem;
+  margin-right: 7px;
+}
+
+#main-visual .visual-content .visual-info .hours-card dl.hours-list div.holiday {
+  color: var(--main-color);
+  margin-bottom: 15px;
+}
+
+#main-visual .visual-content .visual-info .hours-card ul.break-time {
+  background-color: var(--sub-color);
+  padding: 10px 15px;
+  border-radius: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+#main-visual .visual-content .visual-info .hours-card ul.break-time li {
+  color: var(--main-color);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#main-visual .visual-content .visual-info .hours-card ul.break-time li i {
+  margin-right: 7px;
+}
+
+#main-visual .visual-content .visual-info .contact-card {
+  padding: 60px 30px;
+
+}
+
+#main-visual .visual-content .visual-info .contact-card .address {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+#main-visual .visual-content .visual-info .contact-card .address i {
+  margin-right: 10px;
+  color: var(--main-color);
+  font-size: 2.4rem;
+  flex-shrink: 0;
+}
+
+#main-visual .visual-content .visual-info .contact-card .address p {
+  font-size: 2rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#main-visual .visual-content .visual-info .contact-card .phone {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+#main-visual .visual-content .visual-info .contact-card .phone i {
+  margin-right: 10px;
+  color: var(--main-color);
+  font-size: 2.4rem;
+}
+
+#main-visual .visual-content .visual-info .contact-card .phone span {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+#main-visual .main-link {
+  border-bottom: 1px solid var(--main-color);
+  border-top: 1px solid var(--main-color);
+}
+
+#main-visual .main-link .inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+#main-visual .main-link .inner div a {
+  display: block;
+  padding: 40px 0;
+  color: var(--main-color);
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+#main-visual .main-link .inner div a i {
+  margin-right: 7px;
+  align-items: center;
+}
+
+#main-visual .visual-btn {
+  display: none;
+}
+
+#main-visual .visual-btn a i{
+  margin-right: 7px;
+}
+
+#main-visual .visual-btn a {
+  padding: 15px 30px;
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 500;
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-visual .visual-img .main-tab-img {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+
+  #main-visual .visual-text .visual-en {
+    font-size: 1.2rem;
+  }
+
+  #main-visual .visual-text .visual-desc {
+    line-height: 1.35;
+  }
+
+  #main-visual .visual-btn {
+    display: flex;
+    gap: 20px;
+  }
+
+  #main-visual .visual-top {
+    width: calc(50% - 20px);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  /* 하단 링크, 페이지네이션 숨기기 */
+  #main-visual .main-link,
+  #main-visual .visual-pagination {
+    display: none;
+  }
+
+  /* 전체 영역 */
+  main #main-visual>.inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 40px;
+    row-gap: 30px;
+    padding: 50px 20px;
+  }
+
+  /* 오른쪽 콘텐츠 묶음 해제 */
+  #main-visual .visual-content {
+    display: contents;
+  }
+
+  /* 이미지 */
+  #main-visual .visual-img {
+    width: calc(50% - 20px);
+    height: 500px;
+    flex-shrink: 0;
+    border-radius: 30px;
+  }
+
+  /* 메인 문구 */
+  #main-visual .visual-text h2 {
+    margin-bottom: 10px;
+    font-size: 4rem;
+    line-height: 1.35;
+  }
+
+  /* 카드 영역 */
+  #main-visual .visual-content .visual-info {
+    width: 100%;
+    gap: 30px;
+  }
+
+  #main-visual .visual-content .visual-info>div {
+    flex: 1;
+  }
+
+  #main-visual .visual-top .visual-text-swiper {
+    max-width: 100%;
+  }
+
+  /* PC 이미지 숨김 */
+  #main-visual .visual-img .swiper-slide .main-pc-img {
+    display: none;
+  }
+
+  /* 태블릿 이미지 표시 */
+  #main-visual .visual-img .main-tab-img {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* 전체 세로 배치 */
+  main #main-visual>.inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  #main-visual .visual-img {
+    width: 100%;
+    height: 300px;
+    border-radius: 18px;
+  }
+
+  #main-visual .visual-top {
+    width: 100%;
+    transform: none;
+  }
+
+  #main-visual .visual-top .visual-text-swiper {
+    max-width: 100%;
+  }
+
+  #main-visual .visual-top .visual-text-swiper .swiper-slide .visual-text {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  #main-visual .visual-top .visual-text-swiper .swiper-slide .visual-text .visual-en {
+    display: none;
+  }
+
+  /* 모바일 문구 크기 */
+  #main-visual .visual-text h2 {
+    font-size: 4rem;
+    margin-bottom: 5px;
+  }
+
+  /* 버튼 */
+  #main-visual .visual-btn {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 카드 세로 정렬 */
+  #main-visual .visual-content .visual-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+
+  #main-visual .visual-content .visual-info>div {
+    width: 100%;
+    height: auto;
+    flex: none;
+    padding: 25px 30px;
+    border-radius: 18px;
+  }
+
+  /* 오시는 길 먼저 */
+  #main-visual .visual-content .visual-info .contact-card {
+    order: 1;
+    padding: 20px;
+  }
+
+  /* 진료시간 나중 */
+  #main-visual .visual-content .visual-info .hours-card {
+    order: 2;
+  }
+
+  /* 오시는 길 */
+  #main-visual .visual-content .visual-info .contact-card .address {
+    margin-bottom: 0;
+  }
+
+  #main-visual .visual-content .visual-info .contact-card .address p br {
+    display: none;
+  }
+
+  #main-visual .visual-content .visual-info .contact-card .address p {
+    font-size: 1.8rem;
+  }
+
+  #main-visual .contact-card .address i {
+    font-size: 1.8rem;
+  }
+
+  #main-visual .visual-content .visual-info .contact-card .phone {
+    display: none;
+  }
+}
+
+
+
+#clinic-intro {
+  width: 100%;
+  background-color: var(--sub-color);
+}
+
+#clinic-intro .inner {
+  min-height: 600px;
+  margin: 0 auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  column-gap: 200px;
+}
+
+/* 20년 경력 */
+#clinic-intro .intro-career {
+  width: calc(30% - 100px);
+  padding-top: 15px;
+}
+
+#clinic-intro .career-label {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: var(--main-color);
+}
+
+#clinic-intro .career-number {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+#clinic-intro .career-number strong.count-num {
+  color: var(--main-color);
+  font-size: 12rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* 메인 문구 */
+#clinic-intro .intro-content {
+  width: calc(70% - 100px);
+  padding-top: 35px;
+}
+
+#clinic-intro .intro-content h2 {
+  font-size: 4rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 30px;
+}
+
+#clinic-intro .intro-content h2 span {
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+#clinic-intro .intro-desc {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* 하단 진료 철학 */
+#clinic-intro .intro-values {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  margin-top: 150px;
+}
+
+#clinic-intro .value-item {
+  flex: 1;
+  padding-top: 20px;
+  border-top: 1px solid var(--main-color);
+}
+
+#clinic-intro .value-item h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--main-color);
+}
+
+#clinic-intro .value-item p {
+  font-size: 1.7rem;
+  line-height: 1.6;
+  color: var(--main-color);
+}
+
+@media (max-width: 1200px) {
+
+  #clinic-intro {
+    min-height: auto;
+    background: #fff;
+    color: #000;
+  }
+
+  #clinic-intro .inner {
+    min-height: auto;
+    padding: 80px 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+  }
+
+  /* 경력 정보 숨김 */
+  #clinic-intro .intro-career {
+    display: none;
+  }
+
+  /* 메인 문구 중앙 */
+  #clinic-intro .intro-content {
+    width: 100%;
+    padding-top: 0;
+    text-align: center;
+  }
+
+  #clinic-intro .intro-content h2 {
+    line-height: 1.35;
+    margin-bottom: 30px;
+  }
+
+  #clinic-intro .intro-content h2 span {
+    color: var(--main-color);
+  }
+
+  #clinic-intro .intro-desc {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #999;
+  }
+
+  /* 3가지 철학 가로 정렬 */
+  #clinic-intro .intro-values {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    margin-top: 0;
+  }
+
+  #clinic-intro .value-item {
+    flex: 1;
+    padding-top: 20px;
+    border-top: 1px solid var(--main-color);
+  }
+
+  #clinic-intro .value-item h3 {
+    font-size: 1.8rem;
+    color: var(--main-color);
+  }
+
+  #clinic-intro .value-item p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #999;
+  }
+}
+
+@media (max-width: 768px) {
+
+  #clinic-intro .inner {
+    padding: 50px 20px;
+    gap: 70px;
+  }
+
+  /* 메인 문구 */
+  #clinic-intro .intro-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  #clinic-intro .intro-content h2 {
+    font-size: 3.5rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  #clinic-intro .intro-desc {
+    line-height: 1.7;
+    color: #999;
+  }
+
+  /* 3가지 철학 세로 배치 */
+  #clinic-intro .intro-values {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+  }
+
+  #clinic-intro .value-item {
+    width: 300px;
+    flex: none;
+    padding-top: 15px;
+    border-top: 1px solid var(--main-color);
+    text-align: center;
+    margin: 0 auto;
+  }
+
+}
+
+/*치료 종류*/
+#treatment {
+  width: 100%;
+  padding: 100px 0;
+  overflow: hidden;
+  background: #fff;
+  white-space: normal;
+}
+
+/* 제목 */
+#treatment .treatment-title {
+  margin-bottom: 80px;
+}
+
+#treatment .treatment-title h2 {
+  font-size: 4rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+#treatment .treatment-title h2 span {
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+#treatment .treatment-title p {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Swiper */
+#treatment .treatment-swiper {
+  width: 100%;
+  overflow: visible;
+}
+
+#treatment .swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+#treatment .swiper-slide {
+  height: auto;
+  transition: transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+#treatment .swiper-slide a {
+  display: block;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  color: #000;
+  transition: all 0.5s;
+}
+
+#treatment .treatment-name :is(h3, i) {
+  color: var(--treatment-accent, inherit);
+  transition: color 180ms ease;
+}
+
+#treatment .swiper-slide > a:is(:focus-visible, :active) {
+  --treatment-accent: var(--main-color);
+  --treatment-arrow-shift: translate(3px, -3px);
+}
+
+@media (hover: hover) {
+  #treatment .swiper-slide > a:hover {
+    --treatment-accent: var(--main-color);
+    --treatment-arrow-shift: translate(3px, -3px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #treatment .treatment-name i {
+    transform: var(--treatment-arrow-shift, none);
+    transition: color 180ms ease, transform 180ms ease;
+  }
+}
+
+/* 이미지 */
+#treatment .treatment-img {
+  width: 100%;
+  height: 290px;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+#treatment .treatment-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* 카드 내용 */
+#treatment .treatment-info {
+  min-height: 145px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#treatment .treatment-info small {
+  display: block;
+  font-size: 1.2rem;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+#treatment .treatment-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#treatment .treatment-name h3 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+#treatment .treatment-name i {
+  font-size: 1.8rem;
+}
+
+#treatment .treatment-info p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #595959;
+}
+
+#treatment .treatment-notice {
+  margin-top: 50px;
+  text-align: right;
+  font-size: 1.2rem;
+  color: #999;
+}
+
+@media (max-width: 1200px) {
+
+  #treatment {
+    padding: 80px 0;
+  }
+
+  #treatment .inner {
+    padding: 0;
+  }
+
+  /* 제목 중앙 */
+  #treatment .treatment-title {
+    text-align: center;
+    padding: 0 40px;
+    margin-bottom: 70px;
+  }
+
+  #treatment .treatment-title h2 {
+    font-size: 5rem;
+    margin-bottom: 25px;
+  }
+
+  #treatment .treatment-title p {
+    font-size: 1.8rem;
+  }
+
+  /* 슬라이더 */
+  #treatment .treatment-swiper {
+    width: 100%;
+    overflow: visible;
+  }
+
+  #treatment .swiper-slide {
+    transition: filter 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  /* 양옆 카드 흐림 */
+  #treatment .swiper-slide {
+    filter: blur(2px);
+    opacity: 0.5;
+  }
+
+  /* 중앙 카드 */
+  #treatment .swiper-slide-active {
+    filter: blur(0);
+    opacity: 1;
+  }
+
+  #treatment .treatment-img {
+    height: 300px;
+  }
+
+  #treatment .treatment-info {
+    min-height: 150px;
+  }
+
+  #treatment .treatment-name h3 {
+    font-size: 2rem;
+  }
+
+  #treatment .treatment-info p {
+    font-size: 1.6rem;
+  }
+
+  #treatment .treatment-notice {
+    padding: 0 40px;
+    text-align: center;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  #treatment .treatment-title {
+    padding: 0;
+    margin-bottom: 50px;
+  }
+
+  #treatment .treatment-title h2 {
+    font-size: 3.4rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  #treatment .treatment-title p {
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+
+  #treatment .treatment-img {
+    height: 220px;
+  }
+
+  #treatment .treatment-info {
+    min-height: 140px;
+    padding: 15px;
+  }
+
+  #treatment .treatment-info small {
+    font-size: 1.1rem;
+  }
+
+  #treatment .treatment-name h3 {
+    font-size: 1.8rem;
+  }
+
+  #treatment .treatment-info p {
+    font-size: 1.3rem;
+  }
+
+  #treatment .treatment-notice {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 20px;
+    margin-top: 30px;
+  }
+}
+
+/*내치아 살리기*/
+#save-teeth {
+  padding: 100px 0;
+  background-color: var(--sub-color);
+}
+
+#save-teeth .inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#save-teeth .inner>div.save-img {
+  width: 540px;
+  overflow: hidden;
+  margin: 30px;
+}
+
+#save-teeth .inner>div.save-img img {
+  border-radius: 24px 200px 24px 200px;
+  transition: border-radius 0.5s ease;
+  width: 100%;
+}
+
+#save-teeth .inner>div.save-txt {
+  width: 675px;
+}
+
+#save-teeth .inner>div.save-txt h2 {
+  font-size: 5rem;
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
+}
+
+#save-teeth .inner>div.save-txt p {
+  font-size: 1.8rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+#save-teeth .inner>div.save-txt ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+#save-teeth .inner>div.save-txt ul li {
+  background-color: #d2e7ff;
+  color: #164a7d;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+#save-teeth .inner>div.save-txt .save-btn {
+  text-align: left;
+}
+
+#save-teeth .inner>div.save-txt .save-btn a {
+  display: inline-block;
+  border: 1px solid #0067d7;
+  background-color: #0067d7;
+  padding: 12px 30px;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+#save-teeth .inner>div.save-txt .save-btn a i {
+  margin-left: 10px;
+}
+
+#save-teeth .inner>div.save-txt .save-btn a:hover,
+#save-teeth .inner>div.save-txt .save-btn a:focus-visible {
+  background-color: #0054b0;
+}
+
+@media (max-width: 1200px) {
+  #save-teeth {
+    padding: 80px 0;
+    background-color: #fff;
+  }
+
+  #save-teeth .inner>div.save-img img {
+    border-radius: 0;
+  }
+
+  #save-teeth .inner>div.save-txt h2 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+  }
+
+  #save-teeth .inner>div.save-txt p {
+    font-size: 1.8rem;
+  }
+
+  #save-teeth .inner>div.save-txt ul {
+    gap: 10px;
+  }
+
+  #save-teeth .inner>div.save-txt .save-btn a {
+    padding: 10px 20px;
+    font-size: 1.4rem;
+  }
+
+  #save-teeth .inner>div.save-txt ul li {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #save-teeth .inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #save-teeth .inner>div.save-img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #save-teeth .inner>div.save-txt {
+    width: 100%;
+  }
+
+  #save-teeth .inner>div.save-txt h2 {
+    font-size: 3rem;
+  }
+
+  #save-teeth .inner>div.save-txt p {
+    font-size: 1.6rem;
+  }
+
+  #save-teeth .inner>div.save-txt ul {
+    justify-content: center;
+  }
+
+  #save-teeth .inner>div.save-txt .save-btn {
+    text-align: center;
+  }
+}
+
+/* 스크롤로 처음 들어온 섹션에서만 사진과 문구를 짧게 보여줍니다. */
+@media (prefers-reduced-motion: no-preference) {
+  #save-teeth.is-entering .save-img {
+    animation: save-teeth-arrive 620ms ease-out both;
+  }
+
+  #save-teeth.is-entering .save-txt {
+    animation: save-teeth-arrive 580ms ease-out 80ms both;
+  }
+}
+
+@keyframes save-teeth-arrive {
+  from { opacity: .6; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+#dental-guide {
+  padding: 100px 0;
+  background-color: #fff;
+}
+
+#dental-guide .guide-tit {
+  margin-bottom: 50px;
+}
+
+#dental-guide .guide-tit h2 {
+  font-size: 4rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+#dental-guide .guide-tit h2 span {
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+#dental-guide .guide-tit p {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: #595959;
+}
+
+#dental-guide .guide-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#dental-guide .guide-card {
+  width: calc((100% - 20px) / 2);
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+#dental-guide .guide-card a {
+  display: block;
+  color: #000;
+}
+
+/* 카드 상단 이미지 공통 */
+#dental-guide .guide-img01,
+#dental-guide .guide-img02 {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#dental-guide .guide-img01 {
+  background: url("../imges/main/dental_guide01.png") no-repeat center / cover;
+}
+
+#dental-guide .guide-img02 {
+  background: url("../imges/main/dental_guide02.png") no-repeat center / cover;
+}
+
+#dental-guide .guide-img-txt {
+  opacity: 0;
+  position: absolute;
+  top: 70px;
+  left: 40px;
+  transition: opacity 0.5s;
+}
+
+#dental-guide .guide-card:hover .guide-img-txt {
+  opacity: 1;
+}
+
+#dental-guide .special-img-txt small,
+#dental-guide .guide-img-txt small {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+#dental-guide .special-img-txt h3,
+#dental-guide .guide-img-txt h3 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--main-color);
+  opacity: 0.8;
+}
+
+#dental-guide .guide-info {
+  padding: 30px;
+}
+
+#dental-guide .guide-info h3 {
+  margin-bottom: 8px;
+  color: #0054b0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+#dental-guide .guide-info h4 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#dental-guide .guide-info p {
+  font-size: 1.6rem;
+  color: #595959;
+  margin-bottom: 20px;
+}
+
+#dental-guide .guide-more {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+#dental-guide .guide-more span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+#dental-guide .guide-more i {
+  font-size: 1.8rem;
+}
+
+#dental-guide .guide-card a:focus-visible {
+  outline: 2px solid #0054b0;
+  outline-offset: -3px;
+}
+
+#dental-guide .guide-card a:hover .guide-more,
+#dental-guide .guide-card a:focus-visible .guide-more {
+  color: #0054b0;
+}
+
+/* 카드 위치는 고정하고 화살표만 짧게 움직입니다. */
+@media (prefers-reduced-motion: no-preference) {
+  #dental-guide .guide-more i {
+    transition: transform 180ms ease-out;
+  }
+
+  #dental-guide .guide-card a:hover .guide-more i,
+  #dental-guide .guide-card a:focus-visible .guide-more i {
+    transform: translate(3px, -3px);
+  }
+}
+
+#dental-guide .dental-guide-notice {
+  margin-top: 24px;
+  text-align: left;
+  font-size: 1.2rem;
+  color: #595959;
+}
+
+@media (max-width: 1200px) {
+  #dental-guide {
+    padding: 80px 0;
+  }
+
+  #dental-guide .guide-tit {
+    margin-bottom: 40px;
+  }
+
+  #dental-guide .guide-tit h2 {
+    font-size: 3.4rem;
+    margin-bottom: 10px;
+  }
+
+  #dental-guide .guide-info h4 {
+    font-size: 2rem;
+  }
+
+  #dental-guide .guide-tit p {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #dental-guide .guide-list {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  #dental-guide .guide-card {
+    width: 600px;
+  }
+}
+
+
+
+#faq {
+  padding: 100px 0;
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+#faq .inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+#faq .faq-tit {
+  width: 40%;
+}
+
+#faq .faq-tit h2 {
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 15px;
+}
+
+#faq .faq-tit p {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#faq .faq-list {
+  width: 60%;
+}
+
+#faq .faq-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#faq .faq-shortcuts a {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #fff;
+  color: #0054b0;
+  font-size: 1.5rem;
+}
+
+#faq .faq-shortcuts a:focus-visible,
+#faq .faq-question:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
+}
+
+#clinic-hours {
+  scroll-margin-top: 100px;
+}
+
+#faq .faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#faq .faq-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#faq .faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 0;
+  cursor: pointer;
+}
+
+#faq .faq-question h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+#faq .faq-question i {
+  font-size: 2rem;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+#faq .faq-question i {
+  transform: rotate(180deg);
+}
+
+#faq .faq-item[open] .faq-question i {
+  transform: rotate(0);
+}
+
+#faq .faq-answer {
+  padding: 0 0 30px;
+}
+
+#faq .faq-answer p {
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+@media (max-width: 1200px) {
+
+  #faq {
+    padding: 80px 0;
+    background-color: #fff;
+    color: #000;
+  }
+
+  #faq .inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  #faq .faq-tit {
+    width: 100%;
+    text-align: center;
+  }
+
+  #faq .faq-tit h2 {
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  #faq .faq-tit h2 br {
+    display: block;
+  }
+
+  #faq .faq-tit h2 {
+    color: #000;
+  }
+
+  #faq .faq-tit h2::first-line {
+    color: var(--main-color);
+  }
+
+  #faq .faq-tit p {
+    display: none;
+  }
+
+  #faq .faq-list {
+    width: 100%;
+  }
+
+  #faq .faq-item {
+    border-bottom: 1px solid #999;
+  }
+
+  #faq .faq-item:first-child {
+    border-top: 1px solid #999;
+  }
+
+
+  #faq .faq-question {
+    padding: 25px 0;
+    gap: 10px;
+  }
+
+  #faq .faq-question h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #999;
+  }
+
+  #faq .faq-question i {
+    font-size: 2rem;
+    color: #999;
+  }
+
+  #faq .faq-item[open] .faq-question h3,
+  #faq .faq-item[open] .faq-question i {
+    color: var(--main-color);
+  }
+
+  #faq .faq-answer {
+    padding: 0 0 25px;
+  }
+
+  #faq .faq-answer p {
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: var(--main-color);
+  }
+}
+
+@media (max-width: 768px) {
+  #faq .inner {
+    gap: 35px;
+  }
+
+  #faq .faq-tit h2 {
+    font-size: 3.5rem;
+  }
+
+  #faq .faq-question {
+    padding: 20px 0;
+  }
+
+  #faq .faq-question h3 {
+    font-size: 1.6rem;
+  }
+
+  #faq .faq-question i {
+    font-size: 1.6rem;
+  }
+
+  #faq .faq-answer {
+    padding-bottom: 20px;
+  }
+
+  #faq .faq-answer p {
+    font-size: 1.4rem;
+  }
+}
+
+#location {
+  padding: 100px 0;
+}
+
+#location .inner .loc-txt {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  align-items: center;
+  border-bottom: 1px solid var(--main-color);
+}
+
+#location .inner .loc-txt h2 {
+  font-size: 4rem;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+#location .inner .loc-txt .loc-txt-right {
+  text-align: right;
+}
+
+#location .inner .loc-txt .loc-txt-right .loc-right-top {
+  display: inline-block;
+  padding: 5px 15px;
+  border: 1px solid var(--main-color);
+  border-radius: 30px;
+  text-align: center;
+  color: var(--main-color);
+  margin-bottom: 15px;
+}
+
+#location .inner .loc-txt .loc-txt-right .loc-right-bottom {
+  font-weight: 500;
+  font-size: 2rem;
+  align-items: center;
+}
+
+#location .inner .loc-txt .loc-txt-right .loc-right-bottom i {
+  color: var(--main-color);
+  margin-right: 7px;
+}
+
+#location .inner .loc-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 70px;
+}
+
+#location .inner .loc-content .location-map{
+  width: calc((100% - 30px) / 2);
+}
+
+#location .inner .loc-content .location-map .map-iframe {
+  width: 100%;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#location .inner .loc-content .location-map .map-iframe iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+#location .inner .loc-content .map-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+#location .inner .loc-content .map-info .map-address{
+  font-size: 1.8rem;
+}
+
+#location .inner .loc-content .map-info .map-address p{
+  font-size: 1.6rem;
+  margin-top: 5px;
+}
+
+#location .inner .loc-content .map-info i{
+  color: var(--main-color);
+}
+
+#location .inner .loc-content .location-info{
+width: 40%;
+}
+
+#location .inner .loc-content .location-info h2{
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+#location .inner .loc-content .location-info .time-list .time-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+#location .inner .loc-content .location-info .time-list .time-item span{
+  display: block;
+  padding: 25px 0;
+  color: #999;
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
+#location .inner .loc-content .location-info .time-list .time-item p{
+  font-size: 1.8rem;
+}
+
+#location .inner .loc-content .location-info .time-list .time-item span em{
+  background-color: var(--sub-color);
+  color: var(--main-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 1.6rem;
+  margin-left: 5px;
+}
+
+#location .inner .loc-content .location-info .location-holiday{
+  color: var(--main-color);
+  font-size: 1.8rem;
+  padding: 30px 0;
+}
+
+#location .inner .loc-content .location-info .location-btn{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+#location .inner .loc-content .location-info .location-btn a{
+  display: block;
+  padding: 15px 0;
+  width: 170px;
+  text-align: center;
+  border: 1px solid var(--main-color);
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+#location .inner .loc-content .location-info .location-btn a i{
+  margin-left: 20px;
+}
+
+#location .inner .loc-content .location-info .location-btn .naver-btn{
+  color: var(--main-color);
+  background-color: #fff;
+}
+
+#location .inner .loc-content .location-info .location-btn .call-btn{
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+#location .inner .loc-content .location-info .location-notice{
+  font-size: 1.2rem;
+  color: #999;
+}
+
+@media (max-width: 1200px) {
+  #location {
+    padding: 80px 0;
+  }
+
+  #location .inner .loc-txt {
+    padding-top: 0;
+  }
+
+  #location .inner .loc-content .location-info .location-btn,
+  #location .inner .loc-content .location-info .location-notice
+  {
+    display: none;
+  }
+
+  #location .inner .loc-content .location-info .location-holiday{
+    padding: 20px 0;
+    text-align: right;
+    font-size: 1.6rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  #location .inner .loc-txt {
+    flex-direction: column;
+  }
+
+  #location .inner .loc-txt h2 {
+    font-size: 3.5rem;
+  }
+
+  #location .inner .loc-txt .loc-txt-right {
+    display: none;
+  }
+
+#location .inner .loc-content .location-map{
+  width: 100%;
+}
+
+  #location .inner .loc-content .location-info {
+    display: none;
+  }
+}
+
+.floating-chat {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #FFB81C;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* 오시는 길 시안: 주소와 방문 버튼을 지도보다 먼저 표시합니다. */
+#location .visit-address { margin-top: 24px; font-size: 1.8rem; }
+#location .visit-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+#location .visit-actions a {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #0054b0;
+  border-radius: 10px;
+  color: #0054b0;
+}
+#location .visit-actions a:first-child { background: #0054b0; color: #fff; }
+#location .inner .loc-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-areas: "map hours";
+  gap: 30px;
+  align-items: start;
+  padding-top: 24px;
+}
+#location .inner .loc-content .location-map { grid-area: map; width: auto; }
+#location .inner .loc-content .location-info { grid-area: hours; width: auto; display: block; }
+#location .inner .loc-content .location-info .location-notice { display: block; color: #595959; }
+#location .inner .loc-content .location-info .time-list .time-item { gap: 10px; flex-wrap: wrap; }
+#location .inner .loc-content .location-info .time-list .time-item span { padding: 12px 0; color: #595959; }
+#location .inner .loc-content .location-info .location-holiday { text-align: left; padding: 14px 0; }
+@media (max-width: 768px) {
+  #location .inner .loc-content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "hours" "map";
+  }
+  #location .inner .loc-content .location-map .map-iframe { height: 260px; }
+}

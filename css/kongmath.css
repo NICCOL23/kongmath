@@ -1,0 +1,76 @@
+.armi-header .inner h1 a{display:flex;align-items:center;gap:10px;font-weight:800;line-height:1.15;white-space:nowrap;letter-spacing:.025em}
+.armi-header .inner h1 a img{width:44px;height:44px;object-fit:cover;border-radius:50%}
+.armi-header .inner h1 small{display:block;font-size:1.25rem;letter-spacing:0;margin-top:4px}
+#main-visual .visual-img .swiper-slide img{object-fit:cover;object-position:50% 48%}
+#main-visual .visual-img .swiper-slide:first-child img{object-position:50% 62%}
+#main-visual .visual-text h2{word-break:keep-all}
+#save-teeth .save-img img,.visit-photo{display:block;width:100%;max-height:390px;object-fit:cover;object-position:center 49%;border-radius:16px}
+.footer-logo img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.footer-blog a{white-space:nowrap}
+@media(max-width:768px){.armi-header .inner h1 a img{width:34px;height:34px}.armi-header .inner h1 a{font-size:1.4rem;gap:6px}.armi-header .armi-header-row{gap:9px}.armi-header .inner h1 small{font-size:1.1rem}}
+
+
+/* Keep the experience counter visible in the stacked introduction. */
+#clinic-intro .count-num {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1200px) {
+  #clinic-intro .inner {
+    gap: 40px;
+  }
+
+  #clinic-intro .intro-career {
+    display: block;
+    width: 100%;
+    padding-top: 0;
+    text-align: center;
+  }
+
+  #clinic-intro .career-number {
+    justify-content: center;
+  }
+
+  #clinic-intro .career-number strong.count-num {
+    font-size: clamp(6rem, 12vw, 9rem);
+  }
+}
+
+/* Keep the header visible without removing it from the hero's scroll layout. */
+body {
+  overflow-x: clip;
+}
+
+.armi-header {
+  position: sticky;
+  top: 0;
+}
+
+main [id] {
+  scroll-margin-top: 100px;
+}
+
+.naver-map-panel {
+  background: #edf5ff;
+}
+
+.naver-map-status {
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  height: 100%;
+  padding: 20px;
+  color: #173d64;
+  text-align: center;
+}
+
+.naver-map-status a {
+  color: #0058b9;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 1200px) {
+  main [id] {
+    scroll-margin-top: 70px;
+  }
+}

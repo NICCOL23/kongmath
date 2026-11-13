@@ -1,0 +1,515 @@
+@charset "utf-8";
+
+:root {
+  --main-font: "pretendard", sans-serif;
+  --main-color: #0077FF;
+  --sub-color: #E8F3FF;
+}
+
+body {
+  font-family: var(--main-font);
+  font-size: 1.6rem;
+  line-height: 1.35;
+  color: #000;
+  overflow-x: hidden;
+}
+
+.inner {
+  max-width: 1460px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+/*header gnb*/
+header {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: 100px;
+}
+
+header .inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+}
+
+header .inner h1 a {
+  display: block;
+  line-height: 30px;
+}
+
+header .inner h1 a img {
+  width: 150px;
+}
+
+header .inner .ham {
+  display: none;
+  cursor: pointer;
+  font-size: 2.5rem;
+}
+
+header .inner nav {
+  display: flex;
+  gap: 70px;
+}
+
+header .inner .gnb {
+  display: flex;
+  gap: 10px;
+}
+
+header .inner .login a {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 5px 20px;
+  border: 1px solid var(--main-color);
+  border-radius: 40px;
+  font-size: 1.5rem;
+  color: var(--main-color);
+  font-weight: 600;
+  transition: all 0.5s;
+}
+
+header .inner .login a:hover {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+header .inner .utill {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+header .inner .gnb>li {
+  position: relative;
+}
+
+header .inner .gnb>li::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  background-color: var(--main-color);
+  transition: all 0.5s;
+}
+
+header .inner .gnb>li:hover::after {
+  width: 100%;
+}
+
+header .inner .gnb>li>a {
+  display: block;
+  padding: 20px 35px 20px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  transition: all 0.5s;
+  white-space: nowrap;
+}
+
+header .inner .gnb>li:hover>a {
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+header .inner .gnb .depth2 {
+  width: 150px;
+  position: absolute;
+  display: none;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+header .inner .gnb .depth2 li a {
+  display: block;
+  padding: 15px 5px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  transition: all 0.5s;
+}
+
+header .inner .gnb .depth2>li:first-child>a {
+  padding-top: 40px;
+}
+
+header .inner .gnb .depth2 li:hover a {
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+header .depth2-bg {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 260px;
+  background: #fff;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.06);
+  z-index: 1;
+}
+
+@media(max-width:1200px) {
+  header .inner .gnb {
+    display: none;
+  }
+
+  header .inner .ham {
+    display: block;
+  }
+}
+
+@media(max-width:768px) {
+  header {
+    height: 70px;
+  }
+
+  header .inner h1 a img {
+    width: 120px;
+  }
+
+  header .inner .ham {
+    display: block;
+  }
+
+  header .inner .login {
+    display: none;
+  }
+}
+
+
+/*mgnb-wrap*/
+header .mgnb-wrap{
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 120px 30px;
+  background-color: #fff;
+}
+
+header .mgnb-wrap .mgnb-bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 70px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+header .mgnb-wrap .mgnb-bar .mgnb-logo img{
+  width: 120px;
+}
+
+header .mgnb-wrap .mgnb-bar .mgnb-close{
+  font-size: 2.3rem;
+  cursor: pointer;
+}
+
+header .mgnb-wrap h3{
+  font-size: 3rem;
+  padding: 15px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+header .mgnb-wrap h3::after{
+  content: "ARMI DENTAL CLINIC";
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-left: 10px;
+  color: #ccc;
+}
+
+header .mgnb-wrap .mgnb>li .mgnb-select{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px 10px;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-left: 5px solid transparent;
+}
+
+header .mgnb-wrap .mgnb>li .mgnb-select i{
+  color: #999;
+}
+
+header .mgnb-wrap .mgnb .mdepth2{
+  display: none;
+  padding: 10px;
+}
+
+header .mgnb-wrap .mgnb .mdepth2 li{
+padding: 15px 10px 10px;
+border-bottom: 1px solid #ddd;
+}
+
+header .mgnb-wrap .mgnb .mdepth2 li a{
+  font-size: 1.6rem;
+  color: #999;
+}
+
+/* mgnb 클릭 후 변환*/
+header .mgnb-wrap .mgnb > li .mgnb-select.active {
+  color: var(--main-color);
+  background-color: #F6F8FA;
+  border-left-color: var(--main-color);
+  font-weight: 700;
+  transition: all 0.5s;
+}
+
+header .mgnb-wrap .mgnb-select i {
+  display: inline-block;
+  transition: transform 0.5s;
+}
+
+header .mgnb-wrap .mgnb > li .mgnb-select.active i {
+  transform: rotate(-180deg);
+  color: var(--main-color);
+}
+
+header .mgnb-wrap .mgnb .mdepth2 li a.active{
+  color: var(--main-color);
+}
+
+/* footer */
+.footer {
+  padding: 80px 0 40px;
+  background: #33495f;
+  color: #fff;
+}
+
+.footer .footer-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* 상단 문구와 예약 버튼 */
+.footer .footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.footer .footer-text h2 {
+  margin: 0 0 15px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.footer .footer-text p {
+  margin: 0;
+  color: #a6b2bf;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 전화와 오시는 길 버튼은 좁은 화면에서 줄바꿈합니다. */
+.footer .footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer .reserve-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 15px 25px;
+  border-radius: 50px;
+  background: #fff;
+  color: #666;
+  font-size: 14px;
+}
+
+.footer .footer-directions {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #a6b2bf;
+}
+
+.footer .footer-address,
+.footer .footer-phone {
+  color: #fff;
+}
+
+.footer .footer-phone {
+  text-decoration: underline;
+}
+
+.footer .footer-actions a:focus-visible,
+.footer .footer-phone:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* 하단 로고와 병원 정보 */
+.footer .footer-bottom {
+  display: flex;
+  align-items: flex-start;
+  gap: 70px;
+  padding-top: 30px;
+}
+
+.footer .footer-logo {
+  flex-shrink: 0;
+}
+
+.footer .footer-logo img {
+  display: block;
+  width: 220px;
+}
+
+.footer .footer-info {
+  min-width: 0;
+  color: #a6b2bf;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.footer .footer-info p {
+  margin: 0;
+}
+
+.footer .info-top,
+.footer .info-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 15px;
+}
+
+/* 블로그 바로가기 */
+.footer .footer-blog {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.footer .footer-blog a {
+  display: block;
+  border-radius: 50%;
+}
+
+.footer .footer-blog img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.footer .footer-blog a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+}
+
+.footer .copyright {
+  margin: 50px 0 0;
+  color: #a6b2bf;
+  font-size: 12px;
+  text-align: right;
+}
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 60px 0 30px;
+  }
+
+  .footer .footer-text h2 {
+    font-size: 24px;
+  }
+
+  .footer .footer-bottom {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+
+  .footer .footer-logo img {
+    width: 180px;
+  }
+
+  .footer .footer-info {
+    flex: 1;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 25px;
+  }
+
+  .footer .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    padding-bottom: 30px;
+    
+  }
+  
+
+  .footer .footer-text h2 {
+    font-size: 20px;
+  }
+
+  .footer .footer-text p {
+    font-size: 12px;
+  }
+
+  .footer .reserve-btn {
+    padding: 12px 20px;
+    font-size: 12px;
+  }
+
+  .footer .footer-bottom {
+    gap: 25px;
+  }
+
+  .footer .footer-logo img {
+    width: 160px;
+  }
+
+  .footer .footer-info {
+    flex: 0 0 100%;
+    order: 3;
+    font-size: 12px;
+  }
+
+  .footer .footer-blog img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer .copyright {
+    margin-top: 30px;
+    font-size: 10px;
+    text-align: left;
+  }
+}

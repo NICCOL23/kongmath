@@ -1,0 +1,361 @@
+/* 원본 이미지와 문구를 같은 자리에 포개고, 현재 장면만 보여줍니다. */
+#main-visual .visual-img .swiper-wrapper,
+#main-visual .visual-text-swiper .swiper-wrapper {
+  display: grid;
+}
+#main-visual .visual-img .swiper-slide,
+#main-visual .visual-text-swiper .swiper-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  min-width: 0;
+}
+#main-visual .swiper-slide:first-child {
+  opacity: 1;
+}
+#main-visual .visual-img .swiper-slide {
+  border-radius: inherit;
+}
+#main-visual .visual-img .swiper-wrapper {
+  border-radius: inherit;
+}
+#main-visual .visual-text { width: 100%; }
+/* 제목의 왼쪽 시작점을 기준으로 두 줄을 함께 확대합니다. */
+#main-visual .visual-text h2 {
+  transform-origin: left center;
+  transform: translateY(calc(12px * (1 - var(--title-growth, 1))))
+    scale(calc(.92 + var(--title-growth, 1) * .08));
+}
+#main-visual .visual-text h2,
+#main-visual .visual-text .visual-desc,
+#main-visual .visual-content .visual-info .contact-card .address p {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+/* 사진과 문구의 두 열이 합쳐서 화면 너비 안에 들어오게 합니다. */
+@media (min-width: 1201px) {
+  main #main-visual > .inner {
+    width: min(100% - 48px, 1600px);
+    gap: clamp(24px, 4vw, 72px);
+  }
+  #main-visual .visual-content { flex: 1; min-width: 0; }
+  #main-visual .visual-content .visual-info > div { min-width: 0; }
+  #main-visual .visual-text h2 { font-size: clamp(3.4rem, 3.25vw, 5rem); }
+}
+@media (max-width: 768px) {
+  #main-visual .visual-text h2 {
+    font-size: clamp(2.6rem, 7.4vw, 4rem);
+    transform: translateY(calc(8px * (1 - var(--title-growth, 1))))
+      scale(calc(.96 + var(--title-growth, 1) * .04));
+  }
+  #main-visual .visual-top { min-width: 0; }
+}
+/* 현재 장면은 파란 진행 막대, 다른 장면은 작은 점으로 표시합니다. */
+#main-visual .hero-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 12px 0;
+}
+#main-visual .hero-controls button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 0;
+}
+#main-visual .hero-controls [data-scene] {
+  position: relative;
+  width: 44px;
+  flex: 0 0 44px;
+}
+.hero-controls [data-scene]::before,
+.hero-controls [data-scene][aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #a5b8cd;
+  translate: -50% -50%;
+}
+.hero-controls [data-scene][aria-pressed="true"]::before,
+.hero-controls [data-scene][aria-pressed="true"]::after {
+  width: 30px;
+  height: 6px;
+  background: #b6d5fa;
+}
+.hero-controls [data-scene][aria-pressed="true"]::after {
+  background: #0065d6;
+  transform: scaleX(var(--scene-progress, 0));
+  transform-origin: left;
+}
+
+/* 둥근 버튼 안에서 재생과 일시정지 아이콘을 바꿉니다. */
+#main-visual .hero-controls .hero-pause {
+  display: inline-grid;
+  place-items: center;
+  position: relative;
+  width: 44px;
+  flex: 0 0 44px;
+  margin-inline-start: 6px;
+  color: #164c80;
+  isolation: isolate;
+}
+.hero-pause::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  z-index: -1;
+  border: 1px solid #c6ddfa;
+  border-radius: 50%;
+  background: #eff6ff;
+}
+.hero-pause:not(:disabled):hover::before { background: #dcecff; }
+.hero-pause::after {
+  content: "";
+  width: 9px;
+  height: 12px;
+  border-inline: 2px solid currentColor;
+  box-sizing: border-box;
+}
+.hero-pause[data-paused="true"]::after {
+  width: 0;
+  height: 0;
+  margin-inline-start: 2px;
+  border: 6px solid transparent;
+  border-inline-start: 9px solid currentColor;
+  border-inline-end: 0;
+}
+#main-visual .hero-pause:disabled { cursor: default; opacity: .55; }
+.hero-controls button:focus-visible {
+  outline: 2px solid #0065d6;
+  outline-offset: -2px;
+  border-radius: 999px;
+}
+
+/* 스크롤 연출은 화면을 움직일 수 있는 설정에서만 고정합니다. */
+body:has(.hero-scroll-track.is-active) { overflow-x: clip; }
+.hero-scroll-track.is-active::after { content: ""; display: block; height: 105svh; }
+.hero-scroll-track.is-active #main-visual {
+  position: sticky;
+  top: 0;
+}
+#main-visual .visual-img .swiper-slide {
+  transform-origin: center;
+}
+.hero-skip {
+  padding: 8px;
+  color: #245078;
+  font-size: 1.3rem;
+}
+@media (max-width: 768px) {
+  .hero-scroll-track.is-active::after { height: 78svh; }
+}
+
+
+/* 소개를 히어로 뒤에 놓고, 스크롤 구간 동안 두 화면을 같은 자리에 고정합니다. */
+.intro-transition-message { display: none; }
+.intro-message-line, .intro-message-brand { display: block; }
+.intro-message-accent { color: #0070eb; }
+.intro-message-brand { margin-top: .8em; font-size: clamp(14px, 1.5vw, 22px); }
+/* 각 줄은 스크롤 진행률에 맞춰 아래에서 제자리로 올라옵니다. */
+.is-enhanced .intro-message-line {
+  opacity: var(--line-progress, 0);
+  transform: translateY(calc((1 - var(--line-progress, 0)) * .55em));
+  --line-progress: var(--message-first);
+}
+.is-enhanced .intro-message-line-second { --line-progress: var(--message-second); }
+.is-enhanced .intro-message-brand { opacity: var(--message-second, 0); }
+body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
+.intro-transition.is-enhanced::after {
+  content: "";
+  display: block;
+  height: clamp(560px, 88svh, 880px);
+}
+.is-enhanced .intro-transition-stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  isolation: isolate;
+  background: #fff;
+}
+.is-enhanced .intro-transition-stage > section { grid-area: 1 / 1; min-width: 0; }
+/* 소개 영역의 원래 높이에서 다음 섹션이 시작되도록 히어로를 위에 겹칩니다. */
+.is-enhanced #main-visual {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+}
+/* 배경은 아래쪽부터 걷히고, 사진은 자기 영역 안에서만 축소됩니다. */
+.is-enhanced #main-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #fff;
+  clip-path: inset(0 0 var(--hero-background-inset, 0%) 0);
+  pointer-events: none;
+}
+.is-enhanced #main-visual[inert] { visibility: hidden; }
+.is-enhanced #main-visual .visual-img {
+  transform: scale(var(--photo-scale, 1));
+  opacity: var(--photo-opacity, 1);
+}
+.is-enhanced #main-visual .visual-text-swiper { opacity: var(--title-opacity, 1); }
+.is-enhanced #main-visual :is(.visual-btn, .visual-info, .main-link) {
+  opacity: var(--controls-opacity, 1);
+}
+.is-enhanced #main-visual .hero-controls { opacity: var(--controls-opacity, 1); }
+.is-enhanced #main-visual .hero-controls:focus-within { opacity: 1; }
+.is-enhanced #main-visual :is(.visual-btn, .visual-info, .main-link)[inert] {
+  visibility: hidden;
+}
+.is-enhanced #clinic-intro {
+  align-self: start;
+  overflow: clip;
+}
+.is-enhanced #clinic-intro > .inner {
+  opacity: var(--intro-opacity, 0);
+  transform: translateY(var(--intro-offset, 0px));
+}
+.is-enhanced .intro-transition-message {
+  display: block;
+  position: absolute;
+  top: var(--hero-center, 50%);
+  left: 50%;
+  z-index: 2;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  margin: 0;
+  padding: .7em 1em;
+  transform: translate(-50%, -50%);
+  color: #16344e;
+  text-align: center;
+  font-size: clamp(27px, 4vw, 60px);
+  font-weight: 700;
+  word-break: keep-all;
+  opacity: var(--message-opacity, 0);
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .intro-transition.is-enhanced::after { height: clamp(360px, 58svh, 540px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-transition-message {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    color: #16344e;
+    text-align: center;
+    font-weight: 700;
+  }
+}
+#treatment .implant-motion { position: relative; }
+
+/* 카드 원본 사진 위에 단면 모형을 올립니다. */
+.implant-motion-layers {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #fff, #e8eef4);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.implant-motion.is-playing .implant-motion-layers { visibility: visible; }
+
+.implant-section-model {
+  --implant-photo: url("../imges/main/dental_treat01.png");
+  position: relative;
+  width: 54%;
+  max-width: 180px;
+  height: 80%;
+}
+
+/* 지대주 상단은 크라운 아래쪽의 홈에 들어갑니다. */
+.implant-section-abutment {
+  position: absolute;
+  top: 42%;
+  left: 42%;
+  width: 16%;
+  height: 23%;
+  clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%);
+  /* 원본 사진의 지대주 부분을 확대해 실제 금속 반사를 살립니다. */
+  background: #879198 var(--implant-photo) 75.5% 46.7% / 676.5% 555.6% no-repeat;
+}
+
+.implant-section-fixture {
+  position: absolute;
+  top: 62%;
+  left: 36%;
+  width: 28%;
+  height: 32%;
+  clip-path: polygon(7% 0, 93% 0, 100% 10%, 94% 49%, 78% 85%, 66% 97%, 50% 100%, 31% 96%, 20% 86%, 8% 53%, 0 13%);
+  background: #879198 var(--implant-photo) 75.1% 82.5% / 704% 319% no-repeat;
+}
+
+.implant-motion-crown {
+  position: absolute;
+  top: 12%;
+  left: 24%;
+  width: 52%;
+  height: 40%;
+  background: #e9ddc9 var(--implant-photo) 80.9% 13.2% / 367% 370% no-repeat;
+  /* 하단 가운데 홈을 비워 단면에서 지대주가 보이게 합니다. */
+  clip-path: polygon(0 30%, 3% 17%, 8% 9%, 16% 6%, 23% 9%, 32% 1%, 39% 0, 48% 4%, 57% 13%, 69% 10%, 82% 6%, 92% 8%, 98% 19%, 100% 34%, 97% 51%, 92% 68%, 84% 86%, 75% 96%, 66% 100%, 64% 48%, 36% 48%, 34% 99%, 23% 97%, 17% 98%, 12% 89%, 6% 69%, 2% 48%);
+  transform: translateY(25%);
+}
+
+.implant-section-caption {
+  position: absolute;
+  right: 0;
+  bottom: 3%;
+  left: 0;
+  text-align: center;
+  color: #294257;
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .implant-motion.is-playing .implant-motion-crown {
+    animation: implant-section-seat 2.6s both;
+  }
+}
+
+@keyframes implant-section-seat {
+  /* 홈 입구에 닿은 뒤 남은 거리를 천천히 내려갑니다. */
+  0%, 14% { transform: translateY(0); animation-timing-function: cubic-bezier(.35, 0, .5, 1); }
+  46% { transform: translateY(12%); animation-timing-function: cubic-bezier(.25, .1, .2, 1); }
+  100% { transform: translateY(25%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .implant-motion .implant-motion-layers { visibility: visible; }
+}
+#treatment .implant-card { position: relative; }
+
+.implant-replay {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  left: 12px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #d6e1eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #16344e;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.implant-replay:focus-visible { outline: 2px solid #0070eb; }
+@media (prefers-reduced-motion: reduce) {
+  .implant-replay { display: none; }
+}

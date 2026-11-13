@@ -1,0 +1,123 @@
+/* 기존 헤더 높이를 유지하고 패널만 본문 위에 겹쳐 표시합니다. */
+.armi-header { z-index: 30; color: #182436; --armi-nav-blue: #0065d6; }
+.armi-header [hidden] { display: none !important; }
+.armi-header .armi-header-row { gap: 24px; }
+.armi-header h1 { flex: 0 0 auto; }
+.armi-header .inner .armi-nav { width: auto; margin: 0 0 0 auto; }
+.armi-nav-items { display: flex; gap: clamp(12px, 2vw, 30px); align-items: center; }
+.armi-header button, .armi-header a { color: inherit; font: inherit; }
+.armi-header button { background: transparent; cursor: pointer; }
+.armi-header .armi-nav-items > li > :is(a, button), .armi-header .armi-nav-login span { display: inline-flex; min-height: 44px; align-items: center; position: relative; font-weight: 500; white-space: nowrap; }
+.armi-nav-trigger, .armi-group-trigger { gap: 9px; }
+.armi-nav-trigger::after, .armi-group-trigger::after { content: ""; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); margin-top: -4px; }
+/* 현재 페이지와 열린 메뉴에만 파란 글자를 적용합니다. */
+.armi-header .armi-nav :is([aria-current], button[aria-expanded="true"]),
+.armi-header .armi-nav-trigger:has(+ .armi-nav-panel [aria-current]) {
+  color: var(--armi-nav-blue);
+}
+.armi-nav-trigger[aria-expanded="true"]::before { content: ""; position: absolute; inset: auto 0 3px; height: 2px; border-radius: 3px; background: currentColor; }
+.armi-header .armi-nav-login span { font-size: 1.4rem; font-weight: 500; }
+.armi-nav-pending { color: #5a687a; }
+.armi-header .armi-header-call { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; gap: 7px; border: 1px solid #c6ddfa; border-radius: 999px; background: #eff6ff; color: #064b9e; white-space: nowrap; font-weight: 600; box-sizing: border-box; }
+/* 아르미의 파란색을 연한 배경과 선으로 사용하고, 포커스 테두리는 기존 규칙을 따릅니다. */
+.armi-header .armi-header-call:hover,
+.armi-header .armi-header-call:focus-visible { background: #dcecff; border-color: #9ec5f4; color: #064b9e; }
+.armi-header .armi-header-call .bi { font-size: 0.95em; line-height: 1; }
+.armi-header :focus-visible { outline: 2px solid var(--armi-nav-blue); outline-offset: 3px; border-radius: 4px; }
+.armi-nav-panel { position: absolute; top: 100%; left: 20px; right: 20px; padding: 22px 28px; background: #fff; border: 1px solid #e2eaf3; border-radius: 0 0 16px 16px; box-shadow: 0 16px 28px #18324b16; animation: armi-menu-in 150ms ease-out; }
+@keyframes armi-menu-in { from { opacity: 0; transform: translateY(-5px); } }
+.armi-nav-panel ul { display: flex; flex-wrap: wrap; column-gap: 24px; }
+.armi-nav-panel a, .armi-nav-panel .armi-nav-pending { display: inline-flex; align-items: center; min-height: 40px; }
+.armi-nav-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.armi-nav-group h2 { font-size: 1.65rem; margin-bottom: 6px; }
+.armi-nav-group ul { display: block; }
+.armi-header .armi-group-trigger, .armi-header .armi-mobile-trigger, .armi-mobile-quick { display: none; }
+/* 좁은 화면에서는 빠른 방문 링크와 접을 수 있는 진료 그룹을 표시합니다. */
+@media (max-width: 960px) {
+  .armi-header .armi-header-row { gap: 8px; padding-inline: 16px; }
+  .armi-header .inner h1 a img { width: 120px; }
+  .armi-header .armi-header-call { margin-left: auto; padding-inline: 12px; font-size: 1.4rem; }
+  .armi-header .armi-mobile-trigger { display: inline-flex; align-items: center; justify-content: center; min-width: 54px; min-height: 44px; border: 1px solid #dce5ef; border-radius: 10px; font-size: 1.4rem; font-weight: 700; }
+  .armi-header .inner .armi-nav { position: absolute; inset: 100% 0 auto; max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; padding: 12px 16px 20px; background: #fff; box-shadow: 0 14px 28px #18324b22; }
+  .armi-mobile-quick { display: flex; gap: 8px; margin-bottom: 8px; }
+  .armi-mobile-quick a { display: inline-flex; min-height: 44px; align-items: center; padding: 0 12px; border-radius: 8px; background: #e8f3ff; color: #0059ba; }
+  .armi-nav-items { display: block; }
+  .armi-nav-items > li { border-top: 1px solid #e2eaf3; }
+  .armi-nav-items > li.armi-desktop-location { display: none; }
+  .armi-nav-trigger, .armi-header .armi-group-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px; text-align: left; padding-right: 8px; font-weight: 650; }
+  .armi-nav-panel { position: static; padding: 4px 12px; border-radius: 10px; box-shadow: none; margin-bottom: 8px; }
+  .armi-nav-panel ul, .armi-nav-groups { display: block; }
+  .armi-nav-group + .armi-nav-group { border-top: 1px solid #e2eaf3; }
+  .armi-nav-group h2 { display: none; }
+  .armi-nav-panel a { min-height: 44px; }
+}
+@media (max-width: 768px) { .armi-header .inner .armi-nav { max-height: calc(100dvh - 70px); } }
+@media (prefers-reduced-motion: reduce) { .armi-nav-panel { animation: none; } }
+/* 모바일에서는 화면 순서와 Tab 순서를 일치시킵니다. */
+.armi-header .armi-mobile-call { display: none; }
+@media (max-width: 960px) {
+  .armi-header .armi-header-call { display: none; }
+  .armi-header .armi-mobile-call { display: inline-flex; }
+}
+
+
+/* 큰 화면에서는 링크 수에 맞춰 패널 폭을 다르게 잡습니다. */
+@media (min-width: 961px) {
+  .armi-header .armi-header-row { gap: clamp(16px, 1.8vw, 26px); }
+  /* 메뉴 행을 헤더 높이만큼 늘려 모든 패널의 기준선을 맞춥니다. */
+  .armi-header .inner .armi-nav,
+  .armi-nav-items { height: 100%; }
+  .armi-nav-items { align-items: stretch; gap: clamp(14px, 1.7vw, 26px); }
+  .armi-nav-items > li { display: flex; align-items: center; }
+
+  /* 패널은 헤더 아래 같은 높이에서 열리고 본문 공간을 차지하지 않습니다. */
+  .armi-header .armi-nav-panel {
+    top: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+
+  /* 소개와 방문 안내는 해당 메뉴 바로 아래에서 시작합니다. */
+  .armi-nav-items > li:has(> #armi-nav-about, > #armi-nav-visit) {
+    position: relative;
+  }
+  .armi-nav-items > li > :is(#armi-nav-about, #armi-nav-visit) {
+    /* 패널 왼쪽을 상위 버튼의 왼쪽에 맞춥니다. */
+    inset-inline: 0 auto;
+    width: 192px;
+    padding: 6px;
+  }
+  :is(#armi-nav-about, #armi-nav-visit) ul { display: block; }
+
+  /* 진료 항목은 네 열의 첫 줄과 좌우 여백을 맞춥니다. */
+  #armi-nav-care {
+    inset-inline: auto 20px;
+    width: min(820px, calc(100% - 40px));
+    padding: 16px;
+  }
+  #armi-nav-care .armi-nav-groups { gap: 0; }
+  #armi-nav-care .armi-nav-group { padding-inline: 12px; }
+  #armi-nav-care .armi-nav-group + .armi-nav-group {
+    border-left: 1px solid #e2eaf3;
+  }
+  #armi-nav-care h2 { padding-inline: 8px; margin-bottom: 4px; }
+  .armi-header .armi-nav-panel a {
+    display: flex;
+    min-height: 40px;
+    padding-inline: 8px;
+    border-radius: 6px;
+  }
+  .armi-header .armi-nav-panel a:hover { background: #edf5ff; }
+}
+
+/* 모바일에서는 상위 메뉴와 빠른 링크의 시작선을 맞춥니다. */
+@media (max-width: 960px) {
+  .armi-mobile-quick a { flex: 1; justify-content: center; }
+  .armi-nav-items > li > a, .armi-nav-trigger, .armi-nav-login span {
+    padding-inline: 8px;
+  }
+  .armi-header .armi-nav-panel { padding: 4px 8px; }
+  .armi-header .armi-nav-panel a { display: flex; padding-inline: 8px; }
+  /* 진료 그룹의 링크는 그룹 버튼보다 한 단계 안쪽에서 시작합니다. */
+  .armi-nav-group ul { padding-inline-start: 8px; }
+}
