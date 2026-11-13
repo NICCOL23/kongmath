@@ -219,7 +219,8 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
   overflow: clip;
 }
 .is-enhanced #clinic-intro > .inner {
-  opacity: var(--intro-opacity, 0);
+  /* 소개 페이지 본문은 opacity로 흐리게 하지 않고 원래 색과 농도로 표시합니다. */
+  opacity: 1;
   visibility: var(--intro-visibility, hidden);
   transform: translateY(var(--intro-offset, 0px));
 }
