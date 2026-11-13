@@ -432,7 +432,7 @@ main #main-visual>.inner {
 
 #clinic-intro {
   width: 100%;
-  background-color: var(--sub-color);
+  background-color: #fff;
 }
 
 #clinic-intro .inner {
