@@ -219,6 +219,7 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
 }
 .is-enhanced #clinic-intro > .inner {
   opacity: var(--intro-opacity, 0);
+  visibility: var(--intro-visibility, hidden);
   transform: translateY(var(--intro-offset, 0px));
 }
 .is-enhanced .intro-transition-message {
@@ -238,6 +239,7 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
   font-weight: 700;
   word-break: keep-all;
   opacity: var(--message-opacity, 0);
+  visibility: var(--message-visibility, hidden);
   pointer-events: none;
 }
 @media (max-width: 768px) {
