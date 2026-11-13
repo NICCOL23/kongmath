@@ -155,7 +155,7 @@ function renderIntroTransition() {
     ? clamp((-track.getBoundingClientRect().top) / distance)
     : 0;
   // 사진과 제목은 같은 자리를 유지하며 서로 다른 시점에 사라집니다.
-  const photoShrink = ease(clamp((progress - .06) / .40));
+  // 사진은 크기를 바꾸지 않고 제목처럼 투명도만 조절합니다.
   const controlsFade = ease(clamp((progress - .09) / .30));
   const titleFade = ease(clamp((progress - .18) / .28));
   // 첫 줄이 먼저 올라오고, 둘째 줄과 병원명이 이어집니다.
@@ -168,7 +168,7 @@ function renderIntroTransition() {
   const backgroundWipe = wipeProgress ** 3 * (10 - 15 * wipeProgress + 6 * wipeProgress ** 2);
   const introReveal = ease(clamp((progress - .60) / .18));
 
-  track.style.setProperty('--photo-scale', 1 - photoShrink * .46);
+  track.style.setProperty('--photo-scale', 1);
   track.style.setProperty('--photo-opacity', 1 - ease(clamp((progress - .20) / .25)));
   track.style.setProperty('--controls-opacity', 1 - controlsFade);
   track.style.setProperty('--title-opacity', 1 - titleFade);
