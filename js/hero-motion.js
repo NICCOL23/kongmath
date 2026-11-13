@@ -157,15 +157,15 @@ function renderIntroTransition() {
   // 사진은 크기를 바꾸지 않고 제목처럼 투명도만 조절합니다.
   const controlsFade = ease(clamp((progress - .09) / .30));
   const titleFade = ease(clamp((progress - .18) / .28));
-  // 첫 줄이 먼저 올라오고, 둘째 줄과 병원명이 이어집니다.
-  const messageFirst = ease(clamp((progress - .38) / .09));
-  const messageSecond = ease(clamp((progress - .43) / .09));
-  // 두 줄이 모두 올라온 뒤 문구를 읽을 여유를 두고 흐리게 합니다.
-  const message = Number(messageFirst > 0) * (1 - ease(clamp((progress - .64) / .10)));
+  // 기존 히어로가 정리된 뒤 전환 문구를 보여줍니다.
+  const messageFirst = ease(clamp((progress - .34) / .08));
+  const messageSecond = ease(clamp((progress - .40) / .08));
+  // 전환 문구가 먼저 완전히 사라진 뒤 다음 소개 영역을 보여줍니다.
+  const message = Number(messageSecond > 0) * (1 - ease(clamp((progress - .50) / .13)));
   // 배경과 소개 글이 제자리에 닿기 전에 이동 속도를 천천히 줄입니다.
   const wipeProgress = clamp((progress - .52) / .34);
   const backgroundWipe = wipeProgress ** 3 * (10 - 15 * wipeProgress + 6 * wipeProgress ** 2);
-  const introReveal = ease(clamp((progress - .60) / .18));
+  const introReveal = ease(clamp((progress - .69) / .19));
 
   track.style.setProperty('--photo-scale', 1);
   track.style.setProperty('--photo-opacity', 1 - ease(clamp((progress - .20) / .25)));
@@ -173,6 +173,7 @@ function renderIntroTransition() {
   track.style.setProperty('--title-opacity', 1 - titleFade);
   track.style.setProperty('--hero-background-inset', backgroundWipe * 100 + '%');
   track.style.setProperty('--intro-opacity', introReveal);
+  track.style.setProperty('--intro-visibility', introReveal > 0 ? 'visible' : 'hidden');
   // 소개 글의 윗부분을 걷히는 배경 경계 아래에 두고 함께 올립니다.
   const backgroundEdge = hero.offsetHeight * (1 - backgroundWipe);
   track.style.setProperty('--intro-offset', backgroundEdge + 'px');
@@ -184,10 +185,12 @@ function renderIntroTransition() {
     if (counterIsVisible) startCareerCount();
   }
   track.style.setProperty('--message-opacity', message);
+  track.style.setProperty('--message-visibility', message > 0 ? 'visible' : 'hidden');
   track.style.setProperty('--message-first', messageFirst);
   track.style.setProperty('--message-second', messageSecond);
 
   introMessage.setAttribute('aria-hidden', String(enabled && message === 0));
+  introMessage.inert = enabled && message === 0;
   for (const detail of heroDetails) detail.inert = enabled && controlsFade === 1;
   for (const control of [...buttons, pauseButton]) control.inert = enabled && controlsFade === 1;
 
