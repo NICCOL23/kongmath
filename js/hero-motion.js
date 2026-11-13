@@ -200,8 +200,9 @@ function renderIntroTransition() {
   for (const detail of heroDetails) detail.inert = enabled && controlsFade === 1;
   for (const control of [...buttons, pauseButton]) control.inert = enabled && controlsFade === 1;
 
-  hero.inert = enabled && progress >= .92;
-  clinicIntro.inert = enabled && progress < .92;
+  // 소개 화면이 시작되는 순간 이전 히어로를 완전히 숨겨 잔상을 제거합니다.
+  hero.inert = enabled && progress >= .80;
+  clinicIntro.inert = enabled && progress < .80;
 
   // 임시 정지는 사용자가 누른 일시정지 상태와 독립적으로 처리합니다.
   const leavingHero = enabled && window.scrollY > 0;
