@@ -190,7 +190,7 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
   inset: 0 0 auto;
   z-index: 1;
 }
-/* 배경은 아래쪽부터 걷히고, 사진은 자기 영역 안에서만 축소됩니다. */
+/* 배경은 아래쪽부터 걷히고, 사진은 제목처럼 크기 변환 없이 사라집니다. */
 .is-enhanced #main-visual::before {
   content: "";
   position: absolute;
@@ -202,7 +202,6 @@ body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
 }
 .is-enhanced #main-visual[inert] { visibility: hidden; }
 .is-enhanced #main-visual .visual-img {
-  transform: scale(var(--photo-scale, 1));
   opacity: var(--photo-opacity, 1);
 }
 .is-enhanced #main-visual .visual-text-swiper { opacity: var(--title-opacity, 1); }
