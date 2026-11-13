@@ -5,8 +5,6 @@
 #main-visual .visual-img .swiper-slide:first-child img{object-position:50% 62%}
 #main-visual .visual-text h2{word-break:keep-all}
 #save-teeth .save-img img,.visit-photo{display:block;width:100%;max-height:390px;object-fit:cover;object-position:center 49%;border-radius:16px}
-.footer-brand-name { color: #fff; font-size: 24px; font-weight: 800; line-height: 1.2; }
-.footer-brand-english { margin-top: 6px; color: #ffd460; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
 .footer-blog a{white-space:nowrap}
 @media(max-width:768px){.armi-header .inner h1 a img{width:34px;height:34px}.armi-header .inner h1 a{font-size:1.4rem;gap:6px}.armi-header .armi-header-row{gap:9px}.armi-header .inner h1 small{font-size:1.1rem}}
 
@@ -77,3 +75,5 @@ main [id] {
 }
 
 .armi-header .inner h1 a img.kong-header-logo { width: clamp(125px, 19vw, 230px); height: auto; border-radius: 0; object-fit: contain; }
+
+.footer .footer-logo img.kong-footer-logo { width: clamp(160px, 22vw, 220px); max-width: 100%; height: auto; border-radius: 0; object-fit: contain; }
