@@ -52,3 +52,9 @@
 - If header subnavigation items are added, deleted, renamed, or their destinations are changed, every resulting submenu item must still navigate directly to its corresponding page when clicked.
 - Never introduce same-page hash anchors such as `#section` or `./#section` for header subnavigation; do not use scroll-only navigation for these menu items.
 - After any submenu change, verify every header submenu link across all root HTML pages and confirm that each click resolves to a direct page URL or an explicitly intended external page.
+
+## Floating consultation button
+
+- The floating consultation button uses `index.html` on desktop so it returns to the main first page.
+- On mobile widths up to 768px, the same button must use `tel:0519137159` for immediate calling.
+- Preserve the responsive href switching when the viewport changes.
