@@ -321,3 +321,48 @@ main [id] {
 @media (max-width: 768px) { .academy-about { scroll-margin-top: 70px; } }
 .academy-about a:focus-visible, .about-story summary:focus-visible { outline: 2px solid #185240; outline-offset: 2px; }
 .about-story-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+#treatment.exam-reports .treatment-title { margin-bottom: 32px; }
+.exam-report-list { width: calc(100% - 32px); max-width: 960px; margin: 0 auto; }
+.exam-report-list > li + li { margin-top: 10px; }
+.exam-report {
+  border: 1px solid #dce7e1;
+  border-radius: 12px;
+  background: #fff;
+  color: #182436;
+  scroll-margin-top: 110px;
+}
+.exam-report summary {
+  padding: 15px clamp(13px, 3vw, 24px);
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.exam-report summary::marker { color: #185240; }
+.exam-report summary time {
+  display: inline-block;
+  margin-inline-start: 10px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+}
+.exam-report summary:focus-visible, .exam-report-body a:focus-visible {
+  outline: 2px solid #185240;
+  outline-offset: -2px;
+}
+.exam-report-body {
+  border-top: 1px solid #dce7e1;
+  padding: clamp(14px, 4vw, 32px);
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.exam-report-body .report-centered { text-align: center; }
+.exam-report-body figure { margin: 16px auto; }
+.exam-report-body figure img { display: block; width: 100%; height: auto; }
+.exam-report-body .report-sticker { display: inline-block; max-width: 100px; height: auto; }
+.exam-report-body a { color: #185240; text-decoration: underline; }
+@media (max-width: 768px) {
+  .exam-report { scroll-margin-top: 80px; }
+  .exam-report summary time { display: block; margin-inline-start: 0; }
+}

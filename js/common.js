@@ -38,37 +38,6 @@ $(document).ready(function () {//시작
     $(this).addClass("active");
   });
 
-const treatmentSwiper = new Swiper(".treatment-swiper", {
-  slidesPerView: 3,
-  spaceBetween: 20,
-  speed: 600,
-
-  breakpoints: {
-    0: {
-      slidesPerView: 1.4,
-      centeredSlides: true,
-      spaceBetween: 15,
-      
-    },
-
-    769: {
-      slidesPerView: 2.2,
-      centeredSlides: true,
-      spaceBetween: 25,
-      
-    },
-
-    1401: {
-      slidesPerView: 3,
-      centeredSlides: false,
-      spaceBetween: 20,
-      allowTouchMove: false,
-      loop: false,
-      
-    },
-  },
-});
-
 
 });//끝
 
