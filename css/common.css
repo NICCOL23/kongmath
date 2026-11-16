@@ -557,3 +557,17 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
     text-align: left;
   }
 }
+
+/* 공쌤수학원 로고 브랜드 색상: 첨부 기준 */
+:root {
+  --logo-blue: #023D89;
+  --logo-orange: #E28E02;
+  --logo-navy: #091840;
+}
+
+.armi-header .inner h1 a img.kong-header-logo,
+.footer .footer-logo img.kong-footer-logo {
+  filter: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
