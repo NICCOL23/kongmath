@@ -9,8 +9,13 @@
 - Use the Armi `#treatment` card proportions as the reference:
   - card radius: `20px`
   - image: `width: 100%; height: 290px; object-fit: cover; display: block`
-  - card body: `min-height: 145px; padding: 20px`
+  - desktop card: `340px × 435px`
+  - desktop image: `340px × 290px`
+  - closed desktop card body: exactly `145px` with `padding: 20px`
+  - tablet: image `300px`, body `150px`, total card `450px`
+  - mobile: image `220px`, body `140px`, total card `360px`
   - matching shadow, typography scale, spacing, and link alignment
+  - card dimensions must not grow because of text; details may expand only after the user opens the card
 - Keep the academy cards componentized with these BEM-style classes:
   - `.academy-card`
   - `.academy-card__image`
