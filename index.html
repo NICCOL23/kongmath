@@ -50,7 +50,7 @@
   <script defer src="js/hero-motion.js?v=scene-indicators"></script>
   
   <script defer src="js/save-teeth-motion.js"></script>
-  <link rel="stylesheet" href="css/kongmath.css?v=about-carousel">
+  <link rel="stylesheet" href="css/kongmath.css?v=older-story-carousel">
   <script>
     const formerSectionPage = new Map([
       ["#notices", "notices.html"],
@@ -234,12 +234,7 @@
             <h2 id="academy-about-title">학원 소개</h2>
             <p>2014년부터 부산진구 부암동에서 학생들을 가르쳐 왔습니다. 학생마다 수학을 시작하는 지점이 다르기에, 이해도에 맞춰 1:1로 진도를 잡습니다.</p>
           </div>
-          <div class="about-story-controls" hidden>
-            <button type="button" data-story-play aria-controls="about-story-track">일시정지</button>
-            <button type="button" data-story-step="-1" aria-label="이전 학원 소개 카드" aria-controls="about-story-track">‹</button>
-            <button type="button" data-story-step="1" aria-label="다음 학원 소개 카드" aria-controls="about-story-track">›</button>
-          </div>
-          <div id="about-story-track" class="about-story-grid" role="region" aria-label="학원 소개 카드" tabindex="0">
+          <div class="about-story-featured">
             <article class="about-story" id="about-studyroom">
               <a href="#save-teeth"><img src="imges/main/about-studyroom-1.jpg" width="900" height="1200" alt="관리형 자습실 사진 4장 보기" loading="lazy" decoding="async"></a>
               <div class="about-story-content">
@@ -309,6 +304,13 @@
                 </details>
               </div>
             </article>
+          </div>
+          <div class="about-story-controls" hidden>
+            <button type="button" data-story-play aria-controls="about-story-track">일시정지</button>
+            <button type="button" data-story-step="-1" aria-label="이전 학원 소개 카드" aria-controls="about-story-track">‹</button>
+            <button type="button" data-story-step="1" aria-label="다음 학원 소개 카드" aria-controls="about-story-track">›</button>
+          </div>
+          <div id="about-story-track" class="about-story-grid" role="region" aria-label="지난 학원 소개 카드" tabindex="0">
             <article class="about-story" id="about-semester">
               <a href="imges/main/about-semester-1.jpg"><img src="imges/main/about-semester-1.jpg" width="966" height="966" alt="새 학기 응원 안내 이미지" loading="lazy" decoding="async"></a>
               <div class="about-story-content">

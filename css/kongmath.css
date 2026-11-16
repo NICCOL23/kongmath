@@ -259,6 +259,14 @@ main [id] {
 .academy-about-heading { max-width: 760px; }
 .academy-about-heading h2 { font-size: clamp(30px, 5vw, 54px); line-height: 1.2; }
 .academy-about-heading > p { margin-top: 16px; font-size: clamp(16px, 2vw, 19px); line-height: 1.7; }
+.about-story-featured {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 292px), 1fr));
+  align-items: start;
+  gap: 20px;
+  margin-top: 26px;
+}
+
 .about-story-controls:not([hidden]) {
   display: flex;
   justify-content: flex-end;
