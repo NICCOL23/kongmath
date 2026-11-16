@@ -2,7 +2,7 @@
   const grid = document.querySelector("[data-student-preview-grid]");
   if (!grid) return;
 
-  fetch("data/student-cases.json")
+  fetch("data/student-cases.json?v=homepage-preview-05")
     .then(response => {
       if (!response.ok) throw new Error("student-cases.json을 불러오지 못했습니다.");
       return response.json();
