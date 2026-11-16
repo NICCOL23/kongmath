@@ -267,6 +267,21 @@ main [id] {
   margin-top: 26px;
 }
 
+.about-story-featured > .about-story {
+  transition: border-radius 0.5s ease;
+}
+
+.about-story-featured > .about-story.is-rounded {
+  border-top-left-radius: 170px;
+  border-top-right-radius: 170px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-story-featured > .about-story {
+    transition: none;
+  }
+}
+
 .about-story-controls:not([hidden]) {
   display: flex;
   justify-content: flex-end;

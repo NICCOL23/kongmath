@@ -39,6 +39,12 @@ $(document).ready(function () {//시작
   });
 
 
+  const featuredStories = document.querySelector(".about-story-featured");
+  featuredStories?.addEventListener("click", event => {
+    const card = event.target.closest(".about-story");
+    if (card && !event.target.closest("a")) card.classList.toggle("is-rounded");
+  });
+
 });//끝
 
 
