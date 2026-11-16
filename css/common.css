@@ -388,6 +388,10 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
   width: 220px;
 }
 
+.footer .footer-logo img.kong-footer-logo {
+  filter: contrast(0.35) brightness(1.8);
+}
+
 .footer .footer-info {
   min-width: 0;
   color: #a6b2bf;
