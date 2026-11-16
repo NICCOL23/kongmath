@@ -16,6 +16,7 @@
   - mobile: image `220px`, body `140px`, total card `360px`
   - matching shadow, typography scale, spacing, and link alignment
   - card dimensions must not grow because of text; details may expand only after the user opens the card
+  - closed-card typography: category `12px/18px`, title `20px/1.35`, description `15px/1.6`, link `15px/20px`, with Korean-friendly letter spacing around `-0.02em` to `-0.03em`
 - Keep the academy cards componentized with these BEM-style classes:
   - `.academy-card`
   - `.academy-card__image`
