@@ -268,10 +268,7 @@ main [id] {
 }
 
 .about-story-featured > .about-story {
-  border-top-left-radius: var(--featured-top-radius, 14px) min(var(--featured-top-radius, 14px), 135px);
-  border-top-right-radius: var(--featured-top-radius, 14px) min(var(--featured-top-radius, 14px), 135px);
-  transform: translateY(var(--featured-lift, 0px));
-  transition: border-radius 0.5s ease, transform 0.5s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .about-story-image {
@@ -310,22 +307,29 @@ main [id] {
   outline-offset: -4px;
 }
 
-.about-story-featured > .about-story.is-rounded {
-  --featured-top-radius: 170px;
-  --featured-lift: -30px;
+.about-story-featured > .about-story.is-selected {
+  border-color: #185240;
+  box-shadow: 0 6px 18px rgb(24 82 64 / 18%);
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .about-story-featured > .about-story:hover {
-    --featured-top-radius: 170px;
-    --featured-lift: -30px;
+    z-index: 1;
+    transform: scale(1.03);
+  }
+
+  .about-story-featured .about-story-image > img {
+    transition: filter 0.25s ease;
+  }
+
+  .about-story-featured:has(> .about-story:hover) > .about-story:not(:hover) .about-story-image > img {
+    filter: blur(1.5px) brightness(0.94);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .about-story-featured > .about-story {
     transition: none;
-    transform: none;
   }
 }
 
