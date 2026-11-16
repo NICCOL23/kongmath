@@ -3,6 +3,7 @@
 .armi-header [hidden] { display: none !important; }
 .armi-header .armi-header-row { gap: 24px; }
 .armi-header h1 { flex: 0 0 auto; }
+.armi-header .inner h1 a img.kong-header-logo { width: clamp(125px, 19vw, 230px); height: auto; border-radius: 0; object-fit: contain; }
 .armi-header .inner .armi-nav { width: auto; margin: 0 0 0 auto; }
 .armi-nav-items { display: flex; gap: clamp(12px, 2vw, 30px); align-items: center; }
 .armi-header button, .armi-header a { color: inherit; font: inherit; }

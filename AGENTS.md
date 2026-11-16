@@ -33,6 +33,7 @@
 
 - The footer logo must use the exact same source asset and visual color treatment as the header logo.
 - Do not apply an independent color-changing filter to the footer logo; keep `filter: none`, full opacity, and normal blend mode.
+- The shared header CSS must apply the same wordmark size rule to every page so dedicated pages do not fall back to the smaller legacy header image size.
 
 ## Shared footer component
 
