@@ -11,7 +11,7 @@ const clamp = value => Math.min(1, Math.max(0, value));
 const ease = value => value * value * (3 - 2 * value);
 
 
-function draw(position, fill = 1) {
+function draw(position) {
   const current = Math.floor(position);
   const progress = position - current;
   const next = progress > 0 ? (current + 1) % photos.length : -1;
@@ -35,7 +35,6 @@ function draw(position, fill = 1) {
     copies[index].style.setProperty('--title-growth', incoming ? titleGrowth : 1);
     copies[index].setAttribute('aria-hidden', String(index !== visible));
     buttons[index].setAttribute('aria-pressed', String(index === visible));
-    buttons[index].style.setProperty('--scene-progress', index === visible ? (index === current ? fill : 0) : 0);
   });
 }
 
@@ -56,7 +55,7 @@ let ready = false;
 let frame = null;
 let heroVisible = true;
 
-// 사진과 막대가 같은 시계를 써서 일시정지 중에는 함께 멈춥니다.
+// 일시정지 중에는 장면 전환 시간도 멈춥니다.
 function animate(now) {
   if (previousTime !== null) elapsed += now - previousTime;
   previousTime = now;
@@ -65,7 +64,7 @@ function animate(now) {
     scene = (scene + 1) % photos.length;
     elapsed = 0;
   }
-  draw(scene + clamp((elapsed - dwell) / duration), clamp(elapsed / dwell));
+  draw(scene + clamp((elapsed - dwell) / duration));
   frame = requestAnimationFrame(animate);
 }
 
@@ -88,7 +87,7 @@ buttons.forEach(button => button.addEventListener('click', () => {
   scene = Number(button.dataset.scene);
   elapsed = 0;
   previousTime = null;
-  draw(scene, paused ? 1 : 0);
+  draw(scene);
 }));
 pauseButton.addEventListener('click', () => {
   if (reducedMotion.matches) return;
@@ -106,7 +105,7 @@ reducedMotion.addEventListener('change', () => {
   updatePlayback();
 });
 pauseButton.disabled = reducedMotion.matches;
-draw(scene, paused ? 1 : 0);
+draw(scene);
 updatePlayback();
 Promise.all([...hero.querySelectorAll('.visual-img img')].map(image => image.decode().catch(() => {})))
   .then(() => {

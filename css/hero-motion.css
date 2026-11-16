@@ -37,12 +37,9 @@
 @media (min-width: 1201px) {
   main #main-visual > .inner {
     width: min(100% - 48px, 1600px);
-    display: grid;
-    grid-template-columns: 50% minmax(0, 1fr);
-    gap: 12px clamp(24px, 4vw, 72px);
+    gap: clamp(24px, 4vw, 72px);
   }
-  #main-visual .visual-img,
-  #main-visual .visual-content { width: 100%; min-width: 0; }
+  #main-visual .visual-content { flex: 1; min-width: 0; }
   #main-visual .visual-content .visual-info > div { min-width: 0; }
   #main-visual .visual-text h2 { font-size: clamp(3.4rem, 3.25vw, 5rem); }
 }
@@ -55,17 +52,13 @@
   #main-visual .visual-top { min-width: 0; }
 }
 /* 현재 장면은 파란 진행 막대, 다른 장면은 작은 점으로 표시합니다. */
-main #main-visual > .inner {
-  padding-bottom: 0;
-}
-
 #main-visual .hero-controls {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 4px;
   width: 100%;
-  margin: 0 0 clamp(24px, 4vw, 64px);
+  margin: 12px 0;
 }
 #main-visual .hero-controls button {
   appearance: none;
@@ -80,27 +73,19 @@ main #main-visual > .inner {
   width: 44px;
   flex: 0 0 44px;
 }
-.hero-controls [data-scene]::before,
-.hero-controls [data-scene][aria-pressed="true"]::after {
+.hero-controls [data-scene]::before {
   content: "";
   position: absolute;
   inset: 50% auto auto 50%;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: #6b8199;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #ddd;
   translate: -50% -50%;
 }
-.hero-controls [data-scene][aria-pressed="true"]::before,
-.hero-controls [data-scene][aria-pressed="true"]::after {
+.hero-controls [data-scene][aria-pressed="true"]::before {
   width: 30px;
-  height: 6px;
-  background: #b6d5fa;
-}
-.hero-controls [data-scene][aria-pressed="true"]::after {
-  background: #0065d6;
-  transform: scaleX(var(--scene-progress, 0));
-  transform-origin: left;
+  background: var(--main-color);
 }
 
 /* 둥근 버튼 안에서 재생과 일시정지 아이콘을 바꿉니다. */
