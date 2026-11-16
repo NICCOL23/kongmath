@@ -550,3 +550,12 @@ main [id] {
     height: 290px;
   }
 }
+
+
+.academy-about .academy-card__body > details {
+  margin-top: auto;
+}
+
+.academy-about .academy-card__link {
+  margin-top: 0;
+}
