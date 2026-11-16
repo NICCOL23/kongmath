@@ -73,3 +73,9 @@
 - The `studyroom.html` dedicated page must reuse the main page `#save-teeth` image structure and `css/main.css` sizing; do not add an oversized independent gallery layout.
 
 - Do not display the removed source-notice sentence on `studyroom.html`; the dedicated page should show only the study-room content and rules.
+
+## Site-wide logo color rule
+
+- All pages must use the shared `imges/common/kong-math-navy-gold-wordmark.png` asset for the header and footer wordmark.
+- The attached logo reference colors are: blue `#023D89`, orange `#E28E02`, and navy `#091840`.
+- Keep the header and footer logo free of filters, opacity changes, or blend modes so the same source image keeps the same colors on every page.
