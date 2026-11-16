@@ -65,3 +65,5 @@
 
 - Academy introduction card image and body links must navigate directly to their target page or an explicitly intended external page.
 - Do not use hash-only or page-fragment URLs such as `#save-teeth`, `#location`, or `reports.html#report-...` for card navigation; card clicks must not trigger in-page scrolling.
+
+- The management study-room card and all related header/shortcut links must point directly to `studyroom.html`; never send users to the homepage hero or a hash-scroll section for this destination.
