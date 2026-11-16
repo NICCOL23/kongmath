@@ -259,20 +259,8 @@ main [id] {
 .academy-about-heading { max-width: 760px; }
 .academy-about-heading h2 { font-size: clamp(30px, 5vw, 54px); line-height: 1.2; }
 .academy-about-heading > p { margin-top: 16px; font-size: clamp(16px, 2vw, 19px); line-height: 1.7; }
-.academy-about-links { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 22px 26px; }
-.academy-about-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding-inline: 16px;
-  border: 1px solid #b6cbc3;
-  border-radius: 8px;
-  background: #fff;
-  color: #185240;
-  font-weight: 700;
-}
-.academy-about-links a:hover { background: #e8f2eb; }
 .about-story-grid {
+  margin-top: 26px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 292px), 1fr));
   align-items: start;
