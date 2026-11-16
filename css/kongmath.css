@@ -287,7 +287,7 @@ main [id] {
 
 .about-story-grid {
   --story-gap: 20px;
-  --story-width: calc((100% - 5 * var(--story-gap)) / 5);
+  --story-width: calc((100% - 4 * var(--story-gap)) / 4);
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: var(--story-width);
