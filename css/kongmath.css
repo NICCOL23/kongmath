@@ -271,6 +271,8 @@ main [id] {
   transition: border-radius 0.5s ease;
 }
 
+.about-story-featured > .about-story > a > img { object-fit: cover; }
+
 .about-story-featured > .about-story.is-rounded {
   border-top-left-radius: 170px;
   border-top-right-radius: 170px;
