@@ -22,12 +22,12 @@ function draw(position, fill = 1) {
   // 새 사진과 제목은 전환 첫 프레임부터 같은 확대 진행률을 사용합니다.
   const titleGrowth = reducedMotion.matches ? 1 : growth;
 
-  // 사진은 장면 전환 중에도 같은 크기를 유지합니다.
+  // 새 사진이 제목과 같은 진행률로 커집니다.
   photos.forEach((photo, index) => {
     const incoming = index === next;
     photo.style.zIndex = incoming ? 2 : 1;
     photo.style.opacity = incoming ? incomingOpacity : Number(index === current);
-    photo.style.transform = 'none';
+    photo.style.transform = incoming ? 'scale(' + (.70 + .30 * titleGrowth) + ')' : 'none';
     photo.setAttribute('aria-hidden', String(index !== visible));
 
     // 새 제목과 사진은 함께 선명해지고, 이전 제목은 먼저 옅어집니다.
