@@ -100,7 +100,14 @@
     const mobileHref = floatingChat.dataset.mobileHref || "tel:0519137159";
     const floatingMedia = matchMedia("(max-width: 768px)");
     const updateFloatingChat = () => {
-      floatingChat.setAttribute("href", floatingMedia.matches ? mobileHref : desktopHref);
+      const isMobile = floatingMedia.matches;
+      floatingChat.setAttribute("href", isMobile ? mobileHref : desktopHref);
+      floatingChat.setAttribute(
+        "aria-label",
+        isMobile
+          ? (floatingChat.dataset.mobileLabel || "전화 상담하기")
+          : (floatingChat.dataset.desktopLabel || "메인 페이지로 이동")
+      );
     };
     updateFloatingChat();
     floatingMedia.addEventListener("change", updateFloatingChat);
