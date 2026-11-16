@@ -101,7 +101,7 @@
   position: relative;
   width: 44px;
   flex: 0 0 44px;
-  margin-inline-start: 6px;
+  margin-inline-end: 6px;
   color: #164c80;
   isolation: isolate;
 }
