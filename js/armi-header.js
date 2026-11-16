@@ -79,7 +79,7 @@
 
   // 방문 정보 링크를 누르면 해당 구역으로 즉시 이동합니다.
   document.addEventListener("click", event => {
-    const link = event.target.closest('.armi-nav a[href="#clinic-hours"], .armi-nav a[href="#faq"], a[href="#location"]');
+    const link = event.target.closest('.armi-nav a[href="#clinic-hours"], .armi-nav a[href="#faq"], a[href="#location"], .notice-body a:is([href="#save-teeth"], [href="#tuition"])');
     if (!link || (link.hash === "#location" && link.textContent.trim() !== "오시는 길") ||
         event.defaultPrevented || event.ctrlKey || event.metaKey ||
         event.shiftKey || event.altKey || event.button !== 0) return;

@@ -77,30 +77,6 @@
     border-radius: 12px;
   }
 
-  /* 소개와 방문 안내는 해당 메뉴 바로 아래에서 시작합니다. */
-  .armi-nav-items > li:has(> #armi-nav-about, > #armi-nav-visit) {
-    position: relative;
-  }
-  .armi-nav-items > li > :is(#armi-nav-about, #armi-nav-visit) {
-    /* 패널 왼쪽을 상위 버튼의 왼쪽에 맞춥니다. */
-    inset-inline: 0 auto;
-    width: 192px;
-    padding: 6px;
-  }
-  :is(#armi-nav-about, #armi-nav-visit) ul { display: block; }
-
-  /* 진료 항목은 네 열의 첫 줄과 좌우 여백을 맞춥니다. */
-  #armi-nav-care {
-    inset-inline: auto 20px;
-    width: min(820px, calc(100% - 40px));
-    padding: 16px;
-  }
-  #armi-nav-care .armi-nav-groups { gap: 0; }
-  #armi-nav-care .armi-nav-group { padding-inline: 12px; }
-  #armi-nav-care .armi-nav-group + .armi-nav-group {
-    border-left: 1px solid #e2eaf3;
-  }
-  #armi-nav-care h2 { padding-inline: 8px; margin-bottom: 4px; }
   .armi-header .armi-nav-panel a {
     display: flex;
     min-height: 40px;
