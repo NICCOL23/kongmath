@@ -97,3 +97,5 @@
 - Content from the Kong Math blog student category is labeled as `학생 성과 사례`, not as a student or parent testimonial.
 - Review display data currently comes from `data/reviews.json`; keep the fields compatible with a future Supabase table/API.
 - Future Supabase integration should replace the data-loading layer without changing the review card markup or consent rules.
+
+- The main page places the `학생 성과 사례` section immediately after `#clinic-intro` and before `#academy-about`; each card keeps the original blog link at the top right beside `학생 성과 사례`, and the section ends with a direct `reviews.html` link.
