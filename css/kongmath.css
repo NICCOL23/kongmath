@@ -301,14 +301,6 @@ main [id] {
     z-index: 1;
     transform: scale(1.03);
   }
-
-  .about-story-featured .about-story-image > img {
-    transition: filter 0.25s ease;
-  }
-
-  .about-story-featured:has(> .about-story:hover) > .about-story:not(:hover) .about-story-image > img {
-    filter: blur(1.5px) brightness(0.94);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
