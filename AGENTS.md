@@ -46,3 +46,9 @@
 - Use `index.html` for the academy introduction and study-room destinations, `consultation.html` for 1:1 class and consultation, `tuition.html` for tuition, `reports.html` for reports, `notices.html` for notices/news, `daily.html` for academy daily posts, and `students.html` for the student corner.
 - The location menu opens the Naver Map place page directly.
 - Do not intercept header menu clicks with same-page `scrollIntoView()` behavior.
+
+## Subnavigation maintenance rule
+
+- If header subnavigation items are added, deleted, renamed, or their destinations are changed, every resulting submenu item must still navigate directly to its corresponding page when clicked.
+- Never introduce same-page hash anchors such as `#section` or `./#section` for header subnavigation; do not use scroll-only navigation for these menu items.
+- After any submenu change, verify every header submenu link across all root HTML pages and confirm that each click resolves to a direct page URL or an explicitly intended external page.
