@@ -10,7 +10,7 @@
 
   function updatePlayback() {
     clearInterval(timer);
-    playButton.textContent = playing ? "일시정지" : "재생";
+    playButton.textContent = playing ? "Ⅱ 일시정지" : "▶ 재생";
     if (playing && inView && !document.hidden) {
       timer = setInterval(() => move(1), 5500);
     }
@@ -40,7 +40,7 @@
   let width;
   let settleTimer;
 
-  let cardWidth, pitch, inset;
+  let cardWidth, pitch;
   let animation;
 
   function measure() {
@@ -48,30 +48,23 @@
     width = track.clientWidth;
     cardWidth = first.width;
     pitch = slides[1].getBoundingClientRect().left - first.left;
-    inset = pitch - cardWidth / 2;
   }
 
   function showSlide(target) {
-    track.scrollTo({ left: target * pitch - inset, behavior: "instant" });
+    track.scrollTo({ left: target * pitch, behavior: "instant" });
   }
 
   function nearestSlide() {
-    return Math.round((track.scrollLeft + inset) / pitch);
+    return Math.round(track.scrollLeft / pitch);
   }
 
   function updateVisibleSlides() {
     const offset = track.scrollLeft;
-    const edges = new Set();
     slides.forEach((slide, number) => {
       const left = number * pitch - offset;
       const right = left + cardWidth;
       const outside = right <= 1 || left >= width - 1;
       if (slide.inert !== outside) slide.inert = outside;
-      if (!outside && (left < -1 || right > width + 1)) edges.add(number % cards.length);
-    });
-    // Give equivalent cards the same brightness before the loop is recentered.
-    slides.forEach((slide, number) => {
-      slide.classList.toggle("is-edge-preview", edges.has(number % cards.length));
     });
   }
 
@@ -114,7 +107,7 @@
     }
     cancelAnimationFrame(animation);
     const from = track.scrollLeft;
-    const to = active * pitch - inset;
+    const to = active * pitch;
     track.style.scrollSnapType = "none";
     let start;
     function animate(now) {

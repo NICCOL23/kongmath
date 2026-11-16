@@ -335,49 +335,28 @@ main [id] {
 
 .about-story-carousel {
   --story-gap: 20px;
-  --story-columns: 4;
-  --story-width: calc(100% / var(--story-columns) - var(--story-gap));
-  position: relative;
-  container-type: inline-size;
+  --story-width: calc((100% - 3 * var(--story-gap)) / 4);
   margin-top: 10px;
 }
 
 .about-story-controls:not([hidden]) {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .about-story-controls button {
   min-width: 44px;
   min-height: 44px;
-  padding-inline: 10px;
-  border: 1px solid #b6cbc3;
-  border-radius: 8px;
+  padding-inline: 12px;
+  border: 1px solid #bdcbc6;
+  border-radius: 10px;
   background: #fff;
-  color: #185240;
+  color: #173c51;
+  font: inherit;
   cursor: pointer;
 }
-
-.about-story-controls [data-story-step] {
-  position: absolute;
-  z-index: 1;
-  top: calc((100cqw / var(--story-columns) - var(--story-gap)) / 3);
-  transform: translateY(-50%);
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: 50%;
-  background: rgb(255 255 255 / 94%);
-  box-shadow: 0 2px 8px rgb(24 52 44 / 18%);
-  font-size: 24px;
-  line-height: 1;
-}
-
-.about-story-controls [data-story-step="-1"] { inset-inline-start: 8px; }
-.about-story-controls [data-story-step="1"] { inset-inline-end: 8px; }
 
 .about-story-grid {
   display: grid;
@@ -388,8 +367,6 @@ main [id] {
   overflow-x: auto;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-  scroll-padding-inline: calc(var(--story-width) / 2 + var(--story-gap));
 }
 
 .about-story-grid::-webkit-scrollbar { display: none; }
@@ -399,19 +376,7 @@ main [id] {
   scroll-snap-align: start;
 }
 
-.about-story-grid > .about-story > a > img {
-  transition: filter 0.25s ease;
-}
-
-.about-story-grid > .about-story.is-edge-preview > a > img {
-  filter: brightness(0.88);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .about-story-grid > .about-story > a > img {
-    transition: none;
-  }
-}
+.about-story-grid > .about-story > a > img { object-fit: cover; }
 
 .academy-about :is(.about-story-grid, .about-story-controls button):focus-visible {
   outline: 2px solid #185240;
@@ -421,7 +386,7 @@ main [id] {
 @media (max-width: 960px) {
   .about-story-carousel {
     --story-gap: 12px;
-    --story-columns: 2;
+    --story-width: 100%;
   }
 }
 .about-story {
