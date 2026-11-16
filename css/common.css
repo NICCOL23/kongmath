@@ -390,7 +390,9 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
 }
 
 .footer .footer-logo img.kong-footer-logo {
-  filter: contrast(0.35) brightness(1.8);
+  filter: none;
+  opacity: 1;
+  mix-blend-mode: normal;
 }
 
 .footer .footer-info {
