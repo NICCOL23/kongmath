@@ -815,20 +815,8 @@ main #main-visual>.inner {
     overflow: visible;
   }
 
+  /* 내신리포트 슬라이드는 모든 카드가 항상 선명하게 표시됩니다. */
   #treatment .swiper-slide {
-    transition: filter 0.4s ease,
-      opacity 0.4s ease;
-  }
-
-  /* 양옆 카드 흐림 */
-  #treatment .swiper-slide {
-    filter: blur(2px);
-    opacity: 0.5;
-  }
-
-  /* 중앙 카드 */
-  #treatment .swiper-slide-active {
-    filter: blur(0);
     opacity: 1;
   }
 

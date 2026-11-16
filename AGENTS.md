@@ -81,6 +81,7 @@
 - The attached logo reference colors are: blue `#023D89`, orange `#E28E02`, and navy `#091840`.
 - Keep the header and footer logo free of filters, opacity changes, or blend modes so the same source image keeps the same colors on every page.
 - Header logo hover, active, focus, and tap states must keep `background: transparent`, `filter: none`, `opacity: 1`, and normal blend mode; the logo must never become blurred or tinted after clicking.
+- Do not use `filter: blur(...)` or `backdrop-filter: blur(...)` anywhere in the site; all page content, cards, images, and logos must remain sharp after clicks and focus changes.
 
 - The `studyroom.html` page must not contain a `네이버 블로그에서 자습실 공지 보기` button or the specific Naver post URL; keep the reconstructed study-room notice content on the site instead.
 
