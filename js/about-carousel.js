@@ -122,7 +122,13 @@
   });
 
   track.addEventListener("pointerdown", pause);
-  track.addEventListener("focusin", pause);
+  track.addEventListener("focusin", event => {
+    // A fragment link can focus the track without any carousel interaction.
+    if (event.target !== track) pause();
+  });
+  track.addEventListener("keydown", event => {
+    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) pause();
+  });
   track.addEventListener("wheel", event => {
     if (event.deltaX || event.shiftKey) pause();
   }, { passive: true });
