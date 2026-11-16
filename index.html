@@ -55,6 +55,7 @@
     const formerSectionPage = new Map([
       ["#notices", "notices.html"],
       ["#faq", "consultation.html"],
+      ["#tuition", "tuition.html"],
       ["#academy-daily", "daily.html"],
       ["#student-corner", "students.html"],
       ["#academy-news", "students.html"]
@@ -85,7 +86,7 @@
         <nav class="armi-nav" id="armi-site-nav" aria-label="주 메뉴">
           <div class="armi-mobile-quick"><a href="#location">오시는 길</a><a href="#save-teeth">관리형 자습실</a></div>
 <ul class="armi-nav-items">
-<li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-about">학원 소개</button><div class="armi-nav-panel" id="armi-nav-about" hidden><ul><li><a href="#academy-about">학원 소개 전체</a></li><li><a href="#clinic-intro">1:1 맞춤 수업</a></li><li><a href="#save-teeth">관리형 자습실</a></li><li><a href="#tuition">수강료 안내</a></li><li><a href="consultation.html">상담 안내</a></li></ul></div></li>
+<li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-about">학원 소개</button><div class="armi-nav-panel" id="armi-nav-about" hidden><ul><li><a href="#academy-about">학원 소개 전체</a></li><li><a href="#clinic-intro">1:1 맞춤 수업</a></li><li><a href="#save-teeth">관리형 자습실</a></li><li><a href="tuition.html">수강료 안내</a></li><li><a href="consultation.html">상담 안내</a></li></ul></div></li>
 <li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-care">내신리포트</button><div class="armi-nav-panel" id="armi-nav-care" hidden><ul><li><a href="reports.html">내신리포트 전체 보기</a></li><li><a href="https://blog.naver.com/PostList.naver?blogId=tyk999&amp;categoryNo=9">네이버 블로그 내신리포트</a></li></ul></div></li>
 <li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-news">학원 소식</button><div class="armi-nav-panel" id="armi-nav-news" hidden><ul><li><a href="notices.html">공지사항</a></li><li><a href="daily.html">공쌤수학 일상</a></li><li><a href="students.html">공쌤수학원생 코너</a></li><li><a href="https://blog.naver.com/tyk999">공쌤수학원 네이버 블로그</a></li></ul></div></li><li><a href="#location">오시는 길</a></li>
 </ul></nav>
@@ -256,7 +257,7 @@
               </div>
             </article>
             <article class="about-story" id="about-tuition">
-              <a class="about-story-image about-story-image--poster" href="imges/main/about-tuition-1.jpg"><img src="imges/main/about-tuition-1.jpg" width="966" height="966" alt="공쌤수학원 수강료 안내 포스터" loading="lazy" decoding="async"></a>
+              <a class="about-story-image about-story-image--poster" href="tuition.html"><img src="imges/main/about-tuition-1.jpg" width="966" height="966" alt="공쌤수학원 수강료 안내 포스터" loading="lazy" decoding="async"></a>
               <div class="about-story-content">
                 <p class="about-story-meta">수강료 <time datetime="2026-04-16">2026.04.16</time></p>
                 <h3>공쌤수학원 수강료</h3>
@@ -265,7 +266,7 @@
                   <summary>본문 읽기<span class="about-story-sr"> – 공쌤수학원 수강료</span></summary>
                   <div class="about-story-body">
                     <p>2026년 4월 16일 블로그에 교습비 안내를 게시했습니다. 초등, 중등, 고1, 고2·고3의 수학과 영어 단과 및 두 과목 동시 수강 금액을 홈페이지 표에서 확인할 수 있습니다.</p>
-                    <p><a href="#tuition">학년별 수강료 표 보기</a> · <a href="tel:0519137159">수강 상담</a></p>
+                    <p><a href="tuition.html">학년별 수강료 표 보기</a> · <a href="tel:0519137159">수강 상담</a></p>
                     <a href="imges/main/about-tuition-1.jpg">수강료 포스터 전체 보기</a>
                     <a href="https://blog.naver.com/tyk999/224254587643">네이버 블로그 원문 ↗</a>
                   </div>
@@ -463,27 +464,6 @@
 <ul><li>재원생 무료</li><li>사전 예약 필수</li><li>감독 선생님에게 질문 가능</li><li>음식 섭취 금지, 물과 음료 가능</li><li>자습실 내 정숙</li><li>감독 선생님 지시를 세 번 어기면 한 달간 이용 제한</li></ul>
 <div class="save-btn"><a href="https://blog.naver.com/tyk999/224450128462">네이버 블로그에서 자습실 공지 보기 ↗</a></div></div>
 </div></section>
-      <section class="tuition-section" id="tuition" aria-labelledby="tuition-title">
-        <div class="inner">
-          <div class="tuition-heading">
-            <h2 id="tuition-title">수강료 안내</h2>
-            <p>학원 등록번호 제5000호</p>
-          </div>
-          <table class="tuition-table">
-            <caption>학년별 수강료 (단위: 원)</caption>
-            <thead>
-              <tr><th scope="col">학년</th><th scope="col">수학</th><th scope="col">영어</th><th scope="col">수학 + 영어</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">초등</th><td>200,000</td><td>200,000</td><td>370,000</td></tr>
-              <tr><th scope="row">중등</th><td>250,000</td><td>250,000</td><td>470,000</td></tr>
-              <tr><th scope="row">고1</th><td>300,000</td><td>300,000</td><td>570,000</td></tr>
-              <tr><th scope="row">고2·고3</th><td>350,000</td><td>300,000</td><td>620,000</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
       <section id="location">
   <div class="inner">
     <div class="loc-txt"><h2>찾아 오시는 길</h2></div>
