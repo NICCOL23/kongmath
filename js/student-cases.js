@@ -15,5 +15,11 @@
     });
     if (count) count.textContent = items.length;
     filters.forEach(filter => filter.addEventListener("click", () => { const selected = filter.dataset.caseFilter; filters.forEach(button => button.setAttribute("aria-pressed", String(button === filter))); grid.querySelectorAll("[data-case-type]").forEach(card => { card.hidden = selected !== "all" && card.dataset.caseType !== selected; }); }));
+    const hashId = decodeURIComponent(window.location.hash.slice(1));
+    const linkedCard = hashId ? document.getElementById(hashId) : null;
+    if (linkedCard?.matches(".student-case-card")) {
+      linkedCard.open = true;
+      requestAnimationFrame(() => linkedCard.scrollIntoView({ block: "center", behavior: "smooth" }));
+    }
   }).catch(error => { grid.innerHTML = `<p class="student-cases-error">${StudentCaseCard.escapeHtml(error.message)}</p>`; });
 })();
