@@ -77,3 +77,68 @@ main [id] {
 .armi-header .inner h1 a img.kong-header-logo { width: clamp(125px, 19vw, 230px); height: auto; border-radius: 0; object-fit: contain; }
 
 .footer .footer-logo img.kong-footer-logo { width: clamp(160px, 22vw, 220px); max-width: 100%; height: auto; border-radius: 0; object-fit: contain; }
+
+#treatment .treatment-img img { object-fit: contain; background: #f5f8ff; }
+.academy-news { padding: clamp(56px, 8vw, 104px) 0; background: #f4f8fc; }
+.academy-news h2 { margin-bottom: 24px; font-size: clamp(26px, 4vw, 40px); }
+.academy-news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 20px; }
+.academy-news-card { display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; background: #fff; border: 1px solid #dce6f0; border-radius: 16px; }
+.academy-news-card img { display: block; width: 100%; height: 180px; object-fit: cover; object-position: center 43%; }
+.academy-news-card > div { padding: 22px; }
+.academy-news-card span, .academy-news-link a { color: #0058b9; font-weight: 700; }
+.academy-news-card h3 { margin: 8px 0; font-size: 20px; }
+.academy-news-card p { color: #475569; line-height: 1.6; }
+.academy-news-card:hover h3, .academy-news-link a { text-decoration: underline; }
+.academy-news-link { margin-top: 20px; }
+
+.tuition-section {
+  padding: clamp(56px, 8vw, 104px) 0;
+}
+
+.tuition-heading h2 {
+  font-size: clamp(26px, 4vw, 40px);
+}
+
+.tuition-heading p, .tuition-table caption {
+  color: #475569;
+}
+
+.tuition-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-variant-numeric: tabular-nums;
+}
+
+.tuition-table caption {
+  padding-bottom: 12px;
+  text-align: left;
+}
+
+.tuition-table th, .tuition-table td {
+  padding: 14px 4px;
+  border-bottom: 1px solid #dce6f0;
+  text-align: center;
+  font-size: clamp(13px, 2.3vw, 17px);
+}
+
+.tuition-table thead th {
+  color: #fff;
+  background: #174a81;
+}
+
+.tuition-table tbody th {
+  background: #f4f8fc;
+  font-weight: 700;
+}
+
+.tuition-contact {
+  margin-top: 20px;
+}
+
+.tuition-contact a {
+  color: #0058b9;
+  font-weight: 700;
+  text-decoration: underline;
+}
