@@ -28,3 +28,8 @@
 - Use four columns on desktop for the featured cards and the same card sizing for the six lower cards; use two columns on tablet and one on mobile.
 - Keep `#treatment` (the exam-report section), the Armi files, and unrelated page sections unchanged.
 - After changes, verify the GitHub Pages deployment and check the live academy introduction card dimensions.
+
+## Header/footer logo color
+
+- The footer logo must use the exact same source asset and visual color treatment as the header logo.
+- Do not apply an independent color-changing filter to the footer logo; keep `filter: none`, full opacity, and normal blend mode.
