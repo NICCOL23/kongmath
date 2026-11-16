@@ -519,6 +519,7 @@ main [id] {
   color: #999;
   font-size: 1.2rem;
   line-height: 18px;
+  letter-spacing: -0.02em;
 }
 
 .academy-about .academy-card__title {
@@ -533,6 +534,7 @@ main [id] {
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.35;
+  letter-spacing: -0.03em;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -549,6 +551,7 @@ main [id] {
   color: #999;
   font-size: 1.5rem;
   line-height: 1.6;
+  letter-spacing: -0.02em;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -570,6 +573,7 @@ main [id] {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 20px;
+  letter-spacing: -0.02em;
 }
 
 .academy-about .academy-card__link:focus-visible {
