@@ -372,7 +372,7 @@ main [id] {
   scroll-snap-align: start;
 }
 
-.about-story-grid > .about-story > a > img:not(.about-story-image--full) { object-fit: cover; }
+.about-story-grid > .about-story > a > img { object-fit: cover; }
 
 .academy-about :is(.about-story-grid, .about-story-controls button):focus-visible {
   outline: 2px solid #185240;
