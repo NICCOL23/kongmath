@@ -27,8 +27,7 @@
     scale(calc(.92 + var(--title-growth, 1) * .08));
 }
 #main-visual .visual-text h2,
-#main-visual .visual-text .visual-desc,
-#main-visual .visual-content .visual-info .contact-card .address p {
+#main-visual .visual-text .visual-desc {
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: keep-all;
@@ -93,6 +92,50 @@
   outline: 2px solid #0065d6;
   outline-offset: -2px;
   border-radius: 999px;
+}
+
+#main-visual .hero-contact-cards > .hero-contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  padding: clamp(18px, 1.5vw, 26px);
+  background: #fff;
+  color: #142338;
+  overflow-wrap: anywhere;
+}
+
+.hero-contact-card h3 {
+  font-size: 2rem;
+  margin-bottom: 4px;
+}
+
+.hero-contact-card p {
+  font-weight: 600;
+}
+
+.hero-contact-card .hero-contact-note {
+  color: #46566a;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.hero-contact-card .hero-contact-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: auto;
+  color: #005bbf;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero-contact-action:focus-visible {
+  outline: 2px solid #005bbf;
+  outline-offset: 3px;
 }
 
 .intro-transition-message {
