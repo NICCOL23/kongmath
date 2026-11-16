@@ -93,4 +93,17 @@
     target.focus({ preventScroll: true });
     target.scrollIntoView({ behavior: "instant" });
   });
+  // 모바일에서는 전화, 데스크톱에서는 메인 첫 페이지로 이동합니다.
+  const floatingChat = document.querySelector(".floating-chat");
+  if (floatingChat) {
+    const desktopHref = floatingChat.getAttribute("href") || "index.html";
+    const mobileHref = floatingChat.dataset.mobileHref || "tel:0519137159";
+    const floatingMedia = matchMedia("(max-width: 768px)");
+    const updateFloatingChat = () => {
+      floatingChat.setAttribute("href", floatingMedia.matches ? mobileHref : desktopHref);
+    };
+    updateFloatingChat();
+    floatingMedia.addEventListener("change", updateFloatingChat);
+  }
+
 })();
