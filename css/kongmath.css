@@ -251,6 +251,8 @@ main [id] {
 .notice-day--regular b { color: #174a81; }
 
 .academy-about {
+  --story-gap: 20px;
+  --story-width: calc((100% - 3 * var(--story-gap)) / 4);
   padding-block: clamp(48px, 8vw, 108px);
   scroll-margin-top: 100px;
   color: #182436;
@@ -261,9 +263,9 @@ main [id] {
 .academy-about-heading > p { margin-top: 16px; font-size: clamp(16px, 2vw, 19px); line-height: 1.7; }
 .about-story-featured {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 292px), 1fr));
+  grid-template-columns: repeat(auto-fit, var(--story-width));
   align-items: start;
-  gap: 20px;
+  gap: var(--story-gap);
   margin-top: 26px;
 }
 
@@ -280,25 +282,12 @@ main [id] {
   cursor: pointer;
 }
 
-.about-story-image > img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-/* 수강료 표는 이미지 안의 글자까지 읽을 수 있도록 여백을 둡니다. */
-.about-story-featured .about-story-content {
-  padding-block: 16px;
-}
-
 .about-story > .about-story-image--poster {
   background: #b5e2dc;
 }
 
-.about-story-image--poster > img {
-  padding: 36px 8px 8px;
+.about-story > .about-story-image--poster > img {
+  padding: 12px;
   object-fit: contain;
 }
 
@@ -329,8 +318,6 @@ main [id] {
 }
 
 .about-story-carousel {
-  --story-gap: 20px;
-  --story-width: calc((100% - 3 * var(--story-gap)) / 4);
   margin-top: 10px;
 }
 
@@ -372,19 +359,18 @@ main [id] {
   scroll-snap-align: start;
 }
 
-.about-story-grid > .about-story > a > img { object-fit: cover; }
-
 .academy-about :is(.about-story-grid, .about-story-controls button):focus-visible {
   outline: 2px solid #185240;
   outline-offset: 2px;
 }
 
 @media (max-width: 960px) {
-  .about-story-carousel {
+  .academy-about {
     --story-gap: 12px;
-    --story-width: 100%;
+    --story-width: calc((100% - var(--story-gap)) / 2);
   }
 }
+@media (max-width: 600px) { .academy-about { --story-width: 100%; } }
 .about-story {
   overflow: hidden;
   border: 1px solid #dce7e1;
@@ -392,10 +378,11 @@ main [id] {
   background: #fff;
 }
 .about-story > a { display: block; background: #e9efec; }
-.about-story > a > img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
-.about-story-content { padding: clamp(16px, 3vw, 24px); }
+.about-story > a > img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.about-story-content { padding: 16px clamp(16px, 3vw, 24px); }
 .about-story-meta { display: flex; flex-wrap: wrap; gap: 5px 12px; color: #345f54; font-size: 13px; }
-.about-story h3 { margin-block: 6px; font-size: 22px; line-height: 1.35; }
+.about-story h3 { margin-block: 6px; font-size: 22px; line-height: 1.35; min-block-size: 2.7em; }
+.about-story-content > h3 + p { min-block-size: 4.95em; }
 .about-story-content p, .about-story-body li { line-height: 1.65; }
 .about-story summary {
   width: fit-content;
