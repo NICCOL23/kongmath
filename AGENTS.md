@@ -67,3 +67,5 @@
 - Do not use hash-only or page-fragment URLs such as `#save-teeth`, `#location`, or `reports.html#report-...` for card navigation; card clicks must not trigger in-page scrolling.
 
 - The management study-room card and all related header/shortcut links must point directly to `studyroom.html`; never send users to the homepage hero or a hash-scroll section for this destination.
+
+- The `studyroom.html` page is the dedicated management study-room destination. Keep the reconstructed notice content, photos, rules, and original Naver Blog link `https://blog.naver.com/tyk999/224450128462` together on this page.
