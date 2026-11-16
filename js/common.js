@@ -42,7 +42,9 @@ $(document).ready(function () {//시작
   const featuredStories = document.querySelector(".about-story-featured");
   featuredStories?.addEventListener("click", event => {
     const card = event.target.closest(".about-story");
-    if (card && !event.target.closest("a")) card.classList.toggle("is-rounded");
+    if (!card || event.target.closest("a")) return;
+    const rounded = card.classList.toggle("is-rounded");
+    card.querySelector(".about-story-image").setAttribute("aria-pressed", String(rounded));
   });
 
 });//끝
