@@ -40,35 +40,51 @@
   let width;
   let settleTimer;
 
-  function cardPitch() {
-    return slides[1].getBoundingClientRect().left - slides[0].getBoundingClientRect().left;
+  let cardWidth, pitch, inset;
+  let animation;
+
+  function measure() {
+    const first = slides[0].getBoundingClientRect();
+    width = track.clientWidth;
+    cardWidth = first.width;
+    pitch = slides[1].getBoundingClientRect().left - first.left;
+    inset = pitch - cardWidth / 2;
   }
 
-  function peekInset() {
-    const cardWidth = slides[0].getBoundingClientRect().width;
-    return cardPitch() - cardWidth / 2;
-  }
-
-  function showSlide(target, behavior = "instant") {
-    track.scrollTo({ left: target * cardPitch() - peekInset(), behavior });
+  function showSlide(target) {
+    track.scrollTo({ left: target * pitch - inset, behavior: "instant" });
   }
 
   function nearestSlide() {
-    return Math.round((track.scrollLeft + peekInset()) / cardPitch());
+    return Math.round((track.scrollLeft + inset) / pitch);
   }
 
   function updateVisibleSlides() {
-    const bounds = track.getBoundingClientRect();
-    slides.forEach(slide => {
-      const card = slide.getBoundingClientRect();
-      const outside = card.right <= bounds.left + 1 || card.left >= bounds.right - 1;
-      const clipped = card.left < bounds.left - 1 || card.right > bounds.right + 1;
-      slide.inert = outside;
-      slide.classList.toggle("is-edge-preview", !outside && clipped);
+    const offset = track.scrollLeft;
+    const edges = new Set();
+    slides.forEach((slide, number) => {
+      const left = number * pitch - offset;
+      const right = left + cardWidth;
+      const outside = right <= 1 || left >= width - 1;
+      if (slide.inert !== outside) slide.inert = outside;
+      if (!outside && (left < -1 || right > width + 1)) edges.add(number % cards.length);
+    });
+    // Give equivalent cards the same brightness before the loop is recentered.
+    slides.forEach((slide, number) => {
+      slide.classList.toggle("is-edge-preview", edges.has(number % cards.length));
     });
   }
 
+  function stopAnimation() {
+    if (!animation) return;
+    cancelAnimationFrame(animation);
+    animation = 0;
+    active = -1;
+    track.style.removeProperty("scroll-snap-type");
+  }
+
   function settle() {
+    if (animation) return;
     const current = nearestSlide();
     const normalized = cards.length + current % cards.length;
     if (current !== normalized) {
@@ -90,7 +106,31 @@
   function move(direction) {
     const current = active < 0 ? nearestSlide() : active;
     active = Math.max(0, Math.min(slides.length - 1, current + direction));
-    showSlide(active, reducedMotion.matches ? "instant" : "smooth");
+    if (reducedMotion.matches) {
+      showSlide(active);
+      stopAnimation();
+      settle();
+      return;
+    }
+    cancelAnimationFrame(animation);
+    const from = track.scrollLeft;
+    const to = active * pitch - inset;
+    track.style.scrollSnapType = "none";
+    let start;
+    function animate(now) {
+      start ??= now;
+      const progress = Math.min((now - start) / 520, 1);
+      const eased = progress * progress * (3 - 2 * progress);
+      track.scrollTo({ left: from + (to - from) * eased, behavior: "instant" });
+      if (progress < 1) {
+        animation = requestAnimationFrame(animate);
+      } else {
+        animation = 0;
+        settle();
+        track.style.removeProperty("scroll-snap-type");
+      }
+    }
+    animation = requestAnimationFrame(animate);
   }
 
   track.addEventListener("scroll", () => {
@@ -104,7 +144,8 @@
 
   new ResizeObserver(() => {
     if (track.clientWidth === width) return;
-    width = track.clientWidth;
+    stopAnimation();
+    measure();
     showSlide(index);
     updateVisibleSlides();
   }).observe(track);
@@ -124,7 +165,13 @@
     updatePlayback();
   });
 
-  track.addEventListener("pointerdown", pause);
+  function pauseOnContact() {
+    pause();
+    stopAnimation();
+  }
+
+  track.addEventListener("pointerdown", pauseOnContact);
+  track.addEventListener("touchstart", pauseOnContact, { passive: true });
   track.addEventListener("focusin", event => {
     // A fragment link can focus the track without any carousel interaction.
     if (event.target !== track) pause();
@@ -133,7 +180,7 @@
     if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) pause();
   });
   track.addEventListener("wheel", event => {
-    if (event.deltaX || event.shiftKey) pause();
+    if (event.deltaX || event.shiftKey) pauseOnContact();
   }, { passive: true });
   track.addEventListener("toggle", event => {
     const details = event.target;
@@ -146,7 +193,7 @@
   }, true);
 
   reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches) pause();
+    if (reducedMotion.matches) pauseOnContact();
   });
   document.addEventListener("visibilitychange", updatePlayback);
 
@@ -154,6 +201,7 @@
     inView = entry.isIntersecting;
     updatePlayback();
   }, { threshold: 0 });
+  measure();
   showSlide(index);
   updateVisibleSlides();
   observer.observe(track);

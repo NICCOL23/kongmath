@@ -50,7 +50,7 @@
   <script defer src="js/hero-motion.js?v=scene-indicators"></script>
   
   <script defer src="js/save-teeth-motion.js"></script>
-  <link rel="stylesheet" href="css/kongmath.css?v=story-edge-dim">
+  <link rel="stylesheet" href="css/kongmath.css?v=story-carousel-controls">
   <script>
     const formerSectionPage = new Map([
       ["#notices", "notices.html"],
@@ -62,7 +62,7 @@
       window.location.replace("reports.html" + window.location.hash);
     }
   </script>
-  <script defer src="js/about-carousel.js?v=edge-dim"></script>
+  <script defer src="js/about-carousel.js?v=smooth-loop"></script>
 </head>
 
 <body>
@@ -308,131 +308,133 @@
               </div>
             </article>
           </div>
-          <div class="about-story-controls" hidden>
-            <button type="button" data-story-play aria-controls="about-story-track">일시정지</button>
-            <button type="button" data-story-step="-1" aria-label="이전 학원 소개 카드" aria-controls="about-story-track">‹</button>
-            <button type="button" data-story-step="1" aria-label="다음 학원 소개 카드" aria-controls="about-story-track">›</button>
-          </div>
-          <div id="about-story-track" class="about-story-grid" role="region" aria-label="지난 학원 소개 카드" tabindex="0">
-            <article class="about-story" id="about-semester">
-              <a href="imges/main/about-semester-1.jpg"><img src="imges/main/about-semester-1.jpg" width="966" height="966" alt="새 학기 응원 안내 이미지" loading="lazy" decoding="async"></a>
-              <div class="about-story-content">
-                <p class="about-story-meta">학습 습관 <time datetime="2025-02-27">2025.02.27</time></p>
-                <h3>새 학기 수학·영어 학습 안내</h3>
-                <p>새 학년의 기초를 점검하고 예습과 복습 습관을 만듭니다.</p>
-                <details>
-                  <summary>본문 읽기<span class="about-story-sr"> – 새 학기 수학·영어 학습 안내</span></summary>
-                  <div class="about-story-body">
-                    <p>새 학기부터 예습과 복습을 꾸준히 하는 습관은 중간·기말고사 준비에도 도움이 됩니다. 단원이 이어지는 수학과 영어는 새 학년을 시작할 때 앞에서 배운 기초부터 점검합니다.</p>
-                    <p>핵심 개념을 익힌 뒤 실전과 고난도 문제로 이어갑니다. 소수 인원 수업에서 학생의 학습 상태와 오답 경향을 살피고, 선행 진도와 복습을 함께 관리합니다. 막히는 문제는 질문으로 해결한 뒤 오답노트로 다시 확인합니다.</p>
-                    <a href="https://blog.naver.com/tyk999/223776445500">네이버 블로그 원문 ↗</a>
-                  </div>
-                </details>
-              </div>
-            </article>
-            <article class="about-story" id="about-persistence">
-              <a href="imges/main/about-persistence-1.jpg"><img src="imges/main/about-persistence-1.jpg" width="891" height="1260" alt="치악산 복숭아 패러디 포스터" loading="lazy" decoding="async"></a>
-              <div class="about-story-content">
-                <p class="about-story-meta">학원 이야기 <time datetime="2024-07-22">2024.07.22</time></p>
-                <h3>될 때까지 하는 공쌤수학원</h3>
-                <p>부암·부전·당감·전포 인근에 붙인 학원 포스터 이야기입니다.</p>
-                <details>
-                  <summary>본문 읽기<span class="about-story-sr"> – 될 때까지 하는 공쌤수학원</span></summary>
-                  <div class="about-story-body">
-                    <p>‘치악산 복숭아’를 패러디한 포스터에, 학생이 숙제를 마치고 어려운 개념을 이해할 때까지 지도하는 선생님들의 끈기를 담았습니다. 포스터의 QR 코드는 당시 학원 블로그로 연결됐습니다.</p>
-                    <div class="about-photo-grid">
-                      <a href="imges/main/about-persistence-2.jpg"><img src="imges/main/about-persistence-2.jpg" width="620" height="797" alt="학원 앞에 붙인 포스터" loading="lazy" decoding="async"></a>
+          <div class="about-story-carousel">
+            <div id="about-story-track" class="about-story-grid" role="region" aria-label="지난 학원 소개 카드" tabindex="0">
+              <article class="about-story" id="about-semester">
+                <a href="imges/main/about-semester-1.jpg"><img src="imges/main/about-semester-1.jpg" width="966" height="966" alt="새 학기 응원 안내 이미지" loading="lazy" decoding="async"></a>
+                <div class="about-story-content">
+                  <p class="about-story-meta">학습 습관 <time datetime="2025-02-27">2025.02.27</time></p>
+                  <h3>새 학기 수학·영어 학습 안내</h3>
+                  <p>새 학년의 기초를 점검하고 예습과 복습 습관을 만듭니다.</p>
+                  <details>
+                    <summary>본문 읽기<span class="about-story-sr"> – 새 학기 수학·영어 학습 안내</span></summary>
+                    <div class="about-story-body">
+                      <p>새 학기부터 예습과 복습을 꾸준히 하는 습관은 중간·기말고사 준비에도 도움이 됩니다. 단원이 이어지는 수학과 영어는 새 학년을 시작할 때 앞에서 배운 기초부터 점검합니다.</p>
+                      <p>핵심 개념을 익힌 뒤 실전과 고난도 문제로 이어갑니다. 소수 인원 수업에서 학생의 학습 상태와 오답 경향을 살피고, 선행 진도와 복습을 함께 관리합니다. 막히는 문제는 질문으로 해결한 뒤 오답노트로 다시 확인합니다.</p>
+                      <a href="https://blog.naver.com/tyk999/223776445500">네이버 블로그 원문 ↗</a>
                     </div>
-                    <a href="https://blog.naver.com/tyk999/223521721628">네이버 블로그 원문 ↗</a>
-                  </div>
-                </details>
-              </div>
-            </article>
-            <article class="about-story" id="about-basics">
-              <a href="imges/main/about-math-basics.jpg"><img src="imges/main/about-math-basics.jpg" width="900" height="600" alt="모눈 공책에 연필과 자로 도형을 그리며 수학 기본기를 연습하는 모습" loading="lazy" decoding="async"></a>
-              <div class="about-story-content">
-                <p class="about-story-meta">수학 기본기 <time datetime="2023-11-02">2023.11.02</time></p>
-                <h3>수학이 어렵게 느껴질 때</h3>
-                <p>기본기를 차근차근 쌓고, 새 문제에 적용하는 힘을 기릅니다.</p>
-                <details>
-                  <summary>본문 읽기<span class="about-story-sr"> – 수학이 어렵게 느껴질 때</span></summary>
-                  <div class="about-story-body">
-                    <p>기초가 약한 학생에게는 기본기를 다지는 과정이 처음에 어렵게 느껴질 수 있습니다. 초등 과정에서 드러나지 않았던 빈틈도 중학교 2·3학년이 되어 개념과 문제가 복잡해지면 드러날 수 있습니다.</p>
-                    <p>개념과 풀이 원리를 충분히 익히고 스스로 응용하도록 지도합니다. 기본기가 탄탄해지면 어려운 문제도 풀이를 단계별로 생각하며 접근할 수 있습니다.</p>
-                    <a href="https://blog.naver.com/tyk999/223254061563">네이버 블로그 원문 ↗</a>
-                  </div>
-                </details>
-              </div>
-            </article>
-            <article class="about-story" id="about-written">
-              <a href="imges/main/about-written-1.jpg"><img src="imges/main/about-written-1.jpg" width="900" height="900" alt="서술형 대비 교재" loading="lazy" decoding="async"></a>
-              <div class="about-story-content">
-                <p class="about-story-meta">내신 대비 <time datetime="2023-11-02">2023.11.02</time></p>
-                <h3>공쌤수학원의 서술형 대비</h3>
-                <p>풀이 근거를 쓰는 연습을 교재와 학원 자체 학습지로 이어갑니다.</p>
-                <details>
-                  <summary>본문 읽기<span class="about-story-sr"> – 공쌤수학원의 서술형 대비</span></summary>
-                  <div class="about-story-body">
-                    <p>초등부터 풀이를 글로 쓰는 연습을 합니다. 교재와 학원에서 만든 학습지로 필요한 근거를 골라 쓰고, 시험 시간 안에 풀이를 정리하는 방법을 익힙니다. 중학생은 객관식과 서술형을 함께 점검합니다.</p>
-                    <p>2023년 당시 예비 중1 대상 서술형 추가 수업을 이듬해 2월까지 운영한다고 안내했습니다. 같은 글에서 당시 중3 기말고사 서술형 감점이 거의 없었다는 결과를 소개했습니다.</p>
-                    <p><a href="reports.html">학교별 내신리포트</a></p>
-                    <div class="about-photo-grid">
-                      <a href="imges/main/about-written-2.jpg"><img src="imges/main/about-written-2.jpg" width="900" height="794" alt="서술형 문제 풀이 자료" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-written-3.jpg"><img src="imges/main/about-written-3.jpg" width="900" height="900" alt="서술형 연습 학습지" loading="lazy" decoding="async"></a>
+                  </details>
+                </div>
+              </article>
+              <article class="about-story" id="about-persistence">
+                <a href="imges/main/about-persistence-1.jpg"><img src="imges/main/about-persistence-1.jpg" width="891" height="1260" alt="치악산 복숭아 패러디 포스터" loading="lazy" decoding="async"></a>
+                <div class="about-story-content">
+                  <p class="about-story-meta">학원 이야기 <time datetime="2024-07-22">2024.07.22</time></p>
+                  <h3>될 때까지 하는 공쌤수학원</h3>
+                  <p>부암·부전·당감·전포 인근에 붙인 학원 포스터 이야기입니다.</p>
+                  <details>
+                    <summary>본문 읽기<span class="about-story-sr"> – 될 때까지 하는 공쌤수학원</span></summary>
+                    <div class="about-story-body">
+                      <p>‘치악산 복숭아’를 패러디한 포스터에, 학생이 숙제를 마치고 어려운 개념을 이해할 때까지 지도하는 선생님들의 끈기를 담았습니다. 포스터의 QR 코드는 당시 학원 블로그로 연결됐습니다.</p>
+                      <div class="about-photo-grid">
+                        <a href="imges/main/about-persistence-2.jpg"><img src="imges/main/about-persistence-2.jpg" width="620" height="797" alt="학원 앞에 붙인 포스터" loading="lazy" decoding="async"></a>
+                      </div>
+                      <a href="https://blog.naver.com/tyk999/223521721628">네이버 블로그 원문 ↗</a>
                     </div>
-                    <a href="https://blog.naver.com/tyk999/223254036646">네이버 블로그 원문 ↗</a>
-                  </div>
-                </details>
-              </div>
-            </article>
-            <article class="about-story" id="about-clinic">
-              <a href="imges/main/about-clinic-1.png"><img src="imges/main/about-clinic-1.png" width="900" height="408" alt="공쌤수학원 수업과 오답 클리닉 안내" loading="lazy" decoding="async"></a>
-              <div class="about-story-content">
-                <p class="about-story-meta">맞춤 수업 <time datetime="2023-08-13">2023.08.13</time></p>
-                <h3>1:1 진도와 오답 클리닉</h3>
-                <p>월말평가로 약한 단원을 찾아 유사 문제로 다시 연습합니다.</p>
-                <details>
-                  <summary>본문 읽기<span class="about-story-sr"> – 1:1 진도와 오답 클리닉</span></summary>
-                  <div class="about-story-body">
-                    <p>학원 수업이 처음인 학생과 선행학습을 한 학생 모두 현재 수준에 맞는 진도로 공부합니다. 시험 기간에는 풀이를 글로 쓰기 어려워하는 학생을 위한 서술형 수업도 병행합니다.</p>
-                    <p>월말평가 후 개인별 약점을 파악해 보충 학습을 진행합니다. 같은 문제의 답을 외우는 데 그치지 않도록 유사 유형을 제공하고, 풀이 방법을 다른 문제에도 적용할 수 있는지 확인합니다.</p>
-                    <a href="https://blog.naver.com/tyk999/223182561406">네이버 블로그 원문 ↗</a>
-                  </div>
-                </details>
-              </div>
-            </article>
-            <article class="about-story" id="about-academy">
-              <a href="imges/main/about-academy-1.jpg"><img src="imges/main/about-academy-1.jpg" width="900" height="1200" alt="학원 상담 데스크" loading="lazy" decoding="async"></a>
-              <div class="about-story-content">
-                <p class="about-story-meta">학원과 시설 <time datetime="2023-08-13">2023.08.13</time></p>
-                <h3>공쌤수학원 소개</h3>
-                <p>2014년부터 부산진구 부암동에서 수학을 가르쳐 왔습니다.</p>
-                <details>
-                  <summary>본문 읽기<span class="about-story-sr"> – 공쌤수학원 소개</span></summary>
-                  <div class="about-story-body">
-                    <p>공쌤수학원은 부산광역시 부산진구 신천대로 192 건물 3·4층에 있습니다. 지하철 2호선 부암역 4번 출구와 당감입구 버스정류장에서 찾아오실 수 있습니다.</p>
-                    <p>블로그 소개 당시 3층에는 상담 데스크와 유리 칸막이 교실이 있었고 초·중등 수학을, 4층은 중·고등 수학을 지도하는 공간으로 소개했습니다. 경력 있는 선생님이 각 학생의 수준에 맞춰 개별 진도를 진행합니다.</p>
-                    <p><a href="#location">지도와 교통편 확인</a> · <a href="tel:0519137159">방문 상담 문의</a></p>
-                    <div class="about-photo-grid">
-                      <a href="imges/main/about-academy-2.jpg"><img src="imges/main/about-academy-2.jpg" width="900" height="1200" alt="교실 내부" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-3.jpg"><img src="imges/main/about-academy-3.jpg" width="900" height="1200" alt="책상과 칠판이 있는 교실" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-4.jpg"><img src="imges/main/about-academy-4.jpg" width="900" height="1200" alt="교실 좌석" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-5.jpg"><img src="imges/main/about-academy-5.jpg" width="900" height="1200" alt="교실과 복도" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-6.jpg"><img src="imges/main/about-academy-6.jpg" width="900" height="1200" alt="교실의 책상 배열" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-7.jpg"><img src="imges/main/about-academy-7.jpg" width="900" height="1200" alt="창가가 있는 교실" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-8.jpg"><img src="imges/main/about-academy-8.jpg" width="900" height="1200" alt="강사 책상" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-9.jpg"><img src="imges/main/about-academy-9.jpg" width="900" height="1200" alt="강의실과 칠판" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-10.jpg"><img src="imges/main/about-academy-10.jpg" width="900" height="676" alt="수학 수업 칠판 필기" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-11.jpg"><img src="imges/main/about-academy-11.jpg" width="900" height="676" alt="수학 수업 칠판 필기" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-12.jpg"><img src="imges/main/about-academy-12.jpg" width="900" height="676" alt="함수 그래프 칠판 필기" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-13.jpg"><img src="imges/main/about-academy-13.jpg" width="900" height="676" alt="수학 수업 칠판 필기" loading="lazy" decoding="async"></a>
-                      <a href="imges/main/about-academy-14.png"><img src="imges/main/about-academy-14.png" width="900" height="408" alt="공쌤수학원 교과 수업 안내" loading="lazy" decoding="async"></a>
+                  </details>
+                </div>
+              </article>
+              <article class="about-story" id="about-basics">
+                <a href="imges/main/about-math-basics.jpg"><img src="imges/main/about-math-basics.jpg" width="900" height="600" alt="모눈 공책에 연필과 자로 도형을 그리며 수학 기본기를 연습하는 모습" loading="lazy" decoding="async"></a>
+                <div class="about-story-content">
+                  <p class="about-story-meta">수학 기본기 <time datetime="2023-11-02">2023.11.02</time></p>
+                  <h3>수학이 어렵게 느껴질 때</h3>
+                  <p>기본기를 차근차근 쌓고, 새 문제에 적용하는 힘을 기릅니다.</p>
+                  <details>
+                    <summary>본문 읽기<span class="about-story-sr"> – 수학이 어렵게 느껴질 때</span></summary>
+                    <div class="about-story-body">
+                      <p>기초가 약한 학생에게는 기본기를 다지는 과정이 처음에 어렵게 느껴질 수 있습니다. 초등 과정에서 드러나지 않았던 빈틈도 중학교 2·3학년이 되어 개념과 문제가 복잡해지면 드러날 수 있습니다.</p>
+                      <p>개념과 풀이 원리를 충분히 익히고 스스로 응용하도록 지도합니다. 기본기가 탄탄해지면 어려운 문제도 풀이를 단계별로 생각하며 접근할 수 있습니다.</p>
+                      <a href="https://blog.naver.com/tyk999/223254061563">네이버 블로그 원문 ↗</a>
                     </div>
-                    <a href="https://blog.naver.com/tyk999/223182543185">네이버 블로그 원문 ↗</a>
-                  </div>
-                </details>
-              </div>
-            </article>
+                  </details>
+                </div>
+              </article>
+              <article class="about-story" id="about-written">
+                <a href="imges/main/about-written-1.jpg"><img src="imges/main/about-written-1.jpg" width="900" height="900" alt="서술형 대비 교재" loading="lazy" decoding="async"></a>
+                <div class="about-story-content">
+                  <p class="about-story-meta">내신 대비 <time datetime="2023-11-02">2023.11.02</time></p>
+                  <h3>공쌤수학원의 서술형 대비</h3>
+                  <p>풀이 근거를 쓰는 연습을 교재와 학원 자체 학습지로 이어갑니다.</p>
+                  <details>
+                    <summary>본문 읽기<span class="about-story-sr"> – 공쌤수학원의 서술형 대비</span></summary>
+                    <div class="about-story-body">
+                      <p>초등부터 풀이를 글로 쓰는 연습을 합니다. 교재와 학원에서 만든 학습지로 필요한 근거를 골라 쓰고, 시험 시간 안에 풀이를 정리하는 방법을 익힙니다. 중학생은 객관식과 서술형을 함께 점검합니다.</p>
+                      <p>2023년 당시 예비 중1 대상 서술형 추가 수업을 이듬해 2월까지 운영한다고 안내했습니다. 같은 글에서 당시 중3 기말고사 서술형 감점이 거의 없었다는 결과를 소개했습니다.</p>
+                      <p><a href="reports.html">학교별 내신리포트</a></p>
+                      <div class="about-photo-grid">
+                        <a href="imges/main/about-written-2.jpg"><img src="imges/main/about-written-2.jpg" width="900" height="794" alt="서술형 문제 풀이 자료" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-written-3.jpg"><img src="imges/main/about-written-3.jpg" width="900" height="900" alt="서술형 연습 학습지" loading="lazy" decoding="async"></a>
+                      </div>
+                      <a href="https://blog.naver.com/tyk999/223254036646">네이버 블로그 원문 ↗</a>
+                    </div>
+                  </details>
+                </div>
+              </article>
+              <article class="about-story" id="about-clinic">
+                <a href="imges/main/about-clinic-1.png"><img src="imges/main/about-clinic-1.png" width="900" height="408" alt="공쌤수학원 수업과 오답 클리닉 안내" loading="lazy" decoding="async"></a>
+                <div class="about-story-content">
+                  <p class="about-story-meta">맞춤 수업 <time datetime="2023-08-13">2023.08.13</time></p>
+                  <h3>1:1 진도와 오답 클리닉</h3>
+                  <p>월말평가로 약한 단원을 찾아 유사 문제로 다시 연습합니다.</p>
+                  <details>
+                    <summary>본문 읽기<span class="about-story-sr"> – 1:1 진도와 오답 클리닉</span></summary>
+                    <div class="about-story-body">
+                      <p>학원 수업이 처음인 학생과 선행학습을 한 학생 모두 현재 수준에 맞는 진도로 공부합니다. 시험 기간에는 풀이를 글로 쓰기 어려워하는 학생을 위한 서술형 수업도 병행합니다.</p>
+                      <p>월말평가 후 개인별 약점을 파악해 보충 학습을 진행합니다. 같은 문제의 답을 외우는 데 그치지 않도록 유사 유형을 제공하고, 풀이 방법을 다른 문제에도 적용할 수 있는지 확인합니다.</p>
+                      <a href="https://blog.naver.com/tyk999/223182561406">네이버 블로그 원문 ↗</a>
+                    </div>
+                  </details>
+                </div>
+              </article>
+              <article class="about-story" id="about-academy">
+                <a href="imges/main/about-academy-1.jpg"><img src="imges/main/about-academy-1.jpg" width="900" height="1200" alt="학원 상담 데스크" loading="lazy" decoding="async"></a>
+                <div class="about-story-content">
+                  <p class="about-story-meta">학원과 시설 <time datetime="2023-08-13">2023.08.13</time></p>
+                  <h3>공쌤수학원 소개</h3>
+                  <p>2014년부터 부산진구 부암동에서 수학을 가르쳐 왔습니다.</p>
+                  <details>
+                    <summary>본문 읽기<span class="about-story-sr"> – 공쌤수학원 소개</span></summary>
+                    <div class="about-story-body">
+                      <p>공쌤수학원은 부산광역시 부산진구 신천대로 192 건물 3·4층에 있습니다. 지하철 2호선 부암역 4번 출구와 당감입구 버스정류장에서 찾아오실 수 있습니다.</p>
+                      <p>블로그 소개 당시 3층에는 상담 데스크와 유리 칸막이 교실이 있었고 초·중등 수학을, 4층은 중·고등 수학을 지도하는 공간으로 소개했습니다. 경력 있는 선생님이 각 학생의 수준에 맞춰 개별 진도를 진행합니다.</p>
+                      <p><a href="#location">지도와 교통편 확인</a> · <a href="tel:0519137159">방문 상담 문의</a></p>
+                      <div class="about-photo-grid">
+                        <a href="imges/main/about-academy-2.jpg"><img src="imges/main/about-academy-2.jpg" width="900" height="1200" alt="교실 내부" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-3.jpg"><img src="imges/main/about-academy-3.jpg" width="900" height="1200" alt="책상과 칠판이 있는 교실" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-4.jpg"><img src="imges/main/about-academy-4.jpg" width="900" height="1200" alt="교실 좌석" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-5.jpg"><img src="imges/main/about-academy-5.jpg" width="900" height="1200" alt="교실과 복도" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-6.jpg"><img src="imges/main/about-academy-6.jpg" width="900" height="1200" alt="교실의 책상 배열" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-7.jpg"><img src="imges/main/about-academy-7.jpg" width="900" height="1200" alt="창가가 있는 교실" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-8.jpg"><img src="imges/main/about-academy-8.jpg" width="900" height="1200" alt="강사 책상" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-9.jpg"><img src="imges/main/about-academy-9.jpg" width="900" height="1200" alt="강의실과 칠판" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-10.jpg"><img src="imges/main/about-academy-10.jpg" width="900" height="676" alt="수학 수업 칠판 필기" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-11.jpg"><img src="imges/main/about-academy-11.jpg" width="900" height="676" alt="수학 수업 칠판 필기" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-12.jpg"><img src="imges/main/about-academy-12.jpg" width="900" height="676" alt="함수 그래프 칠판 필기" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-13.jpg"><img src="imges/main/about-academy-13.jpg" width="900" height="676" alt="수학 수업 칠판 필기" loading="lazy" decoding="async"></a>
+                        <a href="imges/main/about-academy-14.png"><img src="imges/main/about-academy-14.png" width="900" height="408" alt="공쌤수학원 교과 수업 안내" loading="lazy" decoding="async"></a>
+                      </div>
+                      <a href="https://blog.naver.com/tyk999/223182543185">네이버 블로그 원문 ↗</a>
+                    </div>
+                  </details>
+                </div>
+              </article>
+            </div>
+            <div class="about-story-controls" hidden>
+              <button type="button" data-story-play aria-controls="about-story-track">일시정지</button>
+              <button type="button" data-story-step="-1" aria-label="이전 학원 소개 카드" aria-controls="about-story-track">‹</button>
+              <button type="button" data-story-step="1" aria-label="다음 학원 소개 카드" aria-controls="about-story-track">›</button>
+            </div>
           </div>
         </div>
       </section>
