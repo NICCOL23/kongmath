@@ -1807,3 +1807,29 @@ width: 40%;
     margin-inline-start: 0;
   }
 }
+/* 데스크톱은 말풍선, 모바일은 전화기 아이콘을 사용합니다. */
+.floating-chat__icon--phone { display: none; line-height: 1; }
+.floating-chat__icon--chat {
+  display: block;
+  position: relative;
+  width: 21px;
+  height: 17px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.floating-chat__icon--chat::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  bottom: -5px;
+  width: 7px;
+  height: 7px;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  background: #FFB81C;
+  transform: skew(-18deg) rotate(-12deg);
+}
+@media (max-width: 768px) {
+  .floating-chat__icon--phone { display: block; }
+  .floating-chat__icon--chat { display: none; }
+}
