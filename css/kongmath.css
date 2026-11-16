@@ -314,7 +314,8 @@ main [id] {
 @media (max-width: 960px) {
   .about-story-grid {
     --story-gap: 12px;
-    grid-auto-columns: calc(100% - 42px);
+    --story-peek: 30px;
+    grid-auto-columns: 100%;
   }
 }
 .about-story {
