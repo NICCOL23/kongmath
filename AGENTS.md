@@ -60,3 +60,8 @@
 - Preserve the responsive href switching when the viewport changes.
 
 - The floating button uses the chat-bubble icon on desktop and the phone icon on mobile; keep the icon and destination behavior synchronized.
+
+## Academy card navigation
+
+- Academy introduction card image and body links must navigate directly to their target page or an explicitly intended external page.
+- Do not use hash-only or page-fragment URLs such as `#save-teeth`, `#location`, or `reports.html#report-...` for card navigation; card clicks must not trigger in-page scrolling.
