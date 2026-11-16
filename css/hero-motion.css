@@ -37,9 +37,12 @@
 @media (min-width: 1201px) {
   main #main-visual > .inner {
     width: min(100% - 48px, 1600px);
-    gap: clamp(24px, 4vw, 72px);
+    display: grid;
+    grid-template-columns: 50% minmax(0, 1fr);
+    gap: 12px clamp(24px, 4vw, 72px);
   }
-  #main-visual .visual-content { flex: 1; min-width: 0; }
+  #main-visual .visual-img,
+  #main-visual .visual-content { width: 100%; min-width: 0; }
   #main-visual .visual-content .visual-info > div { min-width: 0; }
   #main-visual .visual-text h2 { font-size: clamp(3.4rem, 3.25vw, 5rem); }
 }
@@ -61,7 +64,8 @@ main #main-visual > .inner {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  margin: 12px 0 clamp(24px, 4vw, 64px);
+  width: 100%;
+  margin: 0 0 clamp(24px, 4vw, 64px);
 }
 #main-visual .hero-controls button {
   appearance: none;
