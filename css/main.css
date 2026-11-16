@@ -1761,3 +1761,49 @@ width: 40%;
   }
   #location .inner .loc-content .location-map .map-iframe { height: 260px; }
 }
+
+/* 메인에서 최신 내신리포트와 전체 목록으로 이동합니다. */
+.report-preview-link {
+  display: block;
+  padding: 15px clamp(13px, 3vw, 24px);
+  color: #182436;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.report-preview-link time {
+  display: inline-block;
+  margin-inline-start: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.report-preview-all {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.report-preview-all a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-inline: 18px;
+  border: 1px solid #0058b9;
+  border-radius: 8px;
+  color: #0058b9;
+  font-weight: 700;
+}
+
+.report-preview-link:hover,
+.report-preview-all a:hover {
+  background: #edf5ff;
+}
+
+@media (max-width: 768px) {
+  .report-preview-link time {
+    display: block;
+    margin-inline-start: 0;
+  }
+}
