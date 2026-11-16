@@ -68,4 +68,4 @@
 
 - The management study-room card and all related header/shortcut links must point directly to `studyroom.html`; never send users to the homepage hero or a hash-scroll section for this destination.
 
-- The `studyroom.html` page is the dedicated management study-room destination. Keep the reconstructed notice content, photos, rules, and original Naver Blog link `https://blog.naver.com/tyk999/224450128462` together on this page.
+- The `studyroom.html` page is the dedicated management study-room destination. Keep the reconstructed notice content, photos, and rules together on this page; the menu must not redirect users to the Naver Blog.
