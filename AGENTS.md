@@ -33,3 +33,9 @@
 
 - The footer logo must use the exact same source asset and visual color treatment as the header logo.
 - Do not apply an independent color-changing filter to the footer logo; keep `filter: none`, full opacity, and normal blend mode.
+
+## Shared footer component
+
+- The footer is maintained in one reusable component at `js/footer-component.js`.
+- Every root HTML page must contain only `<div data-site-footer></div>` and load the shared component script.
+- The shared component must keep the main-page footer markup, logo, 상담 링크, 네이버 블로그 링크, 연락처, and copyright identical across all pages.
