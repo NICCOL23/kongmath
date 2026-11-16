@@ -87,6 +87,8 @@
 - Header submenus must close automatically when page scrolling starts, whether the viewport is desktop or mobile.
 - Reuse `closeMenus()` so `aria-expanded`, panel `hidden`, and active menu state stay synchronized.
 
+- Preserve the original submenu hierarchy, markup, item order, and per-menu positioning at all times. Do not flatten, reparent, or globally reposition a submenu while fixing a page-specific navigation issue; apply only the smallest scoped change required.
+
 
 ## Student and parent reviews
 
@@ -98,4 +100,12 @@
 - Review display data currently comes from `data/reviews.json`; keep the fields compatible with a future Supabase table/API.
 - Future Supabase integration should replace the data-loading layer without changing the review card markup or consent rules.
 
-- The main page places the `학생 성과 사례` section immediately after `#clinic-intro` and before `#academy-about`; each card keeps the original blog link at the top right beside `학생 성과 사례`, and the section ends with a direct `reviews.html` link.
+- The main page places the `학생 성과 사례` section immediately after `#clinic-intro` and before `#academy-about`; each card keeps the original blog link at the top right beside `학생 성과 사례`, and the section ends with a direct `students.html` link.
+
+## Student achievement archive
+
+- `students.html` is the dedicated `학생 성과 사례` archive and must reflect all 9 verified posts from the blog category `공쌤수학원생 코너`.
+- Use the existing local assets in `imges/students/` for every verified post; do not invent performance data or download unrelated images.
+- Keep the 7 exam/scholarship records classified as `학생 성과 사례`, and classify the 2 non-performance posts as `학원 일상` or `학생 관심사` so the archive remains factually accurate.
+- Each archive card must provide the verified summary, original blog link, and all images belonging to that post. Keep student and school identifiers anonymized in the site copy.
+- The archive data is maintained in `data/student-cases.json`, rendered by `js/student-cases.js`, and styled by `css/student-cases.css`.
