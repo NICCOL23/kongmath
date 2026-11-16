@@ -5,7 +5,6 @@ const photos = [...hero.querySelectorAll('.visual-img .swiper-slide')];
 const copies = [...hero.querySelectorAll('.visual-text-swiper .swiper-slide')];
 // 화면에 보이는 막대 순서와 사진의 내부 번호를 연결합니다.
 const buttons = [...hero.querySelectorAll('[data-scene]')].sort((a, b) => Number(a.dataset.scene) - Number(b.dataset.scene));
-const pauseButton = hero.querySelector('.hero-pause');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = value => Math.min(1, Math.max(0, value));
 const ease = value => value * value * (3 - 2 * value);
@@ -50,12 +49,10 @@ firstPhoto.querySelector('img:not(.main-pc-img)').src = firstPhoto.querySelector
 let scene = firstScene;
 let elapsed = 0;
 let previousTime = null;
-let paused = reducedMotion.matches;
 let ready = false;
 let frame = null;
 let heroVisible = true;
 
-// 일시정지 중에는 장면 전환 시간도 멈춥니다.
 function animate(now) {
   if (previousTime !== null) elapsed += now - previousTime;
   previousTime = now;
@@ -69,12 +66,7 @@ function animate(now) {
 }
 
 function updatePlayback() {
-  // 아이콘 상태와 버튼을 눌렀을 때 실행할 동작의 이름을 함께 바꿉니다.
-  const action = paused ? '자동 재생' : '일시정지';
-  pauseButton.dataset.paused = String(paused);
-  pauseButton.setAttribute('aria-label', action);
-  pauseButton.title = action;
-  if (paused || document.hidden || reducedMotion.matches || !heroVisible) {
+  if (document.hidden || reducedMotion.matches || !heroVisible) {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
     previousTime = null;
@@ -89,22 +81,14 @@ buttons.forEach(button => button.addEventListener('click', () => {
   previousTime = null;
   draw(scene);
 }));
-pauseButton.addEventListener('click', () => {
-  if (reducedMotion.matches) return;
-  paused = !paused;
-  updatePlayback();
-});
 document.addEventListener('visibilitychange', updatePlayback);
 reducedMotion.addEventListener('change', () => {
-  pauseButton.disabled = reducedMotion.matches;
   if (reducedMotion.matches) {
-    paused = true;
     elapsed = 0;
     draw(scene);
   }
   updatePlayback();
 });
-pauseButton.disabled = reducedMotion.matches;
 draw(scene);
 updatePlayback();
 Promise.all([...hero.querySelectorAll('.visual-img img')].map(image => image.decode().catch(() => {})))

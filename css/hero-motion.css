@@ -88,43 +88,6 @@
   background: var(--main-color);
 }
 
-/* 둥근 버튼 안에서 재생과 일시정지 아이콘을 바꿉니다. */
-#main-visual .hero-controls .hero-pause {
-  display: inline-grid;
-  place-items: center;
-  position: relative;
-  width: 44px;
-  flex: 0 0 44px;
-  margin-inline-end: 6px;
-  color: #164c80;
-  isolation: isolate;
-}
-.hero-pause::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  z-index: -1;
-  border: 1px solid #c6ddfa;
-  border-radius: 50%;
-  background: #eff6ff;
-}
-.hero-pause:not(:disabled):hover::before { background: #dcecff; }
-.hero-pause::after {
-  content: "";
-  width: 9px;
-  height: 12px;
-  border-inline: 2px solid currentColor;
-  box-sizing: border-box;
-}
-.hero-pause[data-paused="true"]::after {
-  width: 0;
-  height: 0;
-  margin-inline-start: 2px;
-  border: 6px solid transparent;
-  border-inline-start: 9px solid currentColor;
-  border-inline-end: 0;
-}
-#main-visual .hero-pause:disabled { cursor: default; opacity: .55; }
 .hero-controls button:focus-visible {
   outline: 2px solid #0065d6;
   outline-offset: -2px;
