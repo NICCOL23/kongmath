@@ -89,6 +89,11 @@
 
 - Preserve the original submenu hierarchy, markup, item order, and per-menu positioning at all times. Do not flatten, reparent, or globally reposition a submenu while fixing a page-specific navigation issue; apply only the smallest scoped change required.
 
+## Shared footer logo sizing
+
+- Every page uses the shared `js/footer-component.js` footer.
+- The footer wordmark must preserve the source image aspect ratio with `height: auto`, `max-width: 100%`, and `object-fit: contain`; never stretch it vertically or horizontally on page-specific layouts.
+
 
 ## Student and parent reviews
 

@@ -387,6 +387,9 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
 .footer .footer-logo img {
   display: block;
   width: 220px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .footer .footer-logo img.kong-footer-logo {
