@@ -39,22 +39,6 @@ $(document).ready(function () {//시작
   });
 
 
-  const featuredStories = document.querySelector(".about-story-featured");
-  featuredStories?.addEventListener("click", event => {
-    const button = event.target.closest(".about-story-image");
-    if (!button) return;
-
-    const previous = featuredStories.querySelector('.about-story-image[aria-pressed="true"]');
-    if (previous) {
-      previous.setAttribute("aria-pressed", "false");
-      previous.closest(".about-story").classList.remove("is-selected");
-    }
-    if (button !== previous) {
-      button.setAttribute("aria-pressed", "true");
-      button.closest(".about-story").classList.add("is-selected");
-    }
-  });
-
 });//끝
 
 
