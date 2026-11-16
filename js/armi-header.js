@@ -35,6 +35,7 @@
   }
   closeMenus();
   mobile.addEventListener("change", closeMenus);
+  window.addEventListener("scroll", closeMenus, { passive: true });
 
   // 같은 단계에서는 한 번에 한 메뉴만 엽니다.
   for (const buttons of [panels, groups]) {
