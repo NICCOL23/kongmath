@@ -7,6 +7,7 @@ const copies = [...hero.querySelectorAll('.visual-text-swiper .swiper-slide')];
 const buttons = [...hero.querySelectorAll('[data-scene]')].sort((a, b) => Number(a.dataset.scene) - Number(b.dataset.scene));
 const pauseButton = hero.querySelector('.hero-pause');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const mobileLayout = matchMedia('(max-width: 768px)');
 const clamp = value => Math.min(1, Math.max(0, value));
 const ease = value => value * value * (3 - 2 * value);
 
@@ -155,8 +156,9 @@ function renderIntroTransition() {
     : 0;
   // 사진과 제목은 같은 자리를 유지하며 서로 다른 시점에 사라집니다.
   // 사진은 크기를 바꾸지 않고 제목처럼 투명도만 조절합니다.
-  const controlsFade = ease(clamp((progress - .09) / .30));
-  const titleFade = ease(clamp((progress - .18) / .28));
+  const controlsFade = ease(clamp((progress - .09) / (mobileLayout.matches ? .21 : .30)));
+  const titleFade = ease(clamp((progress - .18) / (mobileLayout.matches ? .12 : .28)));
+  const photoFade = ease(clamp((progress - .20) / (mobileLayout.matches ? .10 : .25)));
   // 기존 히어로가 정리된 뒤 전환 문구를 보여줍니다.
   const messageFirst = ease(clamp((progress - .30) / .12));
   const messageSecond = ease(clamp((progress - .34) / .08));
@@ -174,7 +176,7 @@ function renderIntroTransition() {
   const introReveal = ease(clamp((progress - .80) / .20));
 
   track.style.setProperty('--photo-scale', 1);
-  track.style.setProperty('--photo-opacity', 1 - ease(clamp((progress - .20) / .25)));
+  track.style.setProperty('--photo-opacity', 1 - photoFade);
   track.style.setProperty('--controls-opacity', 1 - controlsFade);
   track.style.setProperty('--title-opacity', 1 - titleFade);
   track.style.setProperty('--hero-background-inset', backgroundWipe * 100 + '%');
