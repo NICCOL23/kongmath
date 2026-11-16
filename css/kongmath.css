@@ -61,7 +61,8 @@ main [id] {
 }
 
 #academy-map-canvas[aria-hidden="false"] { visibility: visible; }
-#location #academy-map-preview[hidden] { display: none; }
+#academy-map-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 1rem; text-align: center; }
+#academy-map-status[hidden] { display: none; }
 
 @media (max-width: 1200px) {
   main [id] {
