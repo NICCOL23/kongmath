@@ -16,7 +16,7 @@
 .student-cases-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
 .student-cases-filter{min-height:42px;padding:0 17px;border:1px solid #d8e3f0;border-radius:999px;background:#fff;color:#607088;cursor:pointer;font:inherit;font-size:14px;font-weight:700;transition:.2s ease}
 .student-cases-filter:hover,.student-cases-filter[aria-pressed=true]{border-color:var(--case-blue);background:var(--case-blue);color:#fff;box-shadow:0 8px 18px rgba(8,120,238,.18)}
-.student-cases-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.student-cases-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:22px}
 .student-case-card{min-width:0;overflow:hidden;border:1px solid #e0e9f3;border-radius:24px;background:#fff;box-shadow:0 16px 34px rgba(9,24,64,.07);transition:transform .25s ease,box-shadow .25s ease}
 .student-case-card:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(9,24,64,.13)}.student-case-card[hidden]{display:none}
 .student-case-card__summary-wrap{display:block;cursor:pointer;list-style:none}.student-case-card__summary-wrap::-webkit-details-marker{display:none}
