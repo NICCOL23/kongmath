@@ -50,24 +50,19 @@ main [id] {
 }
 
 .naver-map-panel {
+  position: relative;
   background: #edf5ff;
 }
 
-.naver-map-status {
-  display: grid;
-  place-content: center;
-  gap: 12px;
-  height: 100%;
-  padding: 20px;
-  color: #173d64;
-  text-align: center;
+#academy-map-canvas {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
 }
 
-.naver-map-status a {
-  color: #0058b9;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+#academy-map-canvas[aria-hidden="false"] { visibility: visible; }
+#location #academy-map-preview[hidden] { display: none; }
+
 @media (max-width: 1200px) {
   main [id] {
     scroll-margin-top: 70px;
