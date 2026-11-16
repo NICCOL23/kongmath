@@ -81,3 +81,8 @@
 - Keep the header and footer logo free of filters, opacity changes, or blend modes so the same source image keeps the same colors on every page.
 
 - The `studyroom.html` page must not contain a `네이버 블로그에서 자습실 공지 보기` button or the specific Naver post URL; keep the reconstructed study-room notice content on the site instead.
+
+## Header submenu scroll behavior
+
+- Header submenus must close automatically when page scrolling starts, whether the viewport is desktop or mobile.
+- Reuse `closeMenus()` so `aria-expanded`, panel `hidden`, and active menu state stay synchronized.
