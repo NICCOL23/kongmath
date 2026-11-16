@@ -79,3 +79,5 @@
 - All pages must use the shared `imges/common/kong-math-navy-gold-wordmark.png` asset for the header and footer wordmark.
 - The attached logo reference colors are: blue `#023D89`, orange `#E28E02`, and navy `#091840`.
 - Keep the header and footer logo free of filters, opacity changes, or blend modes so the same source image keeps the same colors on every page.
+
+- The `studyroom.html` page must not contain a `네이버 블로그에서 자습실 공지 보기` button or the specific Naver post URL; keep the reconstructed study-room notice content on the site instead.
