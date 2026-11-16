@@ -52,11 +52,16 @@
   #main-visual .visual-top { min-width: 0; }
 }
 /* 현재 장면은 파란 진행 막대, 다른 장면은 작은 점으로 표시합니다. */
+main #main-visual > .inner {
+  padding-bottom: 0;
+}
+
 #main-visual .hero-controls {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 4px;
-  margin: 12px 0;
+  margin: 12px 0 clamp(24px, 4vw, 64px);
 }
 #main-visual .hero-controls button {
   appearance: none;
@@ -79,7 +84,7 @@
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: #a5b8cd;
+  background: #6b8199;
   translate: -50% -50%;
 }
 .hero-controls [data-scene][aria-pressed="true"]::before,
