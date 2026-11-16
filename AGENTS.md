@@ -86,3 +86,14 @@
 
 - Header submenus must close automatically when page scrolling starts, whether the viewport is desktop or mobile.
 - Reuse `closeMenus()` so `aria-expanded`, panel `hidden`, and active menu state stay synchronized.
+
+
+## Student and parent reviews
+
+- The student/parent review board is maintained at `reviews.html`.
+- The home page may show only a small preview; the full review page must link to the official Naver Place review page.
+- Do not scrape, iframe, copy, or bulk-republish Naver Place review text, nicknames, profile images, photos, or videos.
+- Publish student or parent reviews only after public-display consent; anonymize author labels and omit personal information.
+- Content from the Kong Math blog student category is labeled as `학생 성과 사례`, not as a student or parent testimonial.
+- Review display data currently comes from `data/reviews.json`; keep the fields compatible with a future Supabase table/API.
+- Future Supabase integration should replace the data-loading layer without changing the review card markup or consent rules.
