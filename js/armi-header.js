@@ -65,24 +65,18 @@
   header.addEventListener("focusout", event => {
     if (event.relatedTarget && !header.contains(event.relatedTarget)) closeMenus();
   });
-  nav.addEventListener("click", event => {
-    const link = event.target.closest("a");
-    if (!link) return;
-    closeMenus();
-    if (!link.hash || !link.getAttribute("href").startsWith("#")) return;
-    const target = document.getElementById(link.hash.slice(1));
-    if (!target) return;
-    // 본문으로 이동한 뒤 이어서 Tab 키를 누를 수 있게 합니다.
-    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
-    target.focus({ preventScroll: true });
-  });
-
-  // 방문 정보 링크를 누르면 해당 구역으로 즉시 이동합니다.
+  // 상단 메뉴의 같은 페이지 링크와 방문 정보 바로가기는 즉시 이동합니다.
   document.addEventListener("click", event => {
-    const link = event.target.closest('.armi-nav a[href="#clinic-hours"], .armi-nav a[href="#faq"], a[href="#location"], .notice-body a:is([href="#save-teeth"], [href="#tuition"])');
-    if (!link || (link.hash === "#location" && link.textContent.trim() !== "오시는 길") ||
-        event.defaultPrevented || event.ctrlKey || event.metaKey ||
+    const link = event.target.closest("a[href]");
+    if (!link || event.defaultPrevented || event.ctrlKey || event.metaKey ||
         event.shiftKey || event.altKey || event.button !== 0) return;
+
+    const inMenu = nav.contains(link);
+    if (inMenu) closeMenus();
+    if (!link.getAttribute("href").startsWith("#") || !link.hash) return;
+    const visitShortcut = link.hash === "#location" && link.textContent.trim() === "오시는 길";
+    const noticeShortcut = link.matches('.notice-body a:is([href="#save-teeth"], [href="#tuition"])');
+    if (!inMenu && !visitShortcut && !noticeShortcut) return;
 
     const target = document.getElementById(link.hash.slice(1));
     if (!target) return;
@@ -92,7 +86,7 @@
       history.pushState(null, "", link.hash);
       updateCurrentLinks();
     }
-    target.setAttribute("tabindex", "-1");
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
     target.focus({ preventScroll: true });
     target.scrollIntoView({ behavior: "instant" });
   });
