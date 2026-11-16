@@ -21,17 +21,90 @@
     updatePlayback();
   }
 
-  function move(direction, behavior = reducedMotion.matches ? "instant" : "smooth") {
-    const max = track.scrollWidth - track.clientWidth;
-    const origin = cards[0].offsetLeft;
-    const positions = [...new Set(cards.map(card => Math.min(card.offsetLeft - origin, max)))];
-    const current = track.scrollLeft;
-    const next = direction > 0
-      ? positions.find(position => position > current + 2) ?? 0
-      : positions.findLast(position => position < current - 2) ?? max;
-
-    track.scrollTo({ left: next, behavior });
+  // Repeat the cards on both sides so each step has a neighbor at either edge.
+  function copies() {
+    return cards.map(card => {
+      const copy = card.cloneNode(true);
+      copy.removeAttribute("id");
+      copy.inert = true;
+      return copy;
+    });
   }
+
+  track.prepend(...copies());
+  track.append(...copies());
+  const slides = [...track.children];
+  let active = -1;
+  const linkedCard = cards.findIndex(card => "#" + card.id === window.location.hash);
+  let index = cards.length + Math.max(0, linkedCard);
+  let width;
+  let settleTimer;
+
+  function cardPitch() {
+    return slides[1].getBoundingClientRect().left - slides[0].getBoundingClientRect().left;
+  }
+
+  function peekInset() {
+    const cardWidth = slides[0].getBoundingClientRect().width;
+    return cardPitch() - cardWidth / 2;
+  }
+
+  function showSlide(target, behavior = "instant") {
+    track.scrollTo({ left: target * cardPitch() - peekInset(), behavior });
+  }
+
+  function nearestSlide() {
+    return Math.round((track.scrollLeft + peekInset()) / cardPitch());
+  }
+
+  function updateVisibleSlides() {
+    const bounds = track.getBoundingClientRect();
+    slides.forEach(slide => {
+      const card = slide.getBoundingClientRect();
+      slide.inert = card.right <= bounds.left + 1 || card.left >= bounds.right - 1;
+    });
+  }
+
+  function settle() {
+    const current = nearestSlide();
+    const normalized = cards.length + current % cards.length;
+    if (current !== normalized) {
+      const source = slides[current];
+      const focused = document.activeElement;
+      const focusable = "a[href], summary";
+      const focusedIndex = source ? [...source.querySelectorAll(focusable)].indexOf(focused) : -1;
+      showSlide(normalized);
+      updateVisibleSlides();
+      if (focusedIndex >= 0) {
+        slides[normalized].querySelectorAll(focusable)[focusedIndex]?.focus({ preventScroll: true });
+      }
+    }
+    index = normalized;
+    active = -1;
+    updateVisibleSlides();
+  }
+
+  function move(direction) {
+    const current = active < 0 ? nearestSlide() : active;
+    active = Math.max(0, Math.min(slides.length - 1, current + direction));
+    showSlide(active, reducedMotion.matches ? "instant" : "smooth");
+  }
+
+  track.addEventListener("scroll", () => {
+    updateVisibleSlides();
+    if (!("onscrollend" in track)) {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(settle, 160);
+    }
+  }, { passive: true });
+  track.addEventListener("scrollend", settle);
+
+  new ResizeObserver(() => {
+    if (track.clientWidth === width) return;
+    width = track.clientWidth;
+    showSlide(index);
+    updateVisibleSlides();
+  }).observe(track);
 
   controls.querySelectorAll("[data-story-step]").forEach(button => {
     button.addEventListener("click", () => {
@@ -54,7 +127,13 @@
     if (event.deltaX || event.shiftKey) pause();
   }, { passive: true });
   track.addEventListener("toggle", event => {
-    if (event.target instanceof HTMLDetailsElement && event.target.open) pause();
+    const details = event.target;
+    if (!(details instanceof HTMLDetailsElement)) return;
+    if (details.open) pause();
+    const storyIndex = slides.indexOf(details.closest(".about-story")) % cards.length;
+    for (let copy = storyIndex; copy < slides.length; copy += cards.length) {
+      slides[copy].querySelector("details").open = details.open;
+    }
   }, true);
 
   reducedMotion.addEventListener("change", () => {
@@ -66,9 +145,8 @@
     inView = entry.isIntersecting;
     updatePlayback();
   }, { threshold: 0 });
-  if (!cards.some(card => "#" + card.id === window.location.hash)) {
-    move(1, "instant");
-  }
+  showSlide(index);
+  updateVisibleSlides();
   observer.observe(track);
   controls.hidden = false;
   updatePlayback();

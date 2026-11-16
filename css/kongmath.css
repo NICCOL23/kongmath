@@ -287,19 +287,21 @@ main [id] {
 
 .about-story-grid {
   --story-gap: 20px;
-  --story-peek: 36px;
+  --story-width: calc((100% - 5 * var(--story-gap)) / 5);
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 3 * var(--story-gap)) / 4);
+  grid-auto-columns: var(--story-width);
   align-items: start;
   gap: var(--story-gap);
   margin-top: 10px;
   overflow-x: auto;
+  scrollbar-width: none;
   scroll-snap-type: x mandatory;
-  padding-inline: var(--story-peek);
   padding-bottom: 8px;
-  scroll-padding-inline: var(--story-peek);
+  scroll-padding-inline: calc(var(--story-width) / 2 + var(--story-gap));
 }
+
+.about-story-grid::-webkit-scrollbar { display: none; }
 
 .about-story-grid > .about-story {
   min-width: 0;
@@ -314,8 +316,7 @@ main [id] {
 @media (max-width: 960px) {
   .about-story-grid {
     --story-gap: 12px;
-    --story-peek: 30px;
-    grid-auto-columns: 100%;
+    --story-width: calc((100% - 2 * var(--story-gap)) / 2);
   }
 }
 .about-story {
