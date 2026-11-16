@@ -9,7 +9,7 @@
   const renderPreviewCard = (item, index) => `<article class="student-preview-card">
     <a class="student-preview-card__visual" href="students.html#student-${escapeHtml(item.id)}">
       <img src="${escapeHtml(item.images[0])}" alt="${escapeHtml(item.title)} 대표 이미지" loading="lazy" decoding="async">
-      <span class="student-preview-card__number">${String(index + 1).padStart(2, "0")} / 09</span>
+      <span class="student-preview-card__number">${String(item.previewNumber ?? index + 1).padStart(2, "0")} / 09</span>
     </a>
     <div class="student-preview-card__body">
       <div class="student-preview-card__head">

@@ -8,7 +8,11 @@
       return response.json();
     })
     .then(items => {
-      const achievements = items.filter(item => item.type === "achievement").slice(0, 3);
+      // 메인 미리보기는 노출 순서를 별도로 관리합니다. 전체 기록의 순서는 유지하면서
+      // 두 번째 카드에는 05/09 기말고사 장학금 사례를 노출합니다.
+      const previewIds = ["224470495734", "224369881711", "224369893942"];
+      const byId = new Map(items.filter(item => item.type === "achievement").map(item => [item.id, item]));
+      const achievements = previewIds.map(id => byId.get(id)).filter(Boolean);
       grid.innerHTML = achievements.map(StudentCaseCard.renderPreviewCard).join("");
     })
     .catch(error => {
