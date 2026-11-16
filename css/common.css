@@ -337,6 +337,7 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
   gap: 10px;
 }
 
+.footer .footer-blog a,
 .footer .reserve-btn {
   display: flex;
   flex-shrink: 0;
@@ -411,14 +412,18 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
 }
 
 /* 블로그 바로가기 */
+.footer .footer-blog a {
+  font-weight: 600;
+  transition: color 0.5s;
+}
+
+.footer .footer-blog a:hover {
+  color: #33495f;
+}
+
 .footer .footer-blog {
   flex-shrink: 0;
   margin-left: auto;
-}
-
-.footer .footer-blog a {
-  display: block;
-  border-radius: 50%;
 }
 
 .footer .footer-blog img {
@@ -487,6 +492,7 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
     font-size: 12px;
   }
 
+  .footer .footer-blog a,
   .footer .reserve-btn {
     padding: 12px 20px;
     font-size: 12px;
