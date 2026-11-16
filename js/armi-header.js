@@ -72,7 +72,10 @@
         event.shiftKey || event.altKey || event.button !== 0) return;
 
     const inMenu = nav.contains(link);
-    if (inMenu) closeMenus();
+    if (inMenu) {
+      closeMenus();
+      return;
+    }
     if (!link.getAttribute("href").startsWith("#") || !link.hash) return;
     const visitShortcut = link.hash === "#location" && link.textContent.trim() === "오시는 길";
     const noticeShortcut = link.matches('.notice-body a:is([href="#save-teeth"], [href="#tuition"])');
