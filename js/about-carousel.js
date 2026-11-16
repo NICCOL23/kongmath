@@ -21,7 +21,7 @@
     updatePlayback();
   }
 
-  function move(direction) {
+  function move(direction, behavior = reducedMotion.matches ? "instant" : "smooth") {
     const max = track.scrollWidth - track.clientWidth;
     const origin = cards[0].offsetLeft;
     const positions = [...new Set(cards.map(card => Math.min(card.offsetLeft - origin, max)))];
@@ -30,7 +30,7 @@
       ? positions.find(position => position > current + 2) ?? 0
       : positions.findLast(position => position < current - 2) ?? max;
 
-    track.scrollTo({ left: next, behavior: reducedMotion.matches ? "instant" : "smooth" });
+    track.scrollTo({ left: next, behavior });
   }
 
   controls.querySelectorAll("[data-story-step]").forEach(button => {
@@ -66,6 +66,9 @@
     inView = entry.isIntersecting;
     updatePlayback();
   }, { threshold: 0 });
+  if (!cards.some(card => "#" + card.id === window.location.hash)) {
+    move(1, "instant");
+  }
   observer.observe(track);
   controls.hidden = false;
   updatePlayback();
