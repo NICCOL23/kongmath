@@ -374,6 +374,20 @@ main [id] {
   scroll-snap-align: start;
 }
 
+.about-story-grid > .about-story > a > img {
+  transition: filter 0.25s ease;
+}
+
+.about-story-grid > .about-story.is-edge-preview > a > img {
+  filter: brightness(0.88);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-story-grid > .about-story > a > img {
+    transition: none;
+  }
+}
+
 .academy-about :is(.about-story-grid, .about-story-controls button):focus-visible {
   outline: 2px solid #185240;
   outline-offset: 2px;

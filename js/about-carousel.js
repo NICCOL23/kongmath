@@ -61,7 +61,10 @@
     const bounds = track.getBoundingClientRect();
     slides.forEach(slide => {
       const card = slide.getBoundingClientRect();
-      slide.inert = card.right <= bounds.left + 1 || card.left >= bounds.right - 1;
+      const outside = card.right <= bounds.left + 1 || card.left >= bounds.right - 1;
+      const clipped = card.left < bounds.left - 1 || card.right > bounds.right + 1;
+      slide.inert = outside;
+      slide.classList.toggle("is-edge-preview", !outside && clipped);
     });
   }
 
