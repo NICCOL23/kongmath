@@ -18,11 +18,20 @@
 .armi-nav-trigger[aria-expanded="true"]::before { content: ""; position: absolute; inset: auto 0 3px; height: 2px; border-radius: 3px; background: currentColor; }
 .armi-header .armi-nav-login span { font-size: 1.4rem; font-weight: 500; }
 .armi-nav-pending { color: #5a687a; }
-.armi-header .armi-header-call { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; gap: 7px; border: 1px solid #c6ddfa; border-radius: 999px; background: #eff6ff; color: #064b9e; white-space: nowrap; font-weight: 600; box-sizing: border-box; }
-/* 아르미의 파란색을 연한 배경과 선으로 사용하고, 포커스 테두리는 기존 규칙을 따릅니다. */
-.armi-header .armi-header-call:hover,
-.armi-header .armi-header-call:focus-visible { background: #dcecff; border-color: #9ec5f4; color: #064b9e; }
-.armi-header .armi-header-call .bi { font-size: 0.95em; line-height: 1; }
+.armi-header .armi-header-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 5px 20px;
+  border: 1px solid var(--armi-nav-blue);
+  border-radius: 40px;
+  color: var(--armi-nav-blue);
+  font-size: 1.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.armi-header .armi-header-login:disabled { cursor: default; opacity: 1; }
 .armi-header :focus-visible { outline: 2px solid var(--armi-nav-blue); outline-offset: 3px; border-radius: 4px; }
 .armi-nav-panel { position: absolute; top: 100%; left: 20px; right: 20px; padding: 22px 28px; background: #fff; border: 1px solid #e2eaf3; border-radius: 0 0 16px 16px; box-shadow: 0 16px 28px #18324b16; animation: armi-menu-in 150ms ease-out; }
 @keyframes armi-menu-in { from { opacity: 0; transform: translateY(-5px); } }
@@ -36,7 +45,7 @@
 @media (max-width: 960px) {
   .armi-header .armi-header-row { gap: 8px; padding-inline: 16px; }
   .armi-header .inner h1 a img { width: 120px; }
-  .armi-header .armi-header-call { margin-left: auto; padding-inline: 12px; font-size: 1.4rem; }
+  .armi-header .armi-header-login { margin-left: auto; padding-inline: 12px; font-size: 1.4rem; }
   .armi-header .armi-mobile-trigger { display: inline-flex; align-items: center; justify-content: center; min-width: 54px; min-height: 44px; border: 1px solid #dce5ef; border-radius: 10px; font-size: 1.4rem; font-weight: 700; }
   .armi-header .inner .armi-nav { position: absolute; inset: 100% 0 auto; max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; padding: 12px 16px 20px; background: #fff; box-shadow: 0 14px 28px #18324b22; }
   .armi-mobile-quick { display: flex; gap: 8px; margin-bottom: 8px; }
@@ -54,10 +63,10 @@
 @media (max-width: 768px) { .armi-header .inner .armi-nav { max-height: calc(100dvh - 70px); } }
 @media (prefers-reduced-motion: reduce) { .armi-nav-panel { animation: none; } }
 /* 모바일에서는 화면 순서와 Tab 순서를 일치시킵니다. */
-.armi-header .armi-mobile-call { display: none; }
+.armi-header .armi-mobile-login { display: none; }
 @media (max-width: 960px) {
-  .armi-header .armi-header-call { display: none; }
-  .armi-header .armi-mobile-call { display: inline-flex; }
+  .armi-header .armi-header-login { display: none; }
+  .armi-header .armi-mobile-login { display: inline-flex; }
 }
 
 
