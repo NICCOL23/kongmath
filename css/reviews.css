@@ -215,12 +215,26 @@
   word-break: keep-all;
 }
 
+.review-case-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.review-case-card__head .review-case-card__meta {
+  margin: 0;
+}
+
 .review-case-card__source {
   display: inline-flex;
-  margin-top: 22px;
+  flex-shrink: 0;
+  margin: 0 0 0 auto;
   color: #0878ee;
   font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .reviews-contact {
