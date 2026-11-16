@@ -22,12 +22,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  flex: 0 0 auto;
   padding: 5px 20px;
-  border: 1px solid var(--armi-nav-blue);
+  border: 1px solid #0077ff;
   border-radius: 40px;
-  color: var(--armi-nav-blue);
+  color: #0077ff;
   font-size: 1.5rem;
+  line-height: 1.35;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -45,7 +46,7 @@
 @media (max-width: 960px) {
   .armi-header .armi-header-row { gap: 8px; padding-inline: 16px; }
   .armi-header .inner h1 a img { width: 120px; }
-  .armi-header .armi-header-login { margin-left: auto; padding-inline: 12px; font-size: 1.4rem; }
+  .armi-header .armi-header-login { margin-left: auto; margin-right: clamp(0px, calc(100vw - 320px), 22px); }
   .armi-header .armi-mobile-trigger { display: inline-flex; align-items: center; justify-content: center; min-width: 54px; min-height: 44px; border: 1px solid #dce5ef; border-radius: 10px; font-size: 1.4rem; font-weight: 700; }
   .armi-header .inner .armi-nav { position: absolute; inset: 100% 0 auto; max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; padding: 12px 16px 20px; background: #fff; box-shadow: 0 14px 28px #18324b22; }
   .armi-mobile-quick { display: flex; gap: 8px; margin-bottom: 8px; }
@@ -72,12 +73,14 @@
 
 /* 큰 화면에서는 링크 수에 맞춰 패널 폭을 다르게 잡습니다. */
 @media (min-width: 961px) {
-  .armi-header .armi-header-row { gap: clamp(16px, 1.8vw, 26px); }
+  .armi-header .armi-header-row { justify-content: space-between; gap: 0; }
+  .armi-header .inner .armi-nav { margin-left: 0; }
   /* 메뉴 행을 헤더 높이만큼 늘려 모든 패널의 기준선을 맞춥니다. */
   .armi-header .inner .armi-nav,
   .armi-nav-items { height: 100%; }
-  .armi-nav-items { align-items: stretch; gap: clamp(14px, 1.7vw, 26px); }
+  .armi-nav-items { align-items: stretch; gap: 10px; }
   .armi-nav-items > li { display: flex; align-items: center; }
+  .armi-header .armi-nav-items > li > :is(a, button) { padding-inline: clamp(4px, calc(9vw - 96px), 35px); }
 
   /* 패널은 헤더 아래 같은 높이에서 열리고 본문 공간을 차지하지 않습니다. */
   .armi-header .armi-nav-panel {
