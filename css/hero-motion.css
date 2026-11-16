@@ -56,7 +56,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 4px;
   width: 100%;
   margin: 12px 0;
 }
@@ -70,8 +69,10 @@
 }
 #main-visual .hero-controls [data-scene] {
   position: relative;
-  width: 44px;
-  flex: 0 0 44px;
+  flex: 0 0 18px;
+}
+#main-visual .hero-controls [data-scene][aria-pressed="true"] {
+  flex-basis: 38px;
 }
 .hero-controls [data-scene]::before {
   content: "";
