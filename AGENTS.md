@@ -39,3 +39,10 @@
 - The footer is maintained in one reusable component at `js/footer-component.js`.
 - Every root HTML page must contain only `<div data-site-footer></div>` and load the shared component script.
 - The shared component must keep the main-page footer markup, logo, 상담 링크, 네이버 블로그 링크, 연락처, and copyright identical across all pages.
+
+## Header subnavigation links
+
+- Header subnavigation items must use direct page URLs instead of same-page hash anchors.
+- Use `index.html` for the academy introduction and study-room destinations, `consultation.html` for 1:1 class and consultation, `tuition.html` for tuition, `reports.html` for reports, `notices.html` for notices/news, `daily.html` for academy daily posts, and `students.html` for the student corner.
+- The location menu opens the Naver Map place page directly.
+- Do not intercept header menu clicks with same-page `scrollIntoView()` behavior.
