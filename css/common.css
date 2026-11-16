@@ -14,6 +14,26 @@ body {
   overflow-x: hidden;
 }
 
+/* 페이지 전체에 색상 막이나 흐림 효과가 남지 않도록 전역 상태를 고정합니다. */
+html,
+body,
+#wrap {
+  filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+html::before,
+html::after,
+body::before,
+body::after,
+#wrap::before,
+#wrap::after {
+  display: none !important;
+  content: none !important;
+}
+
 .inner {
   max-width: 1460px;
   margin: 0 auto;
