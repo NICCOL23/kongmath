@@ -413,8 +413,41 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
 
 /* 블로그 바로가기 */
 .footer .footer-blog a {
+  font-family: var(--main-font);
+  font-size: 16px;
+  line-height: 1.35;
   font-weight: 600;
   transition: color 0.5s;
+}
+
+.footer-blog-arrow {
+  position: relative;
+  flex: 0 0 16px;
+  height: 16px;
+  transform: rotate(-45deg);
+}
+
+.footer-blog-arrow::before,
+.footer-blog-arrow::after {
+  position: absolute;
+  content: "";
+}
+
+.footer-blog-arrow::before {
+  top: 7.5px;
+  left: 0;
+  width: 15px;
+  border-top: 1px solid currentColor;
+}
+
+.footer-blog-arrow::after {
+  top: 4px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .footer .footer-blog a:hover {
@@ -492,7 +525,6 @@ header .mgnb-wrap .mgnb .mdepth2 li a.active{
     font-size: 12px;
   }
 
-  .footer .footer-blog a,
   .footer .reserve-btn {
     padding: 12px 20px;
     font-size: 12px;
