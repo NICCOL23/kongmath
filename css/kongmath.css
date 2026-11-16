@@ -259,12 +259,52 @@ main [id] {
 .academy-about-heading { max-width: 760px; }
 .academy-about-heading h2 { font-size: clamp(30px, 5vw, 54px); line-height: 1.2; }
 .academy-about-heading > p { margin-top: 16px; font-size: clamp(16px, 2vw, 19px); line-height: 1.7; }
+.about-story-controls:not([hidden]) {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.about-story-controls button {
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 10px;
+  border: 1px solid #b6cbc3;
+  border-radius: 8px;
+  background: #fff;
+  color: #185240;
+  cursor: pointer;
+}
+
 .about-story-grid {
-  margin-top: 26px;
+  --story-gap: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 292px), 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 3 * var(--story-gap)) / 4);
   align-items: start;
-  gap: 20px;
+  gap: var(--story-gap);
+  margin-top: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+}
+
+.about-story-grid > .about-story {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.academy-about :is(.about-story-grid, .about-story-controls button):focus-visible {
+  outline: 2px solid #185240;
+  outline-offset: 2px;
+}
+
+@media (max-width: 960px) {
+  .about-story-grid {
+    --story-gap: 12px;
+    grid-auto-columns: calc(100% - 42px);
+  }
 }
 .about-story {
   overflow: hidden;
