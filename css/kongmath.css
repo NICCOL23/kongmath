@@ -459,7 +459,8 @@ main [id] {
 }
 
 
-/* Academy card component: armi #treatment proportions */
+
+/* Academy card component: exact closed-card proportions from Armi #treatment */
 .academy-about .about-story-featured {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
@@ -468,23 +469,29 @@ main [id] {
 .academy-about .academy-card {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 435px;
+  min-height: 435px;
   min-width: 0;
+  overflow: hidden;
   border-radius: 20px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
 .academy-about .academy-card__image {
   display: block;
+  flex: 0 0 290px;
   width: 100%;
+  height: 290px;
   padding: 0;
-  background: #f8f8f8;
   overflow: hidden;
+  background: #f8f8f8;
 }
 
 .academy-about .academy-card__image img {
   display: block;
   width: 100%;
-  height: 290px;
+  height: 100%;
   aspect-ratio: auto;
   object-fit: cover;
   object-position: center;
@@ -492,47 +499,96 @@ main [id] {
 
 .academy-about .academy-card__body {
   display: flex;
-  min-height: 145px;
+  flex: 0 0 145px;
   flex-direction: column;
+  width: 100%;
+  height: 145px;
+  min-height: 145px;
+  max-height: 145px;
   padding: 20px;
+  overflow: hidden;
 }
 
 .academy-about .academy-card__category {
   display: block;
+  flex: 0 0 18px;
+  width: 100%;
+  height: 18px;
   min-height: 18px;
-  margin-bottom: 10px;
+  margin: 0 0 4px;
   color: #999;
   font-size: 1.2rem;
+  line-height: 18px;
 }
 
 .academy-about .academy-card__title {
-  min-height: 2.7em;
-  margin: 0 0 12px;
+  display: block;
+  flex: 0 0 27px;
+  width: 100%;
+  height: 27px;
+  min-height: 27px;
+  min-block-size: 27px;
+  margin: 0 0 4px;
+  overflow: hidden;
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.35;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .academy-about .academy-card__description {
-  min-height: 3.2em;
+  display: block;
+  flex: 0 0 24px;
+  width: 100%;
+  height: 24px;
+  min-height: 24px;
+  min-block-size: 24px;
   margin: 0;
+  overflow: hidden;
   color: #999;
   font-size: 1.5rem;
   line-height: 1.6;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.academy-about .academy-card__body > details {
+  flex: 0 0 20px;
+  min-height: 20px;
+  margin: 4px 0 0;
 }
 
 .academy-about .academy-card__link {
   display: block;
-  min-height: 44px;
-  margin-top: auto;
-  padding-block: 10px;
+  width: fit-content;
+  height: 20px;
+  min-height: 20px;
+  margin: 0;
+  padding: 0;
   color: #185240;
+  font-size: 1.5rem;
   font-weight: 700;
+  line-height: 20px;
 }
 
 .academy-about .academy-card__link:focus-visible {
   outline: 2px solid #185240;
   outline-offset: 2px;
+}
+
+/* 상세 본문을 열었을 때만 카드가 자연스럽게 확장됩니다. */
+.academy-about .academy-card:has(details[open]) {
+  height: auto;
+  min-height: 435px;
+  overflow: visible;
+}
+
+.academy-about .academy-card:has(details[open]) .academy-card__body {
+  flex-basis: auto;
+  height: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 @media (max-width: 960px) {
@@ -541,21 +597,87 @@ main [id] {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
+  .academy-about .academy-card {
+    height: 450px;
+    min-height: 450px;
+  }
+
+  .academy-about .academy-card__image {
+    flex-basis: 300px;
+    height: 300px;
+  }
+
+  .academy-about .academy-card__body {
+    flex-basis: 150px;
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .academy-about .academy-card {
+    height: 360px;
+    min-height: 360px;
+  }
+
+  .academy-about .academy-card__image {
+    flex-basis: 220px;
+    height: 220px;
+  }
+
+  .academy-about .academy-card__body {
+    flex-basis: 140px;
+    height: 140px;
+    min-height: 140px;
+    max-height: 140px;
+    padding: 15px;
+  }
+
+  .academy-about .academy-card__category {
+    flex-basis: 16px;
+    height: 16px;
+    min-height: 16px;
+    line-height: 16px;
+    font-size: 1.1rem;
+  }
+
+  .academy-about .academy-card__title {
+    flex-basis: 24px;
+    height: 24px;
+    min-height: 24px;
+    min-block-size: 24px;
+    font-size: 1.8rem;
+    line-height: 1.35;
+  }
+
+  .academy-about .academy-card__description {
+    flex-basis: 21px;
+    height: 21px;
+    min-height: 21px;
+    min-block-size: 21px;
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  .academy-about .academy-card__link {
+    height: 18px;
+    min-height: 18px;
+    font-size: 1.3rem;
+    line-height: 18px;
+  }
+
+  .academy-about .academy-card__body > details {
+    flex-basis: 18px;
+    min-height: 18px;
+  }
+
+  .academy-about .academy-card:has(details[open]) {
+    min-height: 360px;
+  }
+
   .academy-about .about-story-featured {
     grid-template-columns: minmax(0, 1fr);
   }
-
-  .academy-about .academy-card__image img {
-    height: 290px;
-  }
-}
-
-
-.academy-about .academy-card__body > details {
-  margin-top: auto;
-}
-
-.academy-about .academy-card__link {
-  margin-top: 0;
 }
