@@ -58,3 +58,5 @@
 - The floating consultation button uses `index.html` on desktop so it returns to the main first page.
 - On mobile widths up to 768px, the same button must use `tel:0519137159` for immediate calling.
 - Preserve the responsive href switching when the viewport changes.
+
+- The floating button uses the chat-bubble icon on desktop and the phone icon on mobile; keep the icon and destination behavior synchronized.
