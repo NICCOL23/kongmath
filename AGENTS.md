@@ -2,7 +2,7 @@
 
 ## Academy introduction card task
 
-- The target area is all 10 academy introduction cards in `#academy-about` on `kongmath.com`: the first four featured cards and the six cards in the section below.
+- The target area is all academy introduction cards in `#academy-about` on `kongmath.com`: the first four featured cards, the attached `공쌤수학원 소개` card, the new 2026 winter preparatory-learning card, and the remaining archive cards.
 - Preserve the existing academy card images, Korean copy, links, and details content.
 - Use the Armi source at `D:\영희 핸드 폰 사진\04_팀프로젝트\armi_main_이혜연` as a visual and sizing reference only.
 - Do not modify the Armi source files.
@@ -44,7 +44,7 @@
 ## Header subnavigation links
 
 - Header subnavigation items must use direct page URLs instead of same-page hash anchors.
-- Use `index.html` for the academy introduction and study-room destinations, `consultation.html` for 1:1 class and consultation, `tuition.html` for tuition, `reports.html` for reports, `notices.html` for notices/news, `daily.html` for academy daily posts, and `students.html` for the student corner.
+- Use `academy.html` for the full academy introduction, `studyroom.html` for the study-room destination, `consultation.html` for 1:1 class and consultation, `tuition.html` for tuition, `reports.html` for reports, `notices.html` for notices/news, `daily.html` for academy daily posts, and `students.html` for the student corner.
 - The location menu opens the Naver Map place page directly.
 - Do not intercept header menu clicks with same-page `scrollIntoView()` behavior.
 
@@ -63,6 +63,10 @@
 - The floating button uses the chat-bubble icon on desktop and the phone icon on mobile; keep the icon and destination behavior synchronized.
 
 ## Academy card navigation
+
+- Academy introduction cards are stored in `data/academy-cards.json` and rendered through `js/academy-cards.js` on both `index.html` and `academy.html`.
+- The homepage featured carousel contains six real cards: the four current featured cards, `공쌤수학원 소개`, and the 2026 winter new-grade preparatory-learning card. It uses Swiper with autoplay, loop, keyboard navigation, and responsive 4/2/1-card layouts.
+- `academy.html` is the full academy introduction page and must display every academy card without deleting the existing content.
 
 - Academy introduction card image and body links must navigate directly to their target page or an explicitly intended external page.
 - Do not use hash-only or page-fragment URLs such as `#save-teeth`, `#location`, or `reports.html#report-...` for card navigation; card clicks must not trigger in-page scrolling.

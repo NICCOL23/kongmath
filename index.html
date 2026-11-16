@@ -51,6 +51,7 @@
   
   <script defer src="js/save-teeth-motion.js"></script>
   <link rel="stylesheet" href="css/kongmath.css?v=blur-removal">
+  <link rel="stylesheet" href="css/academy-cards.css?v=academy-six-card-slider">
   <link rel="stylesheet" href="css/reviews.css?v=student-card-component-preview">
   <script defer src="js/student-case-card.js?v=student-card-preview-number-05-final"></script>
   <script defer src="js/student-preview.js?v=homepage-preview-data-05-5949528"></script>
@@ -75,7 +76,7 @@
       window.location.replace("reports.html" + window.location.hash);
     }
   </script>
-  <script defer src="js/about-carousel.js?v=full-cards"></script>
+<script defer src="js/academy-cards.js?v=academy-six-card-component"></script>
   <script defer src="js/footer-component.js?v=shared-footer-component"></script>
 </head>
 
@@ -90,7 +91,7 @@
         <nav class="armi-nav" id="armi-site-nav" aria-label="주 메뉴">
           <div class="armi-mobile-quick"><a href="https://map.naver.com/p/entry/place/1005775920">오시는 길</a><a href="studyroom.html">관리형 자습실</a></div>
 <ul class="armi-nav-items">
-<li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-about">학원 소개</button><div class="armi-nav-panel" id="armi-nav-about" hidden><ul><li><a href="index.html">학원 소개 전체</a></li><li><a href="consultation.html">1:1 맞춤 수업</a></li><li><a href="studyroom.html">관리형 자습실</a></li><li><a href="tuition.html">수강료 안내</a></li><li><a href="consultation.html">상담 안내</a></li></ul></div></li>
+<li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-about">학원 소개</button><div class="armi-nav-panel" id="armi-nav-about" hidden><ul><li><a href="academy.html">학원 소개 전체</a></li><li><a href="consultation.html">1:1 맞춤 수업</a></li><li><a href="studyroom.html">관리형 자습실</a></li><li><a href="tuition.html">수강료 안내</a></li><li><a href="consultation.html">상담 안내</a></li></ul></div></li>
 <li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-care">내신리포트</button><div class="armi-nav-panel" id="armi-nav-care" hidden><ul><li><a href="reports.html">내신리포트 전체 보기</a></li><li><a href="https://blog.naver.com/PostList.naver?blogId=tyk999&amp;categoryNo=9">네이버 블로그 내신리포트</a></li></ul></div></li>
 <li><button type="button" class="armi-nav-trigger" aria-expanded="false" aria-controls="armi-nav-news">학원 소식</button><div class="armi-nav-panel" id="armi-nav-news" hidden><ul><li><a href="notices.html">공지사항</a></li><li><a href="daily.html">공쌤수학 일상</a></li><li><a href="students.html">학생 성과 사례</a></li><li><a href="reviews.html">학생·학부모 후기</a></li><li><a href="https://blog.naver.com/tyk999">공쌤수학원 네이버 블로그</a></li></ul></div></li><li><a href="https://map.naver.com/p/entry/place/1005775920">오시는 길</a></li>
 </ul></nav>
@@ -238,7 +239,10 @@
           <div class="academy-about-heading">
             <h2 id="academy-about-title">학원 소개</h2>
             <p>2014년부터 부산진구 부암동에서 학생들을 가르쳐 왔습니다. 학생마다 수학을 시작하는 지점이 다르기에, 이해도에 맞춰 1:1로 진도를 잡습니다.</p>
+            <a class="academy-section-link" href="academy.html">학원 소개 전체 보기 ↗</a>
           </div>
+          <div class="academy-featured-slider" data-academy-featured aria-label="메인 학원 소개 카드"></div>
+          <div class="academy-legacy-cards" hidden>
           <div class="about-story-featured">
             <article class="about-story academy-card" id="about-studyroom">
               <a class="about-story-image academy-card__image" href="studyroom.html"><img src="imges/main/about-studyroom-1.jpg" width="900" height="1200" alt="관리형 자습실 사진 4장 보기" loading="lazy" decoding="async"></a>
@@ -439,6 +443,7 @@
               <button type="button" data-story-play aria-controls="about-story-track">Ⅱ 일시정지</button>
               <button type="button" data-story-step="1" aria-label="다음 학원 소개 카드" aria-controls="about-story-track">›</button>
             </div>
+          </div>
           </div>
         </div>
       </section>
