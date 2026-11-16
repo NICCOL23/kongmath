@@ -7,7 +7,6 @@ const copies = [...hero.querySelectorAll('.visual-text-swiper .swiper-slide')];
 const buttons = [...hero.querySelectorAll('[data-scene]')].sort((a, b) => Number(a.dataset.scene) - Number(b.dataset.scene));
 const pauseButton = hero.querySelector('.hero-pause');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const mobileLayout = matchMedia('(max-width: 768px)');
 const clamp = value => Math.min(1, Math.max(0, value));
 const ease = value => value * value * (3 - 2 * value);
 
@@ -23,7 +22,7 @@ function draw(position, fill = 1) {
   // 새 사진과 제목은 전환 첫 프레임부터 같은 확대 진행률을 사용합니다.
   const titleGrowth = reducedMotion.matches ? 1 : growth;
 
-  // 사진은 장면 전환과 스크롤 전환 모두 크기를 바꾸지 않습니다.
+  // 사진은 장면 전환 중에도 같은 크기를 유지합니다.
   photos.forEach((photo, index) => {
     const incoming = index === next;
     photo.style.zIndex = incoming ? 2 : 1;
@@ -55,7 +54,7 @@ let previousTime = null;
 let paused = reducedMotion.matches;
 let ready = false;
 let frame = null;
-let introTransitionActive = false;
+let heroVisible = true;
 
 // 사진과 막대가 같은 시계를 써서 일시정지 중에는 함께 멈춥니다.
 function animate(now) {
@@ -76,7 +75,7 @@ function updatePlayback() {
   pauseButton.dataset.paused = String(paused);
   pauseButton.setAttribute('aria-label', action);
   pauseButton.title = action;
-  if (paused || document.hidden || reducedMotion.matches || introTransitionActive) {
+  if (paused || document.hidden || reducedMotion.matches || !heroVisible) {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
     previousTime = null;
@@ -115,14 +114,7 @@ Promise.all([...hero.querySelectorAll('.visual-img img')].map(image => image.dec
     updatePlayback();
   });
 
-// 브라우저의 기본 스크롤 위치만 읽어 메시지, 축소, 소개 순서로 그립니다.
-const introStage = track.querySelector('.intro-transition-stage');
-const clinicIntro = track.querySelector('#clinic-intro');
-const careerNumber = clinicIntro.querySelector('.count-num');
-const introMessage = track.querySelector('.intro-transition-message');
-const introControls = hero.querySelector('.hero-controls');
-const heroDetails = hero.querySelectorAll('.visual-btn, .visual-info, .main-link');
-let introFrame = null;
+const careerNumber = track.querySelector('#clinic-intro .count-num');
 let careerCountStarted = false;
 
 // 소개 글이 보이기 시작하면 한 번만 세고, 완료된 숫자는 그대로 둡니다.
@@ -147,98 +139,17 @@ function startCareerCount() {
   }
 }
 
-function renderIntroTransition() {
-  introFrame = null;
-  const enabled = !reducedMotion.matches;
-  const distance = track.offsetHeight - introStage.offsetHeight;
-  const progress = enabled && distance > 0
-    ? clamp((-track.getBoundingClientRect().top) / distance)
-    : 0;
-  // 사진과 제목은 같은 자리를 유지하며 서로 다른 시점에 사라집니다.
-  // 사진은 크기를 바꾸지 않고 제목처럼 투명도만 조절합니다.
-  const controlsFade = ease(clamp((progress - .09) / (mobileLayout.matches ? .21 : .30)));
-  const titleFade = ease(clamp((progress - .18) / (mobileLayout.matches ? .12 : .28)));
-  const photoFade = ease(clamp((progress - .20) / (mobileLayout.matches ? .10 : .25)));
-  // 기존 히어로가 정리된 뒤 전환 문구를 보여줍니다.
-  const messageFirst = ease(clamp((progress - .30) / .12));
-  const messageSecond = ease(clamp((progress - .34) / .08));
-  const messageEntry = ease(clamp((progress - .30) / .12));
-  const messageExit = ease(clamp((progress - .68) / .12));
-  // 메시지가 충분히 읽히도록 .42~.68 구간을 hold zone으로 유지합니다.
-  const message = progress < .42
-    ? messageEntry
-    : progress <= .68
-      ? 1
-      : 1 - messageExit;
-  // 배경과 소개 글이 제자리에 닿기 전에 이동 속도를 천천히 줄입니다.
-  const wipeProgress = clamp((progress - .52) / .34);
-  const backgroundWipe = wipeProgress ** 3 * (10 - 15 * wipeProgress + 6 * wipeProgress ** 2);
-  const introReveal = ease(clamp((progress - .80) / .20));
-
-  track.style.setProperty('--photo-scale', 1);
-  track.style.setProperty('--photo-opacity', 1 - photoFade);
-  track.style.setProperty('--controls-opacity', 1 - controlsFade);
-  track.style.setProperty('--title-opacity', 1 - titleFade);
-  track.style.setProperty('--hero-background-inset', backgroundWipe * 100 + '%');
-  track.style.setProperty('--intro-opacity', introReveal);
-  track.style.setProperty('--intro-visibility', introReveal > 0 ? 'visible' : 'hidden');
-  // 소개 글의 윗부분을 걷히는 배경 경계 아래에 두고 함께 올립니다.
-  const backgroundEdge = hero.offsetHeight * (1 - backgroundWipe);
-  track.style.setProperty('--intro-offset', backgroundEdge + 'px');
-  if (!careerCountStarted && (!enabled || introReveal >= .25)) {
-    const counterBounds = careerNumber.getBoundingClientRect();
-    const counterIsVisible = counterBounds.height > 0
-      && counterBounds.bottom > 0
-      && counterBounds.top < window.innerHeight;
-    if (counterIsVisible) startCareerCount();
+const sectionObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (entry.target === hero) {
+      heroVisible = entry.isIntersecting;
+      updatePlayback();
+    } else if (entry.isIntersecting) {
+      startCareerCount();
+      sectionObserver.unobserve(careerNumber);
+    }
   }
-  track.style.setProperty('--message-opacity', message);
-  track.style.setProperty('--message-visibility', message > 0 ? 'visible' : 'hidden');
-  track.style.setProperty('--message-first', messageFirst);
-  track.style.setProperty('--message-second', messageSecond);
+});
 
-  introMessage.setAttribute('aria-hidden', String(enabled && message === 0));
-  introMessage.inert = enabled && message === 0;
-  for (const detail of heroDetails) detail.inert = enabled && controlsFade === 1;
-  for (const control of [...buttons, pauseButton]) control.inert = enabled && controlsFade === 1;
-
-  // 소개 화면이 시작되는 순간 이전 히어로를 완전히 숨겨 잔상을 제거합니다.
-  hero.inert = enabled && progress >= .80;
-  clinicIntro.inert = enabled && progress < .80;
-
-  // 임시 정지는 사용자가 누른 일시정지 상태와 독립적으로 처리합니다.
-  const leavingHero = enabled && window.scrollY > 0;
-  if (introTransitionActive !== leavingHero) {
-    introTransitionActive = leavingHero;
-    updatePlayback();
-  }
-}
-
-function scheduleIntroTransition() {
-  if (introFrame === null) introFrame = requestAnimationFrame(renderIntroTransition);
-}
-
-function sizeIntroTransition() {
-  track.classList.toggle('is-enhanced', !reducedMotion.matches);
-  track.style.setProperty('--hero-center', (Math.min(window.innerHeight, hero.offsetHeight) / 2) + 'px');
-  renderIntroTransition();
-}
-
-window.addEventListener('scroll', scheduleIntroTransition, { passive: true });
-window.addEventListener('resize', sizeIntroTransition);
-reducedMotion.addEventListener('change', sizeIntroTransition);
-sizeIntroTransition();
-
-function skipIntroTransition() {
-  if (reducedMotion.matches) return;
-  const start = window.scrollY + track.getBoundingClientRect().top;
-  const distance = track.offsetHeight - introStage.offsetHeight;
-  window.scrollTo({ top: Math.ceil(start + distance), behavior: 'instant' });
-  renderIntroTransition();
-  clinicIntro.focus({ preventScroll: true });
-}
-
-if (location.hash === '#clinic-intro') {
-  window.addEventListener('load', skipIntroTransition, { once: true });
-}
-
+sectionObserver.observe(hero);
+sectionObserver.observe(careerNumber);

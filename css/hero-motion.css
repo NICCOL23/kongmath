@@ -137,126 +137,17 @@
   border-radius: 999px;
 }
 
-/* 스크롤 연출은 화면을 움직일 수 있는 설정에서만 고정합니다. */
-body:has(.hero-scroll-track.is-active) { overflow-x: clip; }
-.hero-scroll-track.is-active::after { content: ""; display: block; height: 105svh; }
-.hero-scroll-track.is-active #main-visual {
-  position: sticky;
-  top: 0;
+.intro-transition-message {
+  margin: 0 auto;
+  padding: 20px;
+  color: #16344e;
+  text-align: center;
+  font-weight: 700;
 }
-#main-visual .visual-img .swiper-slide {
-  transform-origin: center;
-}
-.hero-skip {
-  padding: 8px;
-  color: #245078;
-  font-size: 1.3rem;
-}
-@media (max-width: 768px) {
-  .hero-scroll-track.is-active::after { height: 78svh; }
-}
-
-
-/* 소개를 히어로 뒤에 놓고, 스크롤 구간 동안 두 화면을 같은 자리에 고정합니다. */
-.intro-transition-message { display: none; }
 .intro-message-line, .intro-message-brand { display: block; }
 .intro-message-accent { color: #0070eb; }
 .intro-message-brand { margin-top: .8em; font-size: clamp(14px, 1.5vw, 22px); }
-/* 각 줄은 스크롤 진행률에 맞춰 아래에서 제자리로 올라옵니다. */
-.is-enhanced .intro-message-line {
-  opacity: var(--line-progress, 0);
-  transform: translateY(calc((1 - var(--line-progress, 0)) * .55em));
-  --line-progress: var(--message-first);
-}
-.is-enhanced .intro-message-line-second { --line-progress: var(--message-second); }
-.is-enhanced .intro-message-brand { opacity: var(--message-second, 0); }
-body:has(.intro-transition.is-enhanced) { overflow-x: clip; }
-.intro-transition.is-enhanced::after {
-  content: "";
-  display: block;
-  /* 메시지를 읽을 수 있도록 hold zone을 충분히 확보합니다. */
-  height: clamp(900px, 140svh, 1400px);
-}
-.is-enhanced .intro-transition-stage {
-  position: sticky;
-  top: 0;
-  display: grid;
-  isolation: isolate;
-  background: #fff;
-}
-.is-enhanced .intro-transition-stage > section { grid-area: 1 / 1; min-width: 0; }
-/* 소개 영역의 원래 높이에서 다음 섹션이 시작되도록 히어로를 위에 겹칩니다. */
-.is-enhanced #main-visual {
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 1;
-}
-/* 배경은 아래쪽부터 걷히고, 사진은 제목처럼 크기 변환 없이 사라집니다. */
-.is-enhanced #main-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: #fff;
-  clip-path: inset(0 0 var(--hero-background-inset, 0%) 0);
-  pointer-events: none;
-}
-.is-enhanced #main-visual[inert] { visibility: hidden; }
-.is-enhanced #main-visual .visual-img {
-  opacity: var(--photo-opacity, 1);
-}
-.is-enhanced #main-visual .visual-text-swiper { opacity: var(--title-opacity, 1); }
-.is-enhanced #main-visual :is(.visual-btn, .visual-info, .main-link) {
-  opacity: var(--controls-opacity, 1);
-}
-.is-enhanced #main-visual .hero-controls { opacity: var(--controls-opacity, 1); }
-.is-enhanced #main-visual .hero-controls:focus-within { opacity: 1; }
-.is-enhanced #main-visual :is(.visual-btn, .visual-info, .main-link)[inert] {
-  visibility: hidden;
-}
-.is-enhanced #clinic-intro {
-  align-self: start;
-  overflow: clip;
-}
-.is-enhanced #clinic-intro > .inner {
-  /* 스크롤 중에도 소개 페이지의 글자는 항상 원래 농도(opacity 1)로 표시합니다. */
-  opacity: 1 !important;
-  visibility: var(--intro-visibility, hidden);
-  transform: translateY(var(--intro-offset, 0px));
-}
-.is-enhanced .intro-transition-message {
-  display: block;
-  position: absolute;
-  top: var(--hero-center, 50%);
-  left: 50%;
-  z-index: 2;
-  width: max-content;
-  max-width: calc(100% - 32px);
-  margin: 0;
-  padding: .7em 1em;
-  transform: translate(-50%, -50%);
-  color: #16344e;
-  text-align: center;
-  font-size: clamp(27px, 4vw, 60px);
-  font-weight: 700;
-  word-break: keep-all;
-  opacity: var(--message-opacity, 0);
-  visibility: var(--message-visibility, hidden);
-  pointer-events: none;
-}
-@media (max-width: 768px) {
-  .intro-transition.is-enhanced::after { height: clamp(700px, 115svh, 1000px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .intro-transition-message {
-    display: block;
-    margin: 0 auto;
-    padding: 20px;
-    color: #16344e;
-    text-align: center;
-    font-weight: 700;
-  }
-}
+
 #treatment .implant-motion { position: relative; }
 
 /* 카드 원본 사진 위에 단면 모형을 올립니다. */
