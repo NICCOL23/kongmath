@@ -71,3 +71,5 @@
 - The `studyroom.html` page is the dedicated management study-room destination. Keep the reconstructed notice content, photos, and rules together on this page; the menu must not redirect users to the Naver Blog.
 
 - The `studyroom.html` dedicated page must reuse the main page `#save-teeth` image structure and `css/main.css` sizing; do not add an oversized independent gallery layout.
+
+- Do not display the removed source-notice sentence on `studyroom.html`; the dedicated page should show only the study-room content and rules.
