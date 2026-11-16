@@ -237,6 +237,151 @@
   white-space: nowrap;
 }
 
+/* 메인 미리보기는 학생 성과 사례 전용 페이지와 같은 카드 비율을 사용합니다. */
+.student-preview-grid {
+  gap: 22px;
+  align-items: start;
+}
+
+.student-preview-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e0e9f3;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(9, 24, 64, .07);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.student-preview-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 46px rgba(9, 24, 64, .13);
+}
+
+.student-preview-card__visual {
+  position: relative;
+  display: block;
+  aspect-ratio: 1.5 / 1;
+  overflow: hidden;
+  background: #dceafa;
+}
+
+.student-preview-card__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.student-preview-card:hover .student-preview-card__visual img {
+  transform: scale(1.045);
+}
+
+.student-preview-card__visual::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 45%;
+  background: linear-gradient(transparent, rgba(5, 16, 44, .7));
+  content: "";
+  pointer-events: none;
+}
+
+.student-preview-card__number {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  z-index: 1;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.student-preview-card__body {
+  padding: 24px 24px 22px;
+}
+
+.student-preview-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.student-preview-card__meta {
+  margin: 0;
+  color: #0878ee;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.student-preview-card__source {
+  flex-shrink: 0;
+  color: #0878ee;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.student-preview-card__eyebrow {
+  margin: 16px 0 0;
+  color: #9aa8b9;
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+
+.student-preview-card h3 {
+  margin: 6px 0 0;
+  color: #091840;
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: -.055em;
+  word-break: keep-all;
+}
+
+.student-preview-card__description {
+  min-height: 51px;
+  margin: 12px 0 0;
+  color: #65748a;
+  font-size: 15px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.student-preview-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #edf2f7;
+}
+
+.student-preview-card__actions a {
+  color: #091840;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.student-preview-card__actions a:last-child {
+  color: #0878ee;
+  font-size: 13px;
+}
+
+.student-preview-error {
+  grid-column: 1 / -1;
+  padding: 30px;
+  border: 1px solid #f0c4c4;
+  border-radius: 16px;
+  background: #fff;
+  color: #a33;
+}
+
 .reviews-contact {
   display: flex;
   align-items: center;

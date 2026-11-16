@@ -115,3 +115,4 @@
 - Keep the 7 exam/scholarship records classified as `학생 성과 사례`, and classify the 2 non-performance posts as `학원 일상` or `학생 관심사` so the archive remains factually accurate.
 - Each archive card must provide the verified summary, original blog link, and all images belonging to that post. Keep student and school identifiers anonymized in the site copy.
 - The archive data is maintained in `data/student-cases.json`, rendered by `js/student-cases.js`, and styled by `css/student-cases.css`.
+- The main-page student achievement preview and `students.html` archive must use the shared `js/student-case-card.js` renderer and the same `data/student-cases.json` source so card content, links, and component structure do not drift apart.
