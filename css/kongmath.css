@@ -146,7 +146,7 @@ main [id] {
 #treatment .swiper-slide > a:focus-visible { outline: 2px solid #174a81; outline-offset: 3px; }
 
 @media (min-width: 961px) {
-  .armi-nav-items > li:has(> .armi-nav-panel) {
+  .armi-nav-items > li {
     position: relative;
     align-self: center;
   }

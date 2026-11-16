@@ -74,7 +74,7 @@
 /* 큰 화면에서는 링크 수에 맞춰 패널 폭을 다르게 잡습니다. */
 @media (min-width: 961px) {
   /* 각 하위 메뉴는 원래 HTML 계층을 유지하면서 자기 상위 메뉴 아래에 엽니다. */
-  .armi-nav-items > li:has(> .armi-nav-panel) {
+  .armi-nav-items > li {
     position: relative;
     align-self: center;
   }
