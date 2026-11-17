@@ -78,10 +78,18 @@
       keyboard: { enabled: true, onlyInViewport: true },
       navigation: { nextEl: ".academy-slider-next", prevEl: ".academy-slider-prev" },
       pagination: { el: ".academy-slider-pagination", clickable: true },
-      on: { slideChangeTransitionStart: closeAcademyDetails },
       breakpoints: {
         768: { slidesPerView: 2 },
         1200: { slidesPerView: 4 }
+      }
+    });
+
+    const swiper = slider.swiper;
+    swiper?.on("slideChange", closeAcademyDetails);
+    swiper?.on("slideChangeTransitionStart", closeAcademyDetails);
+    slider.addEventListener("click", event => {
+      if (event.target.closest(".academy-slider-prev, .academy-slider-next, .academy-slider-pagination")) {
+        closeAcademyDetails();
       }
     });
   }
