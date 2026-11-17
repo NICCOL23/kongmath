@@ -69,7 +69,7 @@
 
     const slider = featuredRoot.querySelector(".academy-card-slider");
     if (!window.Swiper) return;
-    new Swiper(slider, {
+    const swiper = new Swiper(slider, {
       loop: true,
       speed: 560,
       spaceBetween: 20,
@@ -84,14 +84,13 @@
       }
     });
 
-    const swiper = slider.swiper;
-    swiper?.on("slideChange", closeAcademyDetails);
-    swiper?.on("slideChangeTransitionStart", closeAcademyDetails);
+    swiper.on("slideChange", closeAcademyDetails);
+    swiper.on("slideChangeTransitionStart", closeAcademyDetails);
     slider.addEventListener("click", event => {
       if (event.target.closest(".academy-slider-prev, .academy-slider-next, .academy-slider-pagination")) {
         closeAcademyDetails();
       }
-    });
+    }, true);
   }
 
   fetch(dataUrl)
