@@ -1,7 +1,7 @@
 .academy-featured-slider { margin-top: 28px; }
 .academy-card-slider { position: relative; overflow: hidden; padding: 2px 2px 54px; }
-.academy-card-slider .swiper-wrapper { align-items: stretch; }
-.academy-card-slider .swiper-slide { height: auto; }
+.academy-card-slider .swiper-wrapper { align-items: flex-start; }
+.academy-card-slider .swiper-slide { height: auto; align-self: flex-start; }
 .academy-card {
   min-width: 0;
   height: 435px;
