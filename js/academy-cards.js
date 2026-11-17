@@ -31,6 +31,18 @@
     });
   };
 
+  const isInsideAcademyDetails = target => target instanceof Element && Boolean(target.closest(".academy-card details"));
+  document.addEventListener("click", event => {
+    if (!isInsideAcademyDetails(event.target)) closeAcademyDetails();
+  }, true);
+  document.addEventListener("focusin", event => {
+    if (!isInsideAcademyDetails(event.target)) closeAcademyDetails();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeAcademyDetails();
+  });
+  window.addEventListener("scroll", closeAcademyDetails, { passive: true });
+
   function renderDetails(card) {
     const paragraphs = (card.paragraphs || []).map(text => `<p>${escapeHtml(text)}</p>`).join("");
     const list = card.list?.length ? `<ul>${card.list.map(text => `<li>${escapeHtml(text)}</li>`).join("")}</ul>` : "";
