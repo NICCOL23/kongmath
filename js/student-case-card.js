@@ -20,9 +20,6 @@
       <p class="student-preview-card__eyebrow">${escapeHtml(item.eyebrow)} · ${escapeHtml(item.date)}</p>
       <h3>${escapeHtml(item.title)}</h3>
       <p class="student-preview-card__description">${escapeHtml(item.summary)}</p>
-      <div class="student-preview-card__actions">
-        <a href="students.html#student-${escapeHtml(item.id)}">상세 기록 보기 <span aria-hidden="true">↗</span></a>
-      </div>
     </div>
   </article>`;
   };
