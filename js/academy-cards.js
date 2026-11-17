@@ -14,6 +14,14 @@
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
+  document.addEventListener("toggle", event => {
+    const openedDetails = event.target;
+    if (!(openedDetails instanceof HTMLDetailsElement) || !openedDetails.open || !openedDetails.closest(".academy-card")) return;
+    document.querySelectorAll(".academy-card details[open]").forEach(details => {
+      if (details !== openedDetails) details.open = false;
+    });
+  }, true);
+
   const external = href => /^https?:\/\//.test(href);
   const linkAttributes = href => external(href) ? ' target="_blank" rel="noopener noreferrer"' : "";
 
@@ -89,3 +97,4 @@
       if (archiveRoot) archiveRoot.innerHTML = message;
     });
 })();
+
