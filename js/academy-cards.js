@@ -31,10 +31,25 @@
     });
   };
 
-  const isInsideAcademyDetails = target => target instanceof Element && Boolean(target.closest(".academy-card details"));
-  document.addEventListener("click", event => {
+  const asElement = target => target instanceof Element ? target : null;
+  const isInsideAcademyDetails = target => Boolean(asElement(target)?.closest(".academy-card details"));
+  const closeOtherAcademyDetails = currentDetails => {
+    document.querySelectorAll(".academy-card details[open]").forEach(details => {
+      if (details !== currentDetails) details.open = false;
+    });
+  };
+  const handleAcademyPointer = event => {
+    const target = asElement(event.target);
+    const summary = target?.closest(".academy-card details > summary");
+    if (summary) {
+      closeOtherAcademyDetails(summary.parentElement);
+      return;
+    }
     if (!isInsideAcademyDetails(event.target)) closeAcademyDetails();
-  }, true);
+  };
+  document.addEventListener("pointerdown", handleAcademyPointer, true);
+  document.addEventListener("click", handleAcademyPointer, true);
+  document.addEventListener("touchstart", handleAcademyPointer, { capture: true, passive: true });
   document.addEventListener("focusin", event => {
     if (!isInsideAcademyDetails(event.target)) closeAcademyDetails();
   });
