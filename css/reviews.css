@@ -227,16 +227,6 @@
   margin: 0;
 }
 
-.review-case-card__source {
-  display: inline-flex;
-  flex-shrink: 0;
-  margin: 0 0 0 auto;
-  color: #0878ee;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
 /* 메인 미리보기는 학생 성과 사례 전용 페이지와 같은 카드 비율을 사용합니다. */
 .student-preview-grid {
   gap: 22px;
@@ -316,14 +306,6 @@
   color: #0878ee;
   font-size: 12px;
   font-weight: 800;
-}
-
-.student-preview-card__source {
-  flex-shrink: 0;
-  color: #0878ee;
-  font-size: 13px;
-  font-weight: 800;
-  white-space: nowrap;
 }
 
 .student-preview-card__eyebrow {
@@ -534,3 +516,4 @@
   background: #0565c9;
   transform: translateY(-2px);
 }
+
