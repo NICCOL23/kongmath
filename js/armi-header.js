@@ -37,25 +37,60 @@
     const entries = document.createDocumentFragment();
     const names = new Set([...list.children].map(item =>
       item.querySelector(":scope > a, :scope > button")?.textContent.trim()));
-    for (const link of source.querySelectorAll("li > a[href]")) {
+    function readLink(link) {
+      if (!link) return null;
       const label = link.textContent.trim();
       const href = link.getAttribute("href").trim();
-      let destination;
+      let url;
       try {
-        destination = new URL(href, location.origin + "/");
+        url = new URL(href, location.origin + "/");
       } catch {
-        continue;
+        return null;
       }
-      if (!label || !href || names.has(label) || destination.protocol !== "https:" ||
-          destination.username || destination.password) continue;
+      if (!label || !href || url.protocol !== "https:" || url.username || url.password) return null;
+
+      const anchor = document.createElement("a");
+      anchor.href = url.href;
+      anchor.textContent = label;
+      return anchor;
+    }
+
+    for (const sourceItem of source.querySelectorAll("li")) {
+      if (sourceItem.parentElement.closest("li")) continue;
+      const parentLink = readLink(sourceItem.querySelector(":scope > a[href]"));
+      if (!parentLink || names.has(parentLink.textContent)) continue;
 
       const item = document.createElement("li");
-      const menuLink = document.createElement("a");
-      menuLink.href = destination.href;
-      menuLink.textContent = label;
-      item.append(menuLink);
+      const children = [...sourceItem.querySelectorAll(":scope > :is(ul, ol) > li > a[href]")]
+        .map(readLink).filter(Boolean);
+      if (children.length === 0) {
+        item.append(parentLink);
+      } else {
+        const panel = document.createElement("div");
+        panel.className = "armi-nav-panel";
+        panel.id = "armi-nav-wordpress-" + panels.length;
+        panel.hidden = true;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "armi-nav-trigger";
+        button.textContent = parentLink.textContent;
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-controls", panel.id);
+        panels.push(button);
+        bindToggle(button, panels);
+
+        const links = document.createElement("ul");
+        for (const link of [parentLink, ...children]) {
+          const row = document.createElement("li");
+          row.append(link);
+          links.append(row);
+        }
+        panel.append(links);
+        item.append(button, panel);
+      }
       entries.append(item);
-      names.add(label);
+      names.add(parentLink.textContent);
     }
     list.append(entries);
     updateCurrentLinks();
@@ -78,13 +113,15 @@
   window.addEventListener("scroll", closeMenus, { passive: true });
 
   // 같은 단계에서는 한 번에 한 메뉴만 엽니다.
-  for (const buttons of [panels, groups]) {
-    buttons.forEach(button => button.addEventListener("click", () => {
+  function bindToggle(button, buttons) {
+    button.addEventListener("click", () => {
       const open = !isOpen(button);
       buttons.forEach(item => setOpen(item, item === button && open));
       if (buttons === panels && mobile.matches) groups.forEach(item => setOpen(item, false));
-    }));
+    });
   }
+  panels.forEach(button => bindToggle(button, panels));
+  groups.forEach(button => bindToggle(button, groups));
   menu.addEventListener("click", () => {
     if (isOpen(menu)) closeMenus();
     else setOpen(menu, true);
