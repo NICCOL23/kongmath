@@ -309,18 +309,52 @@
     <div data-site-footer></div>
   </div>
 <script>
-  // Load the single WordPress pilot post only in the test view.
-  if (new URLSearchParams(location.search).get("wordpress-test") === "1") {
-    (async () => {
-      const endpoint = "https://public-api.wordpress.com/wp/v2/sites/kongmathtest.wordpress.com/posts/1018";
-      const response = await fetch(endpoint, { credentials: "omit" });
-      if (!response.ok) return;
-      const post = await response.json();
-      if (post.id !== 1018 || post.status !== "publish") return;
+  (() => {
+    const list = document.querySelector(".academy-notices-list");
+    const testView = new URLSearchParams(location.search).get("wordpress-test") === "1";
+    const pilotPostId = 1018;
+    const endpoint = "https://public-api.wordpress.com/wp/v2/sites/kongmathtest.wordpress.com/posts";
+    const tags = new Set(["P", "DIV", "SPAN", "BR", "HR", "STRONG", "B", "EM", "I",
+      "U", "S", "MARK", "SUB", "SUP", "UL", "OL", "LI", "BLOCKQUOTE", "PRE", "CODE",
+      "H2", "H3", "H4", "H5", "H6", "FIGURE", "FIGCAPTION", "TABLE", "THEAD", "TBODY",
+      "TFOOT", "TR", "TH", "TD", "A", "IMG"]);
+    const discard = new Set(["SCRIPT", "STYLE", "IFRAME", "OBJECT", "EMBED", "FORM", "SVG", "MATH"]);
+    const mediaHost = new Set(["kongmathtest.wordpress.com", "kongmathtest.files.wordpress.com"]);
+    const parser = new DOMParser();
 
-      const list = document.querySelector(".academy-notices-list");
-      const title = new DOMParser().parseFromString(post.title.rendered, "text/html").body.textContent;
-      const content = new DOMParser().parseFromString(post.content.rendered, "text/html");
+    function copyContent(source, target) {
+      for (const child of source.childNodes) {
+        if (child.nodeType === Node.TEXT_NODE) {
+          target.append(document.createTextNode(child.textContent));
+          continue;
+        }
+        if (child.nodeType !== Node.ELEMENT_NODE || discard.has(child.tagName)) continue;
+        if (!tags.has(child.tagName)) {
+          copyContent(child, target);
+          continue;
+        }
+
+        const element = document.createElement(child.tagName.toLowerCase());
+        if (child.tagName === "IMG") {
+          const url = URL.parse(child.getAttribute("src") || "", "https://kongmathtest.wordpress.com/");
+          if (!url || url.protocol !== "https:" || !mediaHost.has(url.hostname) ||
+              (url.hostname === "kongmathtest.wordpress.com" && !url.pathname.startsWith("/wp-content/uploads/"))) continue;
+          element.src = url.href;
+          element.alt = child.getAttribute("alt") || "";
+          element.loading = "lazy";
+          element.style.maxWidth = "100%";
+          element.style.height = "auto";
+        }
+        if (child.tagName === "A") {
+          const url = URL.parse(child.getAttribute("href") || "", "https://kongmathtest.wordpress.com/");
+          if (url && ["https:", "http:", "tel:", "mailto:"].includes(url.protocol)) element.href = url.href;
+        }
+        copyContent(child, element);
+        target.append(element);
+      }
+    }
+
+    function createNotice(post) {
       const item = document.createElement("li");
       const details = document.createElement("details");
       const summary = document.createElement("summary");
@@ -330,34 +364,50 @@
       const body = document.createElement("div");
 
       category.className = "notice-category";
-      category.textContent = "테스트";
+      category.textContent = testView ? "테스트" : "공지";
       heading.className = "notice-title";
-      heading.textContent = title;
+      heading.textContent = parser.parseFromString(post.title.rendered, "text/html").body.textContent;
       date.dateTime = post.date.slice(0, 10);
       date.textContent = date.dateTime.replaceAll("-", ".");
       body.className = "notice-body";
-      for (const source of content.querySelectorAll("p, img")) {
-        if (source.tagName === "P") {
-          const paragraph = document.createElement("p");
-          paragraph.textContent = source.textContent;
-          body.append(paragraph);
-        } else {
-          const url = new URL(source.getAttribute("src"), "https://kongmathtest.wordpress.com/");
-          if (url.origin !== "https://kongmathtest.wordpress.com" || !url.pathname.startsWith("/wp-content/uploads/")) continue;
-          const image = document.createElement("img");
-          image.src = url.href;
-          image.alt = source.getAttribute("alt") || "";
-          image.style.maxWidth = "100%";
-          image.style.height = "auto";
-          body.append(image);
-        }
-      }
+      copyContent(parser.parseFromString(post.content.rendered, "text/html").body, body);
       summary.append(category, heading, date);
       details.append(summary, body);
       item.append(details);
-      list.prepend(item);
-    })().catch(error => console.warn("WordPress notice test:", error));
-  }
+      return item;
+    }
+
+    async function loadNotices() {
+      const fields = "_fields=id,status,date,title,content";
+      if (testView) {
+        const response = await fetch(endpoint + "/" + pilotPostId + "?" + fields, { credentials: "omit" });
+        if (!response.ok) return;
+        const post = await response.json();
+        if (post.id === pilotPostId && post.status === "publish") list.prepend(createNotice(post));
+        return;
+      }
+
+      // Earlier IDs are the starter post, the copied archive, and the pilot.
+      const items = document.createDocumentFragment();
+      for (let page = 1; ; page += 1) {
+        const response = await fetch(endpoint + "?status=publish&per_page=100&page=" + page + "&" + fields,
+          { credentials: "omit" });
+        if (!response.ok) {
+          if (page > 1 && response.status === 400 && (await response.json()).code === "rest_post_invalid_page_number") break;
+          return;
+        }
+        const posts = await response.json();
+        for (const post of posts) {
+          if (post.id > pilotPostId && post.status === "publish") items.append(createNotice(post));
+        }
+        const totalPages = Number(response.headers.get("X-WP-TotalPages"));
+        if (posts.length < 100 || (totalPages > 0 && page >= totalPages)) break;
+      }
+      list.prepend(items);
+    }
+
+    loadNotices().catch(error => console.warn("WordPress notices:", error));
+  })();
 </script>
 </body>
 </html>
