@@ -81,7 +81,10 @@
         bindToggle(button, panels);
 
         const links = document.createElement("ul");
-        for (const link of [parentLink, ...children]) {
+        const linksToShow = children.some(link => link.href === parentLink.href)
+          ? children
+          : [parentLink, ...children];
+        for (const link of linksToShow) {
           const row = document.createElement("li");
           row.append(link);
           links.append(row);
