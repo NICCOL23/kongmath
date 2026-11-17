@@ -28,9 +28,9 @@
   <link rel="stylesheet" href="css/armi-header.css?v=logo-click-render-fix">
   <link rel="stylesheet" href="css/kongmath.css?v=blur-removal">
   <link rel="stylesheet" href="css/academy-cards.css?v=academy-six-card-slider">
-  <script defer src="js/armi-header.js?v=wordpress-submenus-dedup"></script>
+  <script defer src="js/armi-header.js?v=instant-menu-links"></script>
   <script defer src="js/footer-component.js?v=shared-footer-component"></script>
-  <script defer src="js/academy-cards.js?v=academy-six-card-component"></script>
+  <script defer src="js/academy-cards.js?v=academy-slider-auto-close"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
     <header class="armi-header">
       <div class="inner armi-header-row">
         <h1><a href="index.html"><img class="kong-header-logo" src="imges/common/kong-math-navy-gold-wordmark.png" alt="공쌤 수학원 KONG MATH"></a></h1>
-        <a class="armi-header-login armi-mobile-login" href="https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_parent_portal">로그인</a>
+        <button class="armi-header-login armi-mobile-login" type="button" disabled>로그인</button>
         <button type="button" class="armi-mobile-trigger" aria-expanded="false" aria-controls="armi-site-nav">메뉴</button>
         <nav class="armi-nav" id="armi-site-nav" aria-label="주 메뉴">
           <div class="armi-mobile-quick"><a href="https://map.naver.com/p/entry/place/1005775920">오시는 길</a><a href="studyroom.html">관리형 자습실</a></div>
@@ -79,7 +79,7 @@
             <li><a href="https://map.naver.com/p/entry/place/1005775920">오시는 길</a></li>
           </ul>
         </nav>
-        <a class="armi-header-login" href="https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_parent_portal">로그인</a>
+        <button class="armi-header-login" type="button" disabled>로그인</button>
       </div>
     </header>
 
@@ -106,3 +106,4 @@
 </body>
 
 </html>
+
