@@ -25,6 +25,12 @@
   const external = href => /^https?:\/\//.test(href);
   const linkAttributes = href => external(href) ? ' target="_blank" rel="noopener noreferrer"' : "";
 
+  const closeAcademyDetails = () => {
+    document.querySelectorAll(".academy-card details[open]").forEach(details => {
+      details.open = false;
+    });
+  };
+
   function renderDetails(card) {
     const paragraphs = (card.paragraphs || []).map(text => `<p>${escapeHtml(text)}</p>`).join("");
     const list = card.list?.length ? `<ul>${card.list.map(text => `<li>${escapeHtml(text)}</li>`).join("")}</ul>` : "";
@@ -72,6 +78,7 @@
       keyboard: { enabled: true, onlyInViewport: true },
       navigation: { nextEl: ".academy-slider-next", prevEl: ".academy-slider-prev" },
       pagination: { el: ".academy-slider-pagination", clickable: true },
+      on: { slideChangeTransitionStart: closeAcademyDetails },
       breakpoints: {
         768: { slidesPerView: 2 },
         1200: { slidesPerView: 4 }
