@@ -44,7 +44,7 @@
 ## Header subnavigation links
 
 - Header subnavigation items must use direct page URLs instead of same-page hash anchors.
-- Use `academy.html` for the full academy introduction, `studyroom.html` for the study-room destination, `consultation.html` for 1:1 class and consultation, `tuition.html` for tuition, `reports.html` for reports, `notices.html` for notices/news, `daily.html` for academy daily posts, and `students.html` for the student corner.
+- Use `academy.html` for the full academy introduction, `studyroom.html` for the study-room destination, `https://kongmath.mycafe24.com/online-consultation/` for consultation, `tuition.html` for tuition, `reports.html` for reports, `notices.html` for notices/news, `daily.html` for academy daily posts, and `students.html` for the student corner. The redundant `1:1 맞춤 수업` submenu item is removed; the service remains described in page content and is handled through consultation.
 - The location menu opens the Naver Map place page directly.
 - Do not intercept header menu clicks with same-page `scrollIntoView()` behavior.
 
