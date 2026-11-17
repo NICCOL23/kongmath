@@ -22,6 +22,46 @@
   updateCurrentLinks();
   window.addEventListener("hashchange", updateCurrentLinks);
 
+  // WordPress page 1042 contains the links managed by the academy.
+  async function loadManagedMenu() {
+    const list = nav.querySelector(".armi-nav-items");
+    if (!list) return;
+
+    const endpoint = "https://public-api.wordpress.com/wp/v2/sites/kongmathtest.wordpress.com/pages/1042?_fields=id,status,content";
+    const response = await fetch(endpoint, { credentials: "omit" });
+    if (!response.ok) return;
+    const page = await response.json();
+    if (page.id !== 1042 || page.status !== "publish" || !page.content?.rendered) return;
+
+    const source = new DOMParser().parseFromString(page.content.rendered, "text/html");
+    const entries = document.createDocumentFragment();
+    const names = new Set([...list.children].map(item =>
+      item.querySelector(":scope > a, :scope > button")?.textContent.trim()));
+    for (const link of source.querySelectorAll("li > a[href]")) {
+      const label = link.textContent.trim();
+      const href = link.getAttribute("href").trim();
+      let destination;
+      try {
+        destination = new URL(href, location.origin + "/");
+      } catch {
+        continue;
+      }
+      if (!label || !href || names.has(label) || destination.protocol !== "https:" ||
+          destination.username || destination.password) continue;
+
+      const item = document.createElement("li");
+      const menuLink = document.createElement("a");
+      menuLink.href = destination.href;
+      menuLink.textContent = label;
+      item.append(menuLink);
+      entries.append(item);
+      names.add(label);
+    }
+    list.append(entries);
+    updateCurrentLinks();
+  }
+  loadManagedMenu().catch(error => console.warn("WordPress menu:", error));
+
   // 버튼의 열림 상태와 실제 패널을 한 번에 갱신합니다.
   function setOpen(button, open) {
     button.setAttribute("aria-expanded", String(open));
