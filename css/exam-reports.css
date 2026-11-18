@@ -47,3 +47,6 @@
 /* 연도 증감 화살표는 마우스를 올리지 않아도 표시합니다. */
 #report-year::-webkit-inner-spin-button,
 #report-year::-webkit-outer-spin-button { opacity: 1; }
+
+/* 학교 추천 목록 표시를 항상 보이게 합니다. */
+#report-school::-webkit-calendar-picker-indicator { opacity: 1; cursor: pointer; }
