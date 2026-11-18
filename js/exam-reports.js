@@ -9,6 +9,7 @@
   const schoolToggle = document.querySelector('#report-school-toggle');
   let schools = [];
   let activeSchool = -1;
+  let filterSchools = false;
   function closeSchools() {
     schoolOptions.hidden = true;
     schoolSelect.setAttribute('aria-expanded', 'false');
@@ -17,8 +18,9 @@
     schoolSelect.removeAttribute('aria-activedescendant');
     activeSchool = -1;
   }
-  function showSchools() {
-    const query = schoolSelect.value.trim().toLocaleLowerCase();
+  function showSchools(filter = false) {
+    filterSchools = filter;
+    const query = filter ? schoolSelect.value.trim().toLocaleLowerCase() : '';
     const matches = schools.filter(name => name.toLocaleLowerCase().includes(query));
     schoolOptions.replaceChildren();
     const values = query ? matches.slice(0, 50) : ['', ...matches.slice(0, 50)];
@@ -55,8 +57,8 @@
     if (schoolOptions.hidden) { schoolSelect.focus(); showSchools(); }
     else closeSchools();
   });
-  schoolSelect.addEventListener('click', showSchools);
-  schoolSelect.addEventListener('input', showSchools);
+  schoolSelect.addEventListener('click', () => showSchools(false));
+  schoolSelect.addEventListener('input', () => showSchools(true));
   schoolSelect.addEventListener('keydown', event => {
     if (event.isComposing) return;
     if (event.key === 'Escape') { closeSchools(); return; }
@@ -187,7 +189,7 @@
       if (thisRequest !== requestNumber) return;
       if (Array.isArray(data.schools)) {
         schools = data.schools.filter(name => typeof name === 'string');
-        if (!schoolOptions.hidden) showSchools();
+        if (!schoolOptions.hidden) showSchools(filterSchools);
       }
       list.replaceChildren(...data.reports.map(renderReport));
       status.textContent = data.total ? '전체 ' + data.total + '건' : '조건에 맞는 분석 글이 없습니다.';
