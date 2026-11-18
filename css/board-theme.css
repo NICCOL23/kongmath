@@ -1,0 +1,77 @@
+/* Display-only board theme. No visibility, permission, data, or image changes. */
+body:has(main[data-km-board]){background:#fff;color:#182d43}
+main[data-km-board]{--navy:#102f53;--blue:#0068dc;--ink:#182d43;--muted:#596b7c;--line:#dfe6ed;--paper:#fff;--gold:#0068dc;color:var(--ink);font-family:pretendard,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.65;box-sizing:border-box}
+main[data-km-board] :is(h1,h2,h3,h4){color:var(--navy);letter-spacing:-.035em}
+main[data-km-board] h1{font-size:clamp(32px,3.6vw,48px);line-height:1.25}
+main[data-km-board] h2{font-size:28px;line-height:1.4}
+main[data-km-board] :is(input,select,textarea){font-size:16px;color:var(--ink);border-color:#b7c3d2;border-radius:4px;box-sizing:border-box;max-width:100%}
+main[data-km-board] :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,button){min-height:44px}
+main[data-km-board] :is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+main[data-km-board] :is(time,.meta,.author,.category,.notice-category,.small-text,.km-example-label){font-size:14px;color:var(--muted)}
+main[data-km-board] :is(.notice-body,.exam-report-body,.review,.km-example-body,.reply){background:#f6f9fc;border-color:var(--line);line-height:1.75}
+main[data-km-board] :is(.eyebrow,.section-kicker,.reviews-hero__eyebrow,.reviews-section__eyebrow,.km-eyebrow){color:var(--navy);font-size:13px}
+main[data-km-board=native]:not(:has(.family-layout)){width:min(960px,calc(100% - 64px));max-width:960px;margin:0 auto;padding:48px 0 64px}
+main[data-km-board=native]:not(:has(.family-layout)) :is(a){color:var(--blue)}
+main[data-km-board=native]:not(:has(.family-layout)) :is(button,.action){background:var(--blue);color:#fff;border-radius:4px;min-height:44px}
+main[data-km-board=native]:not(:has(.family-layout)) > details,main[data-km-board=native] > section > details{border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;margin:0;background:#fff}
+main[data-km-board=native]:not(:has(.family-layout)) summary{padding:18px 16px;min-height:64px;box-sizing:border-box;font-size:16px;line-height:1.6}
+main[data-km-board=native] > article{border:0;border-bottom:1px solid var(--line);border-radius:0;margin:0;padding:0}
+main[data-km-board=native] > section{border-color:var(--line);border-radius:4px;padding:24px}
+main[data-km-board=native] > section > form{border-color:var(--line);border-radius:4px}
+main[data-km-board] :is(.academy-notices,.exam-reports){padding-top:48px;padding-bottom:64px}
+main[data-km-board] :is(.notice-list,.exam-report-list){max-width:960px;margin-inline:auto}
+main[data-km-board] :is(.notice-item,.exam-report-item){border:0;border-bottom:1px solid var(--line);border-radius:0;background:#fff;margin:0}
+main[data-km-board] :is(.notice-item,.exam-report-item):first-child{border-top:1px solid var(--line)}
+main[data-km-board] :is(.notice-item,.exam-report-item)>summary{min-height:64px;padding:18px 16px;box-sizing:border-box;font-size:16px;line-height:1.6}
+main[data-km-board] :is(.notice-title,.exam-report-title){font-size:16px;color:var(--navy)}
+main[data-km-board] :is(.notice-item,.exam-report-item)[open]>summary{color:var(--blue)}
+main[data-km-board] .exam-report-search{background:#f6f9fc;border-color:var(--line);border-radius:4px;gap:12px;padding:20px}
+main[data-km-board] .exam-report-search button[type=submit]{background:var(--blue);border-color:var(--blue)}
+main[data-km-board] :is(.reviews-hero,.reviews-section){padding-block:48px}
+main[data-km-board] :is(.review-card,.review-case-card,.reviews-source-card){border-color:var(--line);border-radius:4px;box-shadow:none}
+main[data-km-board] :is(.reviews-hero__desc,.review-card p,.review-case-card__description){font-size:16px;color:var(--muted);line-height:1.75}
+/* Family keeps its photo feed and comments, with shared colors and readable type. */
+main[data-km-board]:has(.family-layout){padding-top:24px}
+main[data-km-board] .hero{border-color:var(--line);padding-bottom:40px}
+main[data-km-board] .hero h1 em{color:var(--blue)}
+main[data-km-board] :is(.hero-note,.live-write>p,.story .meta,.badge,.teacher-badge,.story-category,.owner-actions,.small-action,.live-comment summary){font-size:13px;color:var(--muted)}
+main[data-km-board] :is(.story-body,.reply p,.welcome-card p,.promise-card li){font-size:16px;line-height:1.75;color:var(--muted)}
+main[data-km-board] :is(.story,.live-write,.welcome-card){border-color:var(--line);border-radius:4px}
+main[data-km-board] :is(.welcome-card,.reply,.live-notice){background:#f6f9fc;border-color:var(--line)}
+main[data-km-board] :is(.write-button,.filters .selected){background:var(--blue);border-color:var(--blue);color:#fff}
+main[data-km-board] .filters button{font-size:14px;min-height:44px}
+main[data-km-board] :is(.story-category,.small-emblem){background:#f6f9fc;color:var(--navy)}
+main[data-km-board] :is(.hand-sign,.signature,.back-link){color:var(--muted)}
+/* Existing WordPress consultation page. */
+main[data-km-board] :is(.km-hero,.km-board,.km-guide){padding-block:48px}
+main[data-km-board] .km-hero{background:#f6f9fc}
+main[data-km-board] .km-hero__card{background:var(--navy);border-radius:4px;box-shadow:none}
+main[data-km-board] .km-hero__card :is(strong,p){color:#fff}
+main[data-km-board] :is(.km-panel,.km-example-body){border-color:var(--line);border-radius:4px;box-shadow:none}
+main[data-km-board] .km-panel{padding:32px}
+main[data-km-board] :is(.km-button--primary,.km-outline-button){background:var(--blue);border-color:var(--blue);color:#fff}
+main[data-km-board] .km-button--secondary{background:#fff;border-color:#b7c3d2;color:var(--navy)}
+main[data-km-board] .km-example-summary{font-size:16px;line-height:1.6;min-height:64px;padding:18px 16px}
+main[data-km-board] .km-example-summary span:not(:nth-child(2)){font-size:14px;color:var(--muted)}
+main[data-km-board] .km-example-body p{font-size:16px;line-height:1.75}
+@media(max-width:760px){
+ main[data-km-board]{font-size:16px}
+ main[data-km-board] h1{font-size:32px}main[data-km-board] h2{font-size:24px}
+ main[data-km-board=native]:not(:has(.family-layout)){width:calc(100% - 40px);padding:32px 0 48px}
+ main[data-km-board] :is(.academy-notices,.exam-reports,.reviews-hero,.reviews-section,.km-hero,.km-board,.km-guide){padding-block:32px}
+ main[data-km-board] :is(.notice-item,.exam-report-item)>summary{padding:16px 12px;font-size:15px}
+ main[data-km-board] :is(time,.meta,.author,.category,.notice-category,.km-example-summary span:not(:nth-child(2))){font-size:13px;white-space:normal}
+ main[data-km-board] .km-panel{padding:20px}
+ main[data-km-board] .km-example-summary{padding:16px 10px;font-size:15px}
+ main[data-km-board] .km-example-body{padding:16px;margin-inline:0}
+ main[data-km-board] .story{padding:20px}
+ main[data-km-board] .family-layout{padding-block:32px}
+ main[data-km-board] .exam-report-search{padding:16px;gap:10px}
+ main[data-km-board] :is(.notice-title,.exam-report-title){font-size:15px}
+}
+main[data-km-board] :is(.academy-notices-list,.exam-reports-list){max-width:960px;margin-inline:auto}
+main[data-km-board] :is(.academy-notices-list>li>details,.exam-report){border:0;border-bottom:1px solid var(--line);border-radius:0;background:#fff;margin:0}
+main[data-km-board] :is(.academy-notices-list>li:first-child>details,.exam-reports-list>li:first-child>.exam-report){border-top:1px solid var(--line)}
+main[data-km-board] :is(.academy-notices-list>li>details,.exam-report)>summary{padding:18px 16px;min-height:64px;box-sizing:border-box;font-size:16px;line-height:1.6;color:var(--navy)}
+main[data-km-board] :is(.academy-notices-list>li>details,.exam-report)[open]>summary{color:var(--blue)}
+@media(max-width:760px){main[data-km-board] :is(.academy-notices-list>li>details,.exam-report)>summary{padding:16px 12px;font-size:15px}}
