@@ -19,6 +19,8 @@
       }
     });
   }
+
+if(!document.querySelector('#km-community-menu-style')){const style=document.createElement('link');style.id='km-community-menu-style';style.rel='stylesheet';style.href='https://kongmath.com/css/community-navigation.css?v=1.30.0';document.head.append(style);}
   updateCurrentLinks();
   window.addEventListener("hashchange", updateCurrentLinks);
 
@@ -66,7 +68,7 @@
           new URL(link.href).pathname === '/family.html';
         const reportChild = depth === 0 && row.title === '내신리포트' ? children.find(child => {try {const u=new URL(child.url);return u.origin==='https://kongmath.com' && u.pathname==='/reports.html';} catch {return false;}}) : null;
         if(reportChild) link.href=reportChild.url;
-        if (children.length && depth < 20 && !directFamilyPage && !reportChild) {
+        if (children.length && depth < 20 && !reportChild) {
           const button = document.createElement('button');
           button.type = 'button'; button.textContent = row.title;
           button.className = depth === 0 ? 'armi-nav-trigger' : 'armi-group-trigger km-nav-nested-toggle';
@@ -79,7 +81,10 @@
           if (row.url !== 'https://kongmath.com/#' && !children.some(child => child.url === row.url)) {
             const parentItem = document.createElement('li'); parentItem.append(link); links.append(parentItem);
           }
-          links.append(buildRows(children, depth + 1)); panel.append(links); item.append(button, panel);
+          links.append(buildRows(children, depth + 1)); panel.append(links);
+          if (directFamilyPage) {
+            item.classList.add('km-family-menu');link.classList.add('km-family-direct');button.classList.add('km-family-toggle');button.textContent='';button.setAttribute('aria-label',row.title+' 하위 메뉴 열기');item.append(link,button,panel);
+          } else item.append(button,panel);
         } else item.append(link);
         result.append(item);
       }

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>학생·학부모 후기 | 공쌤수학원</title>
-  <meta name="description" content="공쌤수학원의 학생·학부모 후기와 실제 학생 성과 사례를 확인하세요.">
+  <title>수업 후기 · 공쌤의 오랜 교실 | 공쌤수학원</title>
+  <meta name="description" content="공쌤수학원 수업 후기와 네이버 방문자 리뷰를 확인하세요.">
   <link rel="icon" type="image/png" sizes="64x64" href="imges/common/kong-math-navy-gold-64.png">
   <link rel="apple-touch-icon" sizes="180x180" href="imges/common/kong-math-navy-gold-180.png">
   <link rel="stylesheet" href="css/font.css">
@@ -12,11 +12,12 @@
 <link rel="stylesheet" href="css/common.css?v=global-overlay-guard">
   <link rel="stylesheet" href="css/armi-header.css?v=managed-layout">
   <link rel="stylesheet" href="css/reviews.css?v=consented-review-board-2">
-  <script defer src="js/armi-header.js?v=family-direct-1"></script>
-  <script defer src="js/reviews.js?v=consented-review-board"></script>
+  <script defer src="js/armi-header.js?v=community-1.30.0"></script>
+  <script defer src="js/reviews.js?v=1.30.0"></script>
   <script defer src="js/footer-component.js?v=managed-layout"></script>
 <link rel="stylesheet" href="css/board-theme.css?v=1.24.1">
 <link rel="stylesheet" href="https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_board_design_css&amp;board=reviews">
+<link rel="stylesheet" href="css/reviews-managed.css?v=1.30.0">
 </head>
 <body class="reviews-page">
   <div id="wrap">
@@ -43,36 +44,20 @@
         <div class="inner">
           <p class="reviews-hero__eyebrow">KONG MATH STORIES</p>
           <h2>학생과 학부모의<br><span>실제 이야기</span>를 담습니다.</h2>
-          <p class="reviews-hero__desc">네이버 플레이스 리뷰는 공식 페이지에서 확인하고, 홈페이지에는 공개 동의를 받은 후기와 블로그에서 확인되는 학생 성과 사례만 소개합니다.</p>
+          <p class="reviews-hero__desc">재학생·졸업생·학부모가 전하는 공쌤 수업의 경험을 모았습니다.</p><nav class="community-tabs" aria-label="오랜 교실 게시판"><a href="family.html">안부 나누기</a><a href="reviews.html" aria-current="page">수업 후기</a></nav>
         </div>
       </section>
 
-      <section class="reviews-section reviews-section--white" aria-labelledby="reviews-source-title">
-        <div class="inner">
-          <div class="reviews-section__heading">
-            <p class="reviews-section__eyebrow">NAVER PLACE</p>
-            <h2 id="reviews-source-title">전체 방문자 리뷰는 네이버 플레이스에서 확인하세요.</h2>
-            <p>리뷰 원문, 작성자 정보, 사진·영상은 원래 게시된 공식 페이지에서 확인할 수 있습니다.</p>
-          </div>
-          <div class="reviews-source-card">
-            <div>
-              <p class="reviews-source-card__label">공쌤수학원 방문자 리뷰</p>
-              <h3>공식 리뷰 페이지 바로가기</h3>
-              <p>최신 리뷰와 방문자 평가를 네이버 플레이스에서 확인할 수 있습니다.</p>
-            </div>
-            <a class="reviews-source-card__button" href="https://map.naver.com/p/entry/place/1005775920" target="_blank" rel="noopener noreferrer">네이버 플레이스 전체 리뷰 보기 ↗</a>
-          </div>
-        </div>
-      </section>
+      
 
       <section class="reviews-section" aria-labelledby="review-list-title">
         <div class="inner">
           <div class="reviews-section__heading">
-            <p class="reviews-section__eyebrow">CONSENTED REVIEWS</p>
-            <h2 id="review-list-title">공개 동의를 받은 학생·학부모 후기</h2>
-            <p>작성자의 공개 동의를 받은 후기만 익명으로 게시합니다.</p>
+            <p class="reviews-section__eyebrow">CLASS REVIEWS</p>
+            <h2 id="review-list-title">수업 후기</h2>
+            <p>네이버에서 남겨주신 후기는 작은 출처 표시와 함께 소개합니다.</p>
           </div>
-          <div class="review-grid" data-review-list></div>
+          <form id="review-search" class="review-tools" role="search" aria-label="수업 후기 찾기"><label for="review-keyword">후기 내용 검색</label><input id="review-keyword" type="search" placeholder="후기 내용 검색" maxlength="100"><button type="submit">검색</button><button type="button" id="review-reset">초기화</button></form><p id="review-status" role="status">후기를 불러오는 중입니다.</p><button type="button" id="review-retry" hidden>다시 불러오기</button><div class="review-grid" data-review-list></div><nav class="review-pages" id="review-pages" aria-label="후기 목록 페이지"></nav>
           <div class="reviews-empty" data-review-empty hidden>
             <h3>등록된 후기가 준비 중입니다.</h3>
             <p>상담을 통해 실제 학습 경험을 확인해보세요.</p>

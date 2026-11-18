@@ -1,0 +1,4 @@
+.armi-header .armi-nav-items>li.km-family-menu{flex-wrap:wrap}
+.armi-header .armi-nav-items>li.km-family-menu>.km-family-direct{padding-right:0}
+.armi-header .armi-nav-items>li.km-family-menu>.km-family-toggle{width:36px;min-width:36px;min-height:44px;padding:0;justify-content:center;display:inline-flex}
+@media(max-width:960px){.armi-header .armi-nav-items>li.km-family-menu{display:flex;align-items:center}.armi-header .armi-nav-items>li.km-family-menu>.km-family-direct{flex:1;min-width:0}.armi-header .armi-nav-items>li.km-family-menu>.km-family-toggle{flex:0 0 44px;min-width:44px}.armi-header .armi-nav-items>li.km-family-menu>.armi-nav-panel{width:100%;flex-basis:100%;box-sizing:border-box}}
