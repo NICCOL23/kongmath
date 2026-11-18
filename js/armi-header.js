@@ -64,7 +64,9 @@
         const children = Array.isArray(row.children) ? row.children : [];
         const directFamilyPage = depth === 0 && new URL(link.href).origin === 'https://kongmath.com' &&
           new URL(link.href).pathname === '/family.html';
-        if (children.length && depth < 20 && !directFamilyPage) {
+        const reportChild = depth === 0 && row.title === '내신리포트' ? children.find(child => {try {const u=new URL(child.url);return u.origin==='https://kongmath.com' && u.pathname==='/reports.html';} catch {return false;}}) : null;
+        if(reportChild) link.href=reportChild.url;
+        if (children.length && depth < 20 && !directFamilyPage && !reportChild) {
           const button = document.createElement('button');
           button.type = 'button'; button.textContent = row.title;
           button.className = depth === 0 ? 'armi-nav-trigger' : 'armi-group-trigger km-nav-nested-toggle';
@@ -187,4 +189,21 @@
     floatingMedia.addEventListener("change", updateFloatingChat);
   }
 
+})();
+
+
+// 상단 블로그 버튼과 중복 홈 링크 정리. 개별 원문 링크는 유지합니다.
+(()=>{
+ const header=document.querySelector('.armi-header');if(!header)return;
+ const style=document.createElement('style');style.textContent=`
+ .armi-header .km-header-blog{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:34px;padding:6px 12px;border:1px solid #168349;border-radius:20px;background:#fff;color:#087239;font:600 13px/1.3 pretendard,sans-serif;white-space:nowrap;text-decoration:none}
+ .armi-header .km-header-blog:hover{background:#edf9f1}.armi-header .km-header-blog:focus-visible{outline:2px solid #087239;outline-offset:3px}
+ @media(min-width:961px){.armi-header .armi-header-row{gap:12px}.armi-header .km-header-blog{margin-left:0}}
+ @media(max-width:960px){.armi-header .armi-header-row{gap:6px;padding-inline:10px}.armi-header .inner h1 a img.kong-header-logo{width:100px}.armi-header .km-header-blog{font-size:11px;padding:5px 7px;min-height:32px}.armi-header .armi-header-login{font-size:11px;padding:5px 9px;min-height:32px}.armi-header .armi-mobile-trigger{font-size:12px;padding:6px 8px;min-height:36px}.armi-header .km-header-blog{order:0}}
+ `;document.head.append(style);
+ const button=document.createElement('a');button.className='km-header-blog';button.href='https://blog.naver.com/tyk999';button.textContent='네이버 블로그';button.target='_blank';button.rel='noopener noreferrer';button.setAttribute('aria-label','네이버 블로그 (새 창)');
+ const mobile=header.querySelector('.armi-mobile-trigger');if(mobile)mobile.before(button);else header.querySelector('.armi-header-row')?.append(button);
+ const isGeneralBlog=raw=>{try{const u=new URL(raw,location.href);if(!['blog.naver.com','m.blog.naver.com'].includes(u.hostname))return false;return /^\/tyk999\/?$/.test(u.pathname)||(/^\/(PostList\.naver|)$/.test(u.pathname)&&u.searchParams.get('blogId')==='tyk999');}catch{return false;}};
+ const clean=()=>{for(const link of document.querySelectorAll('a[href]')){if(link===button||!isGeneralBlog(link.href))continue;const parent=link.parentElement;if(parent?.tagName==='LI'&&parent.children.length===1)parent.remove();else{link.remove();if(parent?.tagName==='P'&&!parent.textContent.trim()&&!parent.children.length)parent.remove();}}};
+ clean();new MutationObserver(records=>{if(records.some(r=>r.addedNodes.length))clean();}).observe(document.body,{childList:true,subtree:true});
 })();
