@@ -146,3 +146,9 @@
   /* 진료 그룹의 링크는 그룹 버튼보다 한 단계 안쪽에서 시작합니다. */
   .armi-nav-group ul { padding-inline-start: 8px; }
 }
+
+/* 관리자에서 추가한 더 깊은 하위 메뉴도 키보드와 모바일에서 펼칩니다. */
+.armi-header .km-nav-nested-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; min-height: 44px; text-align: left; padding: 6px 8px; }
+.armi-header .km-nav-nested-panel { padding-left: 12px; }
+.armi-header .km-nav-nested-panel ul { display: block; }
+.armi-header .km-nav-nested-panel[hidden], .armi-header h1[hidden] { display: none; }
