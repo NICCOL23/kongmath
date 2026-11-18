@@ -61,3 +61,11 @@
 #report-school-options [role=option]:hover, #report-school-options [aria-selected=true] { background: #eaf3ff; color: #075aba; }
 #report-school-options .school-options-hint { padding: 8px; color: #526178; font-size: 12px; line-height: 1.5; }
 @media (pointer: coarse) { #report-school-options [role=option] { min-height: 44px; } }
+
+/* 제목·설명·게시판 링크를 검색창과 글 목록의 동일한 정렬선에 맞춥니다. */
+#treatment.exam-reports .treatment-title {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 960px;
+  margin: 0 auto 32px;
+}
