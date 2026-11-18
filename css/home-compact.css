@@ -16,6 +16,7 @@
 .km-home-compact #location .inner .loc-content{gap:32px;padding-top:24px;align-items:center}
 .km-home-compact #location .location-info .visit-address{margin-top:0}
 .km-home-compact #location .inner .location-info h2{font-size:24px;line-height:1.5;margin-top:24px}
+@media(max-width:960px){.km-home-compact .armi-header .armi-mobile-trigger{min-width:50px}}
 @media(max-width:1200px){
  .km-home-compact #main-visual .visual-img{height:420px}
  .km-home-compact #clinic-intro .inner{grid-template-columns:1fr;padding:32px 24px 40px;gap:28px}
