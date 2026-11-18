@@ -1,0 +1,45 @@
+#treatment.exam-reports .exam-report-tools {
+  width: calc(100% - 32px);
+  max-width: 960px;
+  margin: 0 auto 22px;
+}
+.exam-report-search {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #e2e8ef;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+.exam-report-search label { display: block; font-size: 14px; margin-bottom: 5px; color: #334155; }
+.exam-report-search input, .exam-report-search select, .exam-report-search button,
+.exam-report-paging button, #exam-report-retry {
+  box-sizing: border-box;
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #b7c3d2;
+  border-radius: 6px;
+  background: white;
+  color: #18243a;
+}
+.exam-report-search input { width: 100%; max-width: 100%; }
+.exam-report-search .report-school { width: 150px; }
+.exam-report-search .report-keyword { flex: 1 1 160px; }
+.exam-report-search select { max-width: 100%; }
+.exam-report-search button, .exam-report-paging button, #exam-report-retry { cursor: pointer; }
+.exam-report-search button[type=submit] { background: #087bff; border-color: #087bff; color: #fff; }
+.exam-report-search :focus-visible, .exam-report-paging button:focus-visible { outline: 2px solid #087bff; outline-offset: 3px; }
+#exam-report-status { margin: 18px 0 0; color: #475569; font-size: 15px; }
+.exam-report-paging { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+.exam-report-body img { max-width: 100%; height: auto; }
+.exam-report-body table { display: block; max-width: 100%; overflow-x: auto; }
+.exam-report { scroll-margin-top: 110px; }
+@media (max-width: 600px) {
+  .exam-report-search { gap: 10px; padding: 14px; }
+  .exam-report-search > div { flex: 1 1 calc(50% - 10px); min-width: 0; }
+  .exam-report-search .report-keyword { flex-basis: 100%; }
+  .exam-report-search select { width: 100%; }
+}
