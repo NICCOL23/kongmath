@@ -222,6 +222,7 @@
     closeSchools();
     history.replaceState(null, '', location.pathname);
     requestAnimationFrame(() => {
+      schoolSelect.value = '';
 
       loadReports();
     });
