@@ -62,7 +62,9 @@
         if (!link) continue;
         const item = document.createElement('li');
         const children = Array.isArray(row.children) ? row.children : [];
-        if (children.length && depth < 20) {
+        const directFamilyPage = depth === 0 && new URL(link.href).origin === 'https://kongmath.com' &&
+          new URL(link.href).pathname === '/family.html';
+        if (children.length && depth < 20 && !directFamilyPage) {
           const button = document.createElement('button');
           button.type = 'button'; button.textContent = row.title;
           button.className = depth === 0 ? 'armi-nav-trigger' : 'armi-group-trigger km-nav-nested-toggle';
