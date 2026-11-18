@@ -36,3 +36,6 @@
  .km-home-compact #location .inner .loc-content{gap:20px;padding-top:20px}
  .km-home-compact #location .inner .location-info h2{font-size:20px;margin-top:16px}
 }
+
+/* Align the main report heading and description to the existing preview list. */
+.km-home-compact #treatment.exam-reports .treatment-title{box-sizing:border-box;width:calc(100% - 32px);max-width:960px;margin-left:auto;margin-right:auto;padding-left:0;padding-right:0;text-align:left}
