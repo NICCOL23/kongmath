@@ -22,4 +22,10 @@ window.kmHomeContentRequest.then(data=>{
   const notices=studyroom.querySelector('.save-txt ul');if(notices){notices.replaceChildren();for(const card of cards.filter(x=>x.kind==='notice'&&x.title)){const item=document.createElement('li');item.textContent=card.title;notices.append(item);}notices.hidden=!notices.childElementCount;}
  }
  const academyFull=document.querySelector('.academy-archive-page');if(academyFull&&data.academyfull){const c=data.academyfull;academyFull.hidden=c.visible===false;set(academyFull,'.reviews-section__eyebrow',c.eyebrow);set(academyFull,'.academy-archive-heading h1',c.title);set(academyFull,'.academy-archive-heading p:last-child',c.description);}
+ const tuition=document.querySelector('#tuition');if(tuition&&data.tuition){
+  const c=data.tuition;tuition.hidden=c.visible===false;set(tuition,'#tuition-title',c.title);set(tuition,'.tuition-heading p',c.registration);set(tuition,'caption',c.caption);
+  const headers=tuition.querySelectorAll('thead th');['gradeLabel','mathLabel','englishLabel','combinedLabel'].forEach((key,i)=>{if(headers[i])headers[i].textContent=c[key]||'';});
+  const body=tuition.querySelector('tbody');if(body){body.replaceChildren();for(const card of Array.isArray(c.cards)?c.cards:[]){const row=document.createElement('tr');['title','math','english','combined'].forEach((key,i)=>{const cell=document.createElement(i===0?'th':'td');if(i===0)cell.scope='row';cell.textContent=card[key]||'';row.append(cell);});body.append(row);}}
+  let notice=tuition.querySelector('.tuition-managed-notice');if(!notice){notice=document.createElement('p');notice.className='tuition-managed-notice';notice.style.whiteSpace='pre-line';tuition.querySelector('table').after(notice);}notice.textContent=c.notice||'';notice.hidden=!c.notice;
+ }
 });
