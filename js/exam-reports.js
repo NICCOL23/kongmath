@@ -200,6 +200,30 @@
         throw new Error('분석 목록 형식 오류');
       }
       if (thisRequest !== requestNumber) return;
+      if (data.intro && typeof data.intro === 'object') {
+        const intro = data.intro;
+        const title = document.querySelector('#exam-reports-title');
+        const area = title.closest('.treatment-title');
+        const description = area.querySelector('p');
+        const linkRow = area.querySelectorAll('p')[1];
+        const link = linkRow.querySelector('a');
+        title.replaceChildren(document.createTextNode(intro.heading || ''));
+        if (intro.accent) {
+          const accent = document.createElement('span');
+          accent.textContent = intro.accent;
+          title.append(document.createTextNode(intro.heading ? ' ' : ''), accent);
+        }
+        title.hidden = !intro.heading && !intro.accent;
+        const section = title.closest('section');
+        if (title.hidden) { section.removeAttribute('aria-labelledby'); section.setAttribute('aria-label', '학교별 시험 분석'); }
+        else { section.setAttribute('aria-labelledby', title.id); section.removeAttribute('aria-label'); }
+        description.textContent = intro.description || '';
+        description.hidden = !intro.description;
+        link.textContent = intro.link_text || '';
+        const validLink = typeof intro.link_url === 'string' && /^https?:\/\//i.test(intro.link_url);
+        linkRow.hidden = !intro.link_text || !validLink;
+        link.href = validLink ? intro.link_url : '#';
+      }
       if (Array.isArray(data.schools)) {
         schools = data.schools.filter(name => typeof name === 'string');
         if (!schoolOptions.hidden) showSchools(filterSchools);
