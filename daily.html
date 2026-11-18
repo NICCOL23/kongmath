@@ -43,6 +43,7 @@
 
   <link rel="stylesheet" href="css/kongmath.css?v=blur-removal">
   <script defer src="js/footer-component.js?v=managed-layout"></script>
+<link rel="stylesheet" href="css/daily-design.css?v=daily-design-1">
 </head>
 
 <body>
@@ -63,20 +64,13 @@
         <a class="armi-header-login" href="https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_parent_portal">로그인</a>
       </div>
     </header>
-    <main>
-      <section id="academy-daily" class="academy-news academy-daily" aria-labelledby="academy-daily-title">
-        <div class="inner">
-          <h2 id="academy-daily-title">공쌤수학 일상</h2>
-          <p id="academy-daily-status" role="status">일상 글을 불러오는 중입니다.</p>
-          <button id="academy-daily-retry" type="button" hidden>다시 불러오기</button>
-          <noscript><p>일상 글을 보려면 브라우저의 자바스크립트를 켜 주세요.</p></noscript>
-          <ul id="academy-daily-posts" class="exam-report-list" aria-live="polite"></ul>
-          <p class="academy-news-link"><a href="https://blog.naver.com/tyk999">공쌤수학원 블로그 전체 글 보기 ↗</a></p>
-        </div>
-      </section>
-    </main>
+    <main id="academy-daily" class="daily-design"><section class="hero wrap" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><i></i> 공쌤수학 일상</p><h1 id="hero-title">배움 사이사이,<br><span>우리의 이야기.</span></h1><p class="intro">열심히 공부한 날도, 잠시 쉬어 간 날도.<br>공쌤수학원의 평범해서 더 소중한 순간들을 전합니다.</p><a class="text-link" href="#stories">우리의 일상 둘러보기 <span aria-hidden="true">↓</span></a><p class="hero-note">함께 공부하고, 함께 웃는 교실</p></div><figure class="hero-photo"><img src="https://kongmath.com/imges/main/about-studyroom-1.jpg" width="900" height="1200" alt="책상과 칸막이가 놓인 공쌤수학원 교실"><figcaption>공쌤의 교실에서, 오늘도 한 걸음.</figcaption></figure><nav id="daily-hero-controls" aria-label="히어로 사진 넘기기" hidden></nav></section>
+<section class="featured wrap" aria-labelledby="featured-title"><div class="section-heading"><div><p class="eyebrow">작은 순간의 기록</p><h2 id="featured-title">사진으로 만나는 공쌤의 하루</h2></div><a class="text-link" href="#stories">전체 일상 보기 <span aria-hidden="true">↗</span></a></div><div class="photo-grid" id="photo-grid"></div></section>
+<section class="stories wrap" id="stories" aria-labelledby="stories-title"><div class="section-heading"><div><p class="eyebrow">쌓여 가는 우리 이야기</p><h2 id="stories-title">공쌤 일상 게시판</h2></div><p class="quiet">제목을 누르면 사진과 글이 펼쳐집니다.</p></div><div class="toolbar"><div class="categories" role="group" aria-label="일상 분류"><button aria-pressed="true" data-category="전체">전체</button><button aria-pressed="false" data-category="함께한 날">함께한 날</button><button aria-pressed="false" data-category="배움과 준비">배움과 준비</button><button aria-pressed="false" data-category="교실 풍경">교실 풍경</button></div><form role="search" id="search"><label class="sr-only" for="keyword">일상 제목과 본문 검색</label><input id="keyword" type="search" placeholder="궁금한 일상을 찾아보세요"><button type="submit">검색</button></form></div><div class="list-meta"><p id="count" role="status" aria-live="polite">일상 글을 불러오는 중입니다.</p><button class="reset" type="button" id="reset">전체 보기</button></div><button id="daily-retry" type="button" hidden>다시 불러오기</button><noscript><p>일상 글을 보려면 브라우저의 자바스크립트를 켜 주세요.</p></noscript><div id="post-list"></div><nav id="pagination" class="pagination" aria-label="일상 목록 페이지"></nav></section>
+<section class="closing wrap"><p>공부의 기억 옆에,<br><strong>따뜻했던 마음도 남기를.</strong></p><a href="https://kongmath.com/family.html">공쌤의 오랜 교실에서 안부 전하기 <span aria-hidden="true">↗</span></a></section></main>
     <div data-site-footer></div>
   </div>
-  <script defer src="js/academy-daily.js?v=managed-daily"></script>
+  <script defer src="js/daily-design.js?v=daily-design-1"></script>
 </body>
 </html>
+
