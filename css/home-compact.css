@@ -1,0 +1,37 @@
+/* Main page only. Existing content, photos and other pages are preserved. */
+.km-home-compact main #main-visual>.inner{padding-top:32px;padding-bottom:32px}
+.km-home-compact #main-visual .visual-img{height:520px}
+.km-home-compact #clinic-intro .inner{display:grid;grid-template-columns:minmax(180px,.45fr) minmax(0,1fr);min-height:0;padding-top:32px;padding-bottom:40px;gap:32px 48px;align-items:center;align-content:start}
+.km-home-compact #clinic-intro .intro-career,.km-home-compact #clinic-intro .intro-content{width:auto;padding-top:0;min-width:0}
+.km-home-compact #clinic-intro .intro-content h2{margin-bottom:16px}
+.km-home-compact #clinic-intro .intro-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-column:1/-1;gap:24px;margin-top:0;width:100%}
+.km-home-compact #clinic-intro .value-item{width:auto;min-width:0;margin:0;padding:28px;border:1px solid #dfe6ed;border-radius:8px;background:#fff;text-align:left;box-sizing:border-box}
+.km-home-compact #clinic-intro .value-item::before{content:'';display:block;width:26px;height:3px;background:#0068dc;margin-bottom:16px}
+.km-home-compact #clinic-intro .value-item h3{color:#102f53;font-size:20px;line-height:1.4;margin-bottom:12px}
+.km-home-compact #clinic-intro .value-item p{color:#596b7c;font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.km-home-compact .reviews-preview,.km-home-compact #academy-about,.km-home-compact #treatment,.km-home-compact #save-teeth,.km-home-compact #location{padding-top:48px;padding-bottom:48px}
+.km-home-compact .reviews-preview__footer{margin-top:24px}
+.km-home-compact #academy-about .academy-featured-slider{margin-top:24px}
+.km-home-compact #academy-about .academy-card-slider{padding-bottom:36px}
+.km-home-compact #location .inner .loc-content{gap:32px;padding-top:24px;align-items:center}
+.km-home-compact #location .location-info .visit-address{margin-top:0}
+.km-home-compact #location .inner .location-info h2{font-size:24px;line-height:1.5;margin-top:24px}
+@media(max-width:1200px){
+ .km-home-compact #main-visual .visual-img{height:420px}
+ .km-home-compact #clinic-intro .inner{grid-template-columns:1fr;padding:32px 24px 40px;gap:28px}
+ .km-home-compact #clinic-intro .intro-content{text-align:left}
+ .km-home-compact #clinic-intro .intro-values{gap:16px}
+ .km-home-compact #clinic-intro .value-item{padding:24px}
+}
+@media(max-width:768px){
+ .km-home-compact main #main-visual>.inner{padding-top:24px;padding-bottom:24px;row-gap:24px}
+ .km-home-compact #main-visual .visual-img{height:280px}
+ .km-home-compact #clinic-intro .inner{padding:24px 20px 32px;gap:24px}
+ .km-home-compact #clinic-intro .intro-values{grid-template-columns:1fr;gap:12px}
+ .km-home-compact #clinic-intro .value-item{padding:22px}
+ .km-home-compact #clinic-intro .value-item h3{font-size:18px;margin-bottom:8px}
+ .km-home-compact #clinic-intro .value-item::before{margin-bottom:12px}
+ .km-home-compact .reviews-preview,.km-home-compact #academy-about,.km-home-compact #treatment,.km-home-compact #save-teeth,.km-home-compact #location{padding-top:32px;padding-bottom:32px}
+ .km-home-compact #location .inner .loc-content{gap:20px;padding-top:20px}
+ .km-home-compact #location .inner .location-info h2{font-size:20px;margin-top:16px}
+}
