@@ -1,5 +1,5 @@
 .km-home-compact #clinic-intro .value-item{background:var(--feature-background,#fff);border-color:var(--feature-border,#dfe6ed);padding:var(--feature-padding-y,28px) var(--feature-padding-x,28px)}
-.km-home-compact #clinic-intro .value-item::before{background:var(--feature-accent,#0068dc)}
+.km-home-compact #clinic-intro .value-item::before{content:none;display:none}
 .km-home-compact #clinic-intro .value-item h3{color:var(--feature-title-color,#102f53);font-size:var(--feature-title-size,20px);margin-bottom:var(--feature-title-gap,12px)}
 .km-home-compact #clinic-intro .value-item p{color:var(--feature-text-color,#596b7c);font-size:var(--feature-text-size,16px)}
 @media(max-width:1200px) and (min-width:769px){.km-home-compact #clinic-intro .value-item{padding:var(--feature-padding-y,24px) var(--feature-padding-x,24px)}}
