@@ -1,0 +1,12 @@
+#notices .academy-notices-heading,#notices .notice-tools,#notices .notice-status-row,#notices .academy-notices-list,#notices .notice-pages{box-sizing:border-box;width:100%;max-width:960px;margin-left:auto;margin-right:auto}
+#notices .academy-notices-heading{scroll-margin-top:120px}
+#notices .notice-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+#notices .notice-tools input,#notices .notice-tools select,#notices .notice-tools button{box-sizing:border-box;min-height:44px;border:1px solid var(--line,#dfe6ed);border-radius:6px;padding:8px 12px;background:#fff;color:var(--navy,#102f53);font:inherit}
+#notices .notice-tools input{width:280px;max-width:100%;min-width:0}#notices .notice-tools button{cursor:pointer}#notices .notice-tools button[type=submit]{background:var(--blue,#0068dc);color:#fff;border-color:var(--blue,#0068dc)}
+#notices .notice-tools label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#notices .notice-status-row{display:flex;gap:12px;align-items:center;margin-bottom:16px;color:var(--muted,#596b7c);font-size:14px}
+#notices #notice-retry{padding:8px;border:1px solid var(--line,#dfe6ed);background:#fff;color:var(--navy,#102f53);border-radius:6px}
+#notices .notice-pages{display:flex;justify-content:center;gap:8px;align-items:center;flex-wrap:wrap;margin-top:24px}#notices .notice-pages button{min-width:44px;min-height:44px;padding:8px 12px;border:1px solid var(--line,#dfe6ed);background:#fff;color:var(--navy,#102f53);border-radius:6px;font:inherit;cursor:pointer}#notices .notice-pages [aria-current=page]{background:var(--blue,#0068dc);border-color:var(--blue,#0068dc);color:#fff;font-weight:700}
+#notices .notice-empty{padding:24px 16px;color:var(--muted,#596b7c)}#notices .notice-body{overflow-wrap:anywhere}#notices .notice-body img{max-width:100%;height:auto}
+#notices :is(.notice-pages button,.notice-tools button,.notice-tools input,.notice-tools select):focus-visible{outline:3px solid var(--blue,#0068dc);outline-offset:2px}
+@media(max-width:600px){#notices .notice-tools input{flex:1;width:140px}#notices .notice-tools select{max-width:130px}#notices .notice-pages{gap:6px}}
