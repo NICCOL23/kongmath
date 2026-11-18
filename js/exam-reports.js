@@ -72,7 +72,8 @@
     if (schoolOptions.hidden) showSchools();
     const options = [...schoolOptions.querySelectorAll('[role="option"]')];
     if (!options.length) return;
-    activeSchool = (activeSchool + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
+    activeSchool = activeSchool < 0 ? (event.key === 'ArrowDown' ? 0 : options.length - 1)
+      : (activeSchool + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
     options.forEach((option, index) => option.setAttribute('aria-selected', String(index === activeSchool)));
     schoolSelect.setAttribute('aria-activedescendant', options[activeSchool].id);
     options[activeSchool].scrollIntoView({ block: 'nearest' });
