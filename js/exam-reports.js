@@ -206,7 +206,7 @@
         const area = title.closest('.treatment-title');
         const description = area.querySelector('p');
         const linkRow = area.querySelectorAll('p')[1];
-        const link = linkRow.querySelector('a');
+        const link = linkRow?.querySelector('a');
         title.replaceChildren(document.createTextNode(intro.heading || ''));
         if (intro.accent) {
           const accent = document.createElement('span');
@@ -219,10 +219,12 @@
         else { section.setAttribute('aria-labelledby', title.id); section.removeAttribute('aria-label'); }
         description.textContent = intro.description || '';
         description.hidden = !intro.description;
-        link.textContent = intro.link_text || '';
-        const validLink = typeof intro.link_url === 'string' && /^https?:\/\//i.test(intro.link_url);
-        linkRow.hidden = !intro.link_text || !validLink;
-        link.href = validLink ? intro.link_url : '#';
+        if (linkRow && link) {
+          link.textContent = intro.link_text || '';
+          const validLink = typeof intro.link_url === 'string' && /^https?:\/\//i.test(intro.link_url);
+          linkRow.hidden = !intro.link_text || !validLink;
+          link.href = validLink ? intro.link_url : '#';
+        }
       }
       if (Array.isArray(data.schools)) {
         schools = data.schools.filter(name => typeof name === 'string');
