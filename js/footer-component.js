@@ -101,6 +101,7 @@
 
 
 // 게시판: 한 글씩 펼치고 페이지 이동 시 닫습니다.
+if(['/reports.html','/notices.html','/daily.html','/reviews.html','/students.html'].includes(location.pathname)){
 (()=>{
  const close=()=>document.querySelectorAll('main details[open]').forEach(item=>item.open=false);
  document.addEventListener('toggle',event=>{
@@ -110,3 +111,5 @@
  window.addEventListener('pagehide',close);
  window.addEventListener('pageshow',event=>{if(event.persisted)close();});
 })();
+
+}
