@@ -10,6 +10,13 @@
   let schools = [];
   let activeSchool = -1;
   let filterSchools = false;
+  function chooseSchool(value) {
+    const direct = value === '__direct';
+    schoolSelect.value = direct ? '' : value;
+    schoolSelect.placeholder = direct ? '학교명 직접 입력' : '전체 학교';
+    closeSchools();
+    schoolSelect.focus();
+  }
   function closeSchools() {
     schoolOptions.hidden = true;
     schoolSelect.setAttribute('aria-expanded', 'false');
@@ -33,9 +40,7 @@
       option.textContent = name || '전체 학교';
       option.addEventListener('mousedown', event => event.preventDefault());
       option.addEventListener('click', () => {
-        schoolSelect.value = name;
-        closeSchools();
-        schoolSelect.focus();
+        chooseSchool(name);
       });
       schoolOptions.append(option);
     }
@@ -46,6 +51,15 @@
       hint.textContent = matches.length > 50 ? '앞 50개 표시 · 학교명을 더 입력하세요.' : '일치하는 학교 없음 · 직접 입력해 검색하세요.';
       schoolOptions.append(hint);
     }
+    const directOption = document.createElement('li');
+    directOption.id = 'school-option-direct';
+    directOption.setAttribute('role', 'option');
+    directOption.setAttribute('aria-selected', 'false');
+    directOption.dataset.value = '__direct';
+    directOption.textContent = '직접 입력';
+    directOption.addEventListener('mousedown', event => event.preventDefault());
+    directOption.addEventListener('click', () => chooseSchool('__direct'));
+    schoolOptions.append(directOption);
     activeSchool = -1;
     schoolSelect.removeAttribute('aria-activedescendant');
     schoolOptions.hidden = false;
@@ -65,8 +79,7 @@
     if (event.key === 'Tab') { closeSchools(); return; }
     if (event.key === 'Enter' && !schoolOptions.hidden && activeSchool >= 0) {
       event.preventDefault();
-      schoolSelect.value = schoolOptions.querySelectorAll('[role="option"]')[activeSchool].dataset.value;
-      closeSchools();
+      chooseSchool(schoolOptions.querySelectorAll('[role="option"]')[activeSchool].dataset.value);
       return;
     }
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
@@ -225,6 +238,7 @@
     history.replaceState(null, '', location.pathname);
     requestAnimationFrame(() => {
       schoolSelect.value = '';
+      schoolSelect.placeholder = '전체 학교';
 
       loadReports();
     });
