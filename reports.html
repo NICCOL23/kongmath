@@ -44,7 +44,7 @@
   <link rel="stylesheet" href="css/kongmath.css?v=blur-removal">
   <script defer src="js/footer-component.js?v=shared-footer-component"></script>
   <link rel="stylesheet" href="css/exam-reports.css?v=managed-reports">
-  <script defer src="js/exam-reports.js?v=managed-reports"></script>
+  <script defer src="js/exam-reports.js?v=school-options"></script>
 </head>
 
 <body>
@@ -75,12 +75,13 @@
           </div>
           <div class="exam-report-tools">
             <form class="exam-report-search" id="exam-report-search" role="search" aria-label="시험 분석 찾기">
-              <div class="report-school"><label for="report-school">학교명</label><input id="report-school" name="school" type="search" maxlength="60" placeholder="학교명 입력"></div>
+              <div class="report-school"><label for="report-school">학교명</label><select id="report-school" name="school"><option value="">전체 학교</option><option value="__direct">직접 입력</option></select><div id="report-school-direct" hidden><label for="report-school-input">학교명 직접 입력</label><input id="report-school-input" type="search" maxlength="60" placeholder="학교명 입력"></div></div>
               <div><label for="report-grade">학년</label><select id="report-grade" name="grade"><option value="">전체 학년</option><option>초1</option><option>초2</option><option>초3</option><option>초4</option><option>초5</option><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option><option>고3</option></select></div>
               <div><label for="report-year">연도</label><input id="report-year" name="year" type="number" min="2000" max="2100" placeholder="전체" style="width:88px"></div>
               <div><label for="report-term">학기</label><select id="report-term" name="term"><option value="">전체</option><option value="1">1학기</option><option value="2">2학기</option></select></div>
               <div><label for="report-exam">시험</label><select id="report-exam" name="exam"><option value="">전체</option><option>중간고사</option><option>기말고사</option><option>정기고사</option><option>기타</option></select></div>
-              <div class="report-keyword"><label for="report-keyword">제목·본문 검색</label><input id="report-keyword" name="keyword" type="search" maxlength="100" placeholder="검색어 입력"></div>
+              <div><label for="report-keyword-choice">자주 찾는 검색어</label><select id="report-keyword-choice"><option value="">전체 내용</option><option>중간고사</option><option>기말고사</option><option>정기고사</option><option>서술형</option><option>서답형</option><option>고난도</option><option>기출문제</option><option>다음 시험 대비</option><option value="__direct">직접 입력</option></select></div>
+              <div class="report-keyword"><label for="report-keyword">제목·본문 검색</label><input id="report-keyword" name="keyword" type="search" maxlength="100" placeholder="선택하거나 직접 입력"></div>
               <button type="submit">검색</button><button type="reset">초기화</button>
             </form>
             <p id="exam-report-status" role="status">분석 글을 불러오는 중입니다.</p>

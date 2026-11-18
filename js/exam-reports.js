@@ -4,9 +4,33 @@
   const status = document.querySelector('#exam-report-status');
   const paging = document.querySelector('#exam-report-paging');
   const retry = document.querySelector('#exam-report-retry');
+  const schoolSelect = document.querySelector('#report-school');
+  const schoolInput = document.querySelector('#report-school-input');
+  const schoolDirect = document.querySelector('#report-school-direct');
+  const keywordChoice = document.querySelector('#report-keyword-choice');
+  const keywordInput = document.querySelector('#report-keyword');
   const endpoint = 'https://kongmath.mycafe24.com/wp-admin/admin-post.php';
   let requestNumber = 0;
   let currentPage = 1;
+
+  function searchParams() {
+    const params = new URLSearchParams(new FormData(form));
+    params.set('school', schoolSelect.value === '__direct' ? schoolInput.value.trim() : schoolSelect.value);
+    return params;
+  }
+
+  schoolSelect.addEventListener('change', () => {
+    schoolDirect.hidden = schoolSelect.value !== '__direct';
+    if (!schoolDirect.hidden) schoolInput.focus();
+  });
+  keywordChoice.addEventListener('change', () => {
+    keywordInput.value = keywordChoice.value === '__direct' ? '' : keywordChoice.value;
+    if (keywordChoice.value === '__direct') keywordInput.focus();
+  });
+  keywordInput.addEventListener('input', () => {
+    const predefined = [...keywordChoice.options].some(option => option.value === keywordInput.value);
+    keywordChoice.value = predefined ? keywordInput.value : '__direct';
+  });
 
   function openLinkedReport() {
     const details = document.getElementById(location.hash.slice(1));
@@ -67,7 +91,7 @@
   async function loadReports(page = 1, findAnchor = false) {
     const thisRequest = ++requestNumber;
     currentPage = page;
-    const params = new URLSearchParams(new FormData(form));
+    const params = searchParams();
     params.set('action', 'km_exam_reports_data');
     params.set('report_page', page);
     if (findAnchor && /^#report-(?:wp-)?\d+$/.test(location.hash)) {
@@ -88,6 +112,20 @@
         throw new Error('분석 목록 형식 오류');
       }
       if (thisRequest !== requestNumber) return;
+      if (Array.isArray(data.schools)) {
+        const selectedSchool = schoolSelect.value;
+        schoolSelect.replaceChildren(new Option('전체 학교', ''));
+        for (const name of data.schools) {
+          if (typeof name === 'string') schoolSelect.add(new Option(name, name));
+        }
+        schoolSelect.add(new Option('직접 입력', '__direct'));
+        if (data.schools.includes(selectedSchool)) schoolSelect.value = selectedSchool;
+        else if (selectedSchool) {
+          schoolSelect.value = '__direct';
+          if (selectedSchool !== '__direct') schoolInput.value = selectedSchool;
+        }
+        schoolDirect.hidden = schoolSelect.value !== '__direct';
+      }
       list.replaceChildren(...data.reports.map(renderReport));
       status.textContent = data.total ? '전체 ' + data.total + '건' : '조건에 맞는 분석 글이 없습니다.';
       renderPaging(data.page, data.pages);
@@ -102,20 +140,28 @@
   }
 
   const initialParams = new URLSearchParams(location.search);
+  if (initialParams.get('school')) {
+    schoolSelect.add(new Option(initialParams.get('school'), initialParams.get('school')));
+  }
   for (const element of form.elements) {
     if (element.name && initialParams.has(element.name)) element.value = initialParams.get(element.name);
   }
+  keywordChoice.value = [...keywordChoice.options].some(option => option.value === keywordInput.value)
+    ? keywordInput.value : '__direct';
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    const params = new URLSearchParams(new FormData(form));
+    const params = searchParams();
     for (const [key, value] of [...params]) if (!value) params.delete(key);
     history.replaceState(null, '', location.pathname + (params.size ? '?' + params : ''));
     loadReports();
   });
   form.addEventListener('reset', () => {
     history.replaceState(null, '', location.pathname);
-    requestAnimationFrame(() => loadReports());
+    requestAnimationFrame(() => {
+      schoolDirect.hidden = true;
+      loadReports();
+    });
   });
   retry.addEventListener('click', () => loadReports(currentPage, Boolean(location.hash)));
   window.addEventListener('hashchange', () => {
