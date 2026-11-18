@@ -120,13 +120,15 @@
     }, true);
   }
 
-  Promise.all([fetch(dataUrl),featuredRoot?(window.kmHomeContentRequest||Promise.resolve(null)):Promise.resolve(null)])
+  Promise.all([fetch(dataUrl),window.kmHomeContentRequest||Promise.resolve(null)])
     .then(async ([response,managed]) => {
+      if(archiveRoot&&managed?.academyfull)return {managedArchive:true,cards:managed.academyfull.cards};
       if(managed?.academy&&!archiveRoot)return {managed:true,cards:managed.academy.cards};
       if (!response.ok) throw new Error("academy-cards.json을 불러오지 못했습니다.");
       return response.json();
     })
     .then(cards => {
+      if(cards.managedArchive){archiveRoot.innerHTML=cards.cards.map(card=>renderCard(card)).join("");return;}
       if (featuredRoot) {
         if(cards.managed){renderFeatured(cards.cards);return;}
         const byId = new Map(cards.map(card => [card.id, card]));

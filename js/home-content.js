@@ -10,4 +10,16 @@ window.kmHomeContentRequest.then(data=>{
  }
  const results=document.querySelector('.reviews-preview');if(results&&data.results){const c=data.results;results.hidden=c.visible===false;set(results,'.reviews-section__eyebrow',c.eyebrow);set(results,'#student-results-title',c.title);set(results,'.reviews-preview__heading > div > p:last-child',c.description);const link=results.querySelector('.reviews-preview__footer a');if(link){link.textContent=c.linkLabel||'';link.href=c.link||'#';link.hidden=!(c.linkLabel&&c.link);}}
  const academy=document.querySelector('#academy-about');if(academy&&data.academy){academy.hidden=data.academy.visible===false;set(academy,'#academy-about-title',data.academy.title);set(academy,'.academy-about-heading p',data.academy.description);}
+ const studyroom=document.querySelector('#save-teeth');
+ if(studyroom&&data.studyroom){
+  const c=data.studyroom;studyroom.hidden=c.visible===false;set(studyroom,'.save-txt h2',c.title);
+  const description=studyroom.querySelector('.save-txt > p');if(description){description.replaceChildren();String(c.description||'').split('\n').forEach((line,i)=>{if(i)description.append(document.createElement('br'));description.append(document.createTextNode(line));});description.hidden=!c.description;}
+  const safeURL=value=>{try{const url=new URL(value,location.origin+'/');return value&&['https:','http:'].includes(url.protocol)&&!url.username&&!url.password?url.href:'';}catch{return '';}};
+  const cards=Array.isArray(c.cards)?c.cards:[];
+  const photos=studyroom.querySelector('.study-room-photos');if(photos){photos.replaceChildren();for(const card of cards.filter(x=>x.kind==='photo')){
+   const src=safeURL(card.image);if(!src)continue;const link=document.createElement('a');link.href=safeURL(card.href)||src;const image=document.createElement('img');image.src=src;image.width=900;image.height=1200;image.alt=card.alt||card.title||'';image.loading='eager';image.decoding='async';link.append(image);photos.append(link);
+  }photos.hidden=!photos.childElementCount;}
+  const notices=studyroom.querySelector('.save-txt ul');if(notices){notices.replaceChildren();for(const card of cards.filter(x=>x.kind==='notice'&&x.title)){const item=document.createElement('li');item.textContent=card.title;notices.append(item);}notices.hidden=!notices.childElementCount;}
+ }
+ const academyFull=document.querySelector('.academy-archive-page');if(academyFull&&data.academyfull){const c=data.academyfull;academyFull.hidden=c.visible===false;set(academyFull,'.reviews-section__eyebrow',c.eyebrow);set(academyFull,'.academy-archive-heading h1',c.title);set(academyFull,'.academy-archive-heading p:last-child',c.description);}
 });
