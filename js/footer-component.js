@@ -98,3 +98,15 @@
   }
   applyManagedFooter().catch(error => console.warn('WordPress footer:', error));
 })();
+
+
+// 게시판: 한 글씩 펼치고 페이지 이동 시 닫습니다.
+(()=>{
+ const close=()=>document.querySelectorAll('main details[open]').forEach(item=>item.open=false);
+ document.addEventListener('toggle',event=>{
+  const current=event.target;if(!(current instanceof HTMLDetailsElement)||!current.open||!current.closest('main'))return;
+  current.closest('main').querySelectorAll('details[open]').forEach(item=>{if(item!==current&&!item.contains(current)&&!current.contains(item))item.open=false;});
+ },true);
+ window.addEventListener('pagehide',close);
+ window.addEventListener('pageshow',event=>{if(event.persisted)close();});
+})();
