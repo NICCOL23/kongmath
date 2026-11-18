@@ -6,6 +6,83 @@
   const retry = document.querySelector('#exam-report-retry');
   const schoolSelect = document.querySelector('#report-school');
   const schoolOptions = document.querySelector('#report-school-options');
+  const schoolToggle = document.querySelector('#report-school-toggle');
+  let schools = [];
+  let activeSchool = -1;
+  function closeSchools() {
+    schoolOptions.hidden = true;
+    schoolSelect.setAttribute('aria-expanded', 'false');
+    schoolToggle.setAttribute('aria-expanded', 'false');
+    schoolToggle.setAttribute('aria-label', '학교 목록 열기');
+    schoolSelect.removeAttribute('aria-activedescendant');
+    activeSchool = -1;
+  }
+  function showSchools() {
+    const query = schoolSelect.value.trim().toLocaleLowerCase();
+    const matches = schools.filter(name => name.toLocaleLowerCase().includes(query));
+    schoolOptions.replaceChildren();
+    const values = query ? matches.slice(0, 50) : ['', ...matches.slice(0, 50)];
+    for (const [index, name] of values.entries()) {
+      const option = document.createElement('li');
+      option.id = 'school-option-' + index;
+      option.setAttribute('role', 'option');
+      option.setAttribute('aria-selected', 'false');
+      option.dataset.value = name;
+      option.textContent = name || '전체 학교';
+      option.addEventListener('mousedown', event => event.preventDefault());
+      option.addEventListener('click', () => {
+        schoolSelect.value = name;
+        closeSchools();
+        schoolSelect.focus();
+      });
+      schoolOptions.append(option);
+    }
+    if (!matches.length || matches.length > 50) {
+      const hint = document.createElement('li');
+      hint.setAttribute('role', 'presentation');
+      hint.className = 'school-options-hint';
+      hint.textContent = matches.length > 50 ? '앞 50개 표시 · 학교명을 더 입력하세요.' : '일치하는 학교 없음 · 직접 입력해 검색하세요.';
+      schoolOptions.append(hint);
+    }
+    activeSchool = -1;
+    schoolSelect.removeAttribute('aria-activedescendant');
+    schoolOptions.hidden = false;
+    schoolSelect.setAttribute('aria-expanded', 'true');
+    schoolToggle.setAttribute('aria-expanded', 'true');
+    schoolToggle.setAttribute('aria-label', '학교 목록 닫기');
+  }
+  schoolToggle.addEventListener('click', () => {
+    if (schoolOptions.hidden) { schoolSelect.focus(); showSchools(); }
+    else closeSchools();
+  });
+  schoolSelect.addEventListener('click', showSchools);
+  schoolSelect.addEventListener('input', showSchools);
+  schoolSelect.addEventListener('keydown', event => {
+    if (event.isComposing) return;
+    if (event.key === 'Escape') { closeSchools(); return; }
+    if (event.key === 'Tab') { closeSchools(); return; }
+    if (event.key === 'Enter' && !schoolOptions.hidden && activeSchool >= 0) {
+      event.preventDefault();
+      schoolSelect.value = schoolOptions.querySelectorAll('[role="option"]')[activeSchool].dataset.value;
+      closeSchools();
+      return;
+    }
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+    event.preventDefault();
+    if (schoolOptions.hidden) showSchools();
+    const options = [...schoolOptions.querySelectorAll('[role="option"]')];
+    if (!options.length) return;
+    activeSchool = (activeSchool + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
+    options.forEach((option, index) => option.setAttribute('aria-selected', String(index === activeSchool)));
+    schoolSelect.setAttribute('aria-activedescendant', options[activeSchool].id);
+    options[activeSchool].scrollIntoView({ block: 'nearest' });
+  });
+  document.addEventListener('click', event => {
+    if (!schoolSelect.closest('.school-combobox').contains(event.target)) closeSchools();
+  });
+  document.addEventListener('focusin', event => {
+    if (!schoolSelect.closest('.school-combobox').contains(event.target)) closeSchools();
+  });
   const keywordChoice = document.querySelector('#report-keyword-choice');
   const keywordInput = document.querySelector('#report-keyword');
   const endpoint = 'https://kongmath.mycafe24.com/wp-admin/admin-post.php';
@@ -108,7 +185,8 @@
       }
       if (thisRequest !== requestNumber) return;
       if (Array.isArray(data.schools)) {
-        schoolOptions.replaceChildren(...data.schools.filter(name => typeof name === 'string').map(name => new Option(name, name)));
+        schools = data.schools.filter(name => typeof name === 'string');
+        if (!schoolOptions.hidden) showSchools();
       }
       list.replaceChildren(...data.reports.map(renderReport));
       status.textContent = data.total ? '전체 ' + data.total + '건' : '조건에 맞는 분석 글이 없습니다.';
@@ -133,12 +211,14 @@
 
   form.addEventListener('submit', event => {
     event.preventDefault();
+    closeSchools();
     const params = searchParams();
     for (const [key, value] of [...params]) if (!value) params.delete(key);
     history.replaceState(null, '', location.pathname + (params.size ? '?' + params : ''));
     loadReports();
   });
   form.addEventListener('reset', () => {
+    closeSchools();
     history.replaceState(null, '', location.pathname);
     requestAnimationFrame(() => {
 
