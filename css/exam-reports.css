@@ -43,3 +43,7 @@
   .exam-report-search .report-keyword { flex-basis: 100%; }
   .exam-report-search select { width: 100%; }
 }
+
+/* 연도 증감 화살표는 마우스를 올리지 않아도 표시합니다. */
+#report-year::-webkit-inner-spin-button,
+#report-year::-webkit-outer-spin-button { opacity: 1; }

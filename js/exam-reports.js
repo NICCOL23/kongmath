@@ -20,8 +20,12 @@
   }
 
   schoolSelect.addEventListener('change', () => {
-    schoolDirect.hidden = schoolSelect.value !== '__direct';
-    if (!schoolDirect.hidden) schoolInput.focus();
+    schoolDirect.hidden = false;
+    if (schoolSelect.value === '__direct') schoolInput.focus();
+    else schoolInput.value = '';
+  });
+  schoolInput.addEventListener('input', () => {
+    schoolSelect.value = schoolInput.value.trim() ? '__direct' : '';
   });
   keywordChoice.addEventListener('change', () => {
     keywordInput.value = keywordChoice.value === '__direct' ? '' : keywordChoice.value;
@@ -124,7 +128,7 @@
           schoolSelect.value = '__direct';
           if (selectedSchool !== '__direct') schoolInput.value = selectedSchool;
         }
-        schoolDirect.hidden = schoolSelect.value !== '__direct';
+        schoolDirect.hidden = false;
       }
       list.replaceChildren(...data.reports.map(renderReport));
       status.textContent = data.total ? '전체 ' + data.total + '건' : '조건에 맞는 분석 글이 없습니다.';
@@ -159,7 +163,7 @@
   form.addEventListener('reset', () => {
     history.replaceState(null, '', location.pathname);
     requestAnimationFrame(() => {
-      schoolDirect.hidden = true;
+      schoolDirect.hidden = false; schoolInput.value = '';
       loadReports();
     });
   });
