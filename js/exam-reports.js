@@ -5,8 +5,7 @@
   const paging = document.querySelector('#exam-report-paging');
   const retry = document.querySelector('#exam-report-retry');
   const schoolSelect = document.querySelector('#report-school');
-  const schoolInput = document.querySelector('#report-school-input');
-  const schoolDirect = document.querySelector('#report-school-direct');
+  const schoolOptions = document.querySelector('#report-school-options');
   const keywordChoice = document.querySelector('#report-keyword-choice');
   const keywordInput = document.querySelector('#report-keyword');
   const endpoint = 'https://kongmath.mycafe24.com/wp-admin/admin-post.php';
@@ -15,18 +14,10 @@
 
   function searchParams() {
     const params = new URLSearchParams(new FormData(form));
-    params.set('school', schoolSelect.value === '__direct' ? schoolInput.value.trim() : schoolSelect.value);
+    params.set('school', schoolSelect.value.trim());
     return params;
   }
 
-  schoolSelect.addEventListener('change', () => {
-    schoolDirect.hidden = false;
-    if (schoolSelect.value === '__direct') schoolInput.focus();
-    else schoolInput.value = '';
-  });
-  schoolInput.addEventListener('input', () => {
-    schoolSelect.value = schoolInput.value.trim() ? '__direct' : '';
-  });
   keywordChoice.addEventListener('change', () => {
     keywordInput.value = keywordChoice.value === '__direct' ? '' : keywordChoice.value;
     if (keywordChoice.value === '__direct') keywordInput.focus();
@@ -117,18 +108,7 @@
       }
       if (thisRequest !== requestNumber) return;
       if (Array.isArray(data.schools)) {
-        const selectedSchool = schoolSelect.value;
-        schoolSelect.replaceChildren(new Option('전체 학교', ''));
-        for (const name of data.schools) {
-          if (typeof name === 'string') schoolSelect.add(new Option(name, name));
-        }
-        schoolSelect.add(new Option('직접 입력', '__direct'));
-        if (data.schools.includes(selectedSchool)) schoolSelect.value = selectedSchool;
-        else if (selectedSchool) {
-          schoolSelect.value = '__direct';
-          if (selectedSchool !== '__direct') schoolInput.value = selectedSchool;
-        }
-        schoolDirect.hidden = false;
+        schoolOptions.replaceChildren(...data.schools.filter(name => typeof name === 'string').map(name => new Option(name, name)));
       }
       list.replaceChildren(...data.reports.map(renderReport));
       status.textContent = data.total ? '전체 ' + data.total + '건' : '조건에 맞는 분석 글이 없습니다.';
@@ -144,9 +124,7 @@
   }
 
   const initialParams = new URLSearchParams(location.search);
-  if (initialParams.get('school')) {
-    schoolSelect.add(new Option(initialParams.get('school'), initialParams.get('school')));
-  }
+
   for (const element of form.elements) {
     if (element.name && initialParams.has(element.name)) element.value = initialParams.get(element.name);
   }
@@ -163,7 +141,7 @@
   form.addEventListener('reset', () => {
     history.replaceState(null, '', location.pathname);
     requestAnimationFrame(() => {
-      schoolDirect.hidden = false; schoolInput.value = '';
+
       loadReports();
     });
   });
