@@ -7,10 +7,10 @@
     .replaceAll("'", "&#039;");
 
   const renderPreviewCard = (item, index) => {
-    const previewNumber = item.previewNumber ?? (item.id === "224369881711" ? 5 : index + 1);
+    const previewNumber = Number(item.previewNumber) || (item.id === "224369881711" ? 5 : index + 1);
     return `<article class="student-preview-card">
-    <a class="student-preview-card__visual" href="students.html#student-${escapeHtml(item.id)}">
-      <img src="${escapeHtml(item.images[0])}" alt="${escapeHtml(item.title)} 대표 이미지" loading="lazy" decoding="async">
+    <a class="student-preview-card__visual" href="${escapeHtml(item.href || `students.html#student-${item.id}`)}">
+      <img src="${escapeHtml(item.images[0] || "")}" alt="${escapeHtml(item.title)} 대표 이미지" loading="lazy" decoding="async">
       <span class="student-preview-card__number">${String(previewNumber).padStart(2, "0")} / 09</span>
     </a>
     <div class="student-preview-card__body">

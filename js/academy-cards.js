@@ -61,7 +61,7 @@
   function renderDetails(card) {
     const paragraphs = (card.paragraphs || []).map(text => `<p>${escapeHtml(text)}</p>`).join("");
     const list = card.list?.length ? `<ul>${card.list.map(text => `<li>${escapeHtml(text)}</li>`).join("")}</ul>` : "";
-    const gallery = card.gallery?.length ? `<div class="academy-card__gallery">${card.gallery.map(image => `<a href="${escapeHtml(image.src)}"${linkAttributes(image.src)}><img src="${escapeHtml(image.src)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async"></a>`).join("")}</div>` : "";
+    const gallery = card.gallery?.length ? `<div class="academy-card__gallery">${card.gallery.map(image => `<a href="${escapeHtml(image.src)}"${linkAttributes(image.src)}><img src="${escapeHtml(image.src)}" width="${Number(image.width)||900}" height="${Number(image.height)||900}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async"></a>`).join("")}</div>` : "";
     const links = (card.links || []).map(link => `<a href="${escapeHtml(link.href)}"${linkAttributes(link.href)}>${escapeHtml(link.label)}</a>`).join("");
     const afterGallery = (card.linksAfterGallery || []).map(link => `<a href="${escapeHtml(link.href)}"${linkAttributes(link.href)}>${escapeHtml(link.label)}</a>`).join("");
     return `<div class="academy-card__detail">${paragraphs}${list}${links}${gallery}${afterGallery}</div>`;
@@ -72,7 +72,7 @@
     const posterClass = card.poster ? " academy-card__image--poster" : "";
     return `<article class="academy-card${slideClass}" id="${escapeHtml(card.id)}">
       <a class="academy-card__image${posterClass}" href="${escapeHtml(card.href)}"${linkAttributes(card.href)}>
-        <img src="${escapeHtml(card.image)}" width="${card.width}" height="${card.height}" alt="${escapeHtml(card.alt)}" loading="lazy" decoding="async">
+        <img src="${escapeHtml(card.image)}" width="${Number(card.width)||900}" height="${Number(card.height)||900}" alt="${escapeHtml(card.alt)}" loading="lazy" decoding="async">
       </a>
       <div class="academy-card__body">
         <p class="academy-card__category">${escapeHtml(card.category)} <time datetime="${escapeHtml(card.date.replaceAll(".", "-"))}">${escapeHtml(card.date)}</time></p>
@@ -97,7 +97,7 @@
     const slider = featuredRoot.querySelector(".academy-card-slider");
     if (!window.Swiper) return;
     const swiper = new Swiper(slider, {
-      loop: true,
+      loop: cards.length > 4,
       speed: 560,
       spaceBetween: 20,
       slidesPerView: 1,
@@ -120,13 +120,15 @@
     }, true);
   }
 
-  fetch(dataUrl)
-    .then(response => {
+  Promise.all([fetch(dataUrl),featuredRoot?(window.kmHomeContentRequest||Promise.resolve(null)):Promise.resolve(null)])
+    .then(async ([response,managed]) => {
+      if(managed?.academy&&!archiveRoot)return {managed:true,cards:managed.academy.cards};
       if (!response.ok) throw new Error("academy-cards.json을 불러오지 못했습니다.");
       return response.json();
     })
     .then(cards => {
       if (featuredRoot) {
+        if(cards.managed){renderFeatured(cards.cards);return;}
         const byId = new Map(cards.map(card => [card.id, card]));
         renderFeatured(featuredIds.map(id => byId.get(id)).filter(Boolean));
       }
