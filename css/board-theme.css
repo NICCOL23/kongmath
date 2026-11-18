@@ -75,3 +75,15 @@ main[data-km-board] :is(.academy-notices-list>li:first-child>details,.exam-repor
 main[data-km-board] :is(.academy-notices-list>li>details,.exam-report)>summary{padding:18px 16px;min-height:64px;box-sizing:border-box;font-size:16px;line-height:1.6;color:var(--navy)}
 main[data-km-board] :is(.academy-notices-list>li>details,.exam-report)[open]>summary{color:var(--blue)}
 @media(max-width:760px){main[data-km-board] :is(.academy-notices-list>li>details,.exam-report)>summary{padding:16px 12px;font-size:15px}}
+main[data-km-board=native]:not(:has(.family-layout)) > details{border-top:0}
+main[data-km-board=native]:not(:has(.family-layout)) > details:first-of-type{border-top:1px solid var(--line)}
+@media(max-width:960px){
+ body:has(main[data-km-board]) .armi-header .inner{gap:6px;padding-inline:12px}
+ body:has(main[data-km-board]) .armi-header .inner h1{width:100px;flex:0 0 100px}
+ body:has(main[data-km-board]) .armi-header .inner h1 img{width:100px;height:auto}
+ body:has(main[data-km-board]) .armi-header .armi-mobile-login{font-size:11px;padding:6px 8px}
+ body:has(main[data-km-board]) .armi-header .km-header-blog{font-size:11px;padding:6px 8px}
+ body:has(main[data-km-board]) .armi-header .armi-mobile-trigger{min-width:50px;font-size:11px;padding:6px}
+ body:has(main[data-km-board]) .armi-header .inner .armi-nav{display:block;gap:0}
+ body:has(main[data-km-board]) .armi-header .armi-mobile-quick{display:flex;gap:8px}
+}
