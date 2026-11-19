@@ -7,7 +7,7 @@
   const title=kind==='family'?card.querySelector(':scope>h4'):card.querySelector('.review-card__content');if(!title)return;
   const detail=document.createElement('details');detail.className='km-compact-post';
   const summary=document.createElement('summary'),heading=document.createElement('span'),meta=document.createElement('span');
-  heading.className='km-compact-title';heading.textContent=title.textContent.trim();meta.className='km-compact-meta';
+  heading.className='km-compact-title';heading.textContent=kind==='review'&&card.dataset.reviewTitle?card.dataset.reviewTitle:title.textContent.trim();meta.className='km-compact-meta';
   if(kind==='family'){
    const top=card.querySelector('.story-top');
    for(const selector of ['h3','.meta']){const node=top?.querySelector(selector);const text=selector==='h3'&&node?[...node.childNodes].map(x=>x.textContent.trim()).filter(Boolean).join(' · '):node?.textContent.trim();if(text){const span=document.createElement('span');span.textContent=text;meta.append(span);}}

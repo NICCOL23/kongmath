@@ -12,12 +12,14 @@
 <link rel="stylesheet" href="css/common.css?v=global-overlay-guard">
   <link rel="stylesheet" href="css/armi-header.css?v=managed-layout">
   <link rel="stylesheet" href="css/reviews.css?v=consented-review-board-2">
+  <script defer src="js/board-compact.js?v=1.32.0"></script>
   <script defer src="js/armi-header.js?v=community-1.31.4"></script>
-  <script defer src="js/reviews.js?v=1.30.0"></script>
+  <script defer src="js/reviews.js?v=1.32.0"></script>
   <script defer src="js/footer-component.js?v=managed-layout"></script>
 <link rel="stylesheet" href="css/board-theme.css?v=1.24.1">
 <link rel="stylesheet" href="https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_board_design_css&amp;board=reviews">
 <link rel="stylesheet" href="css/reviews-managed.css?v=1.30.1">
+<link rel="stylesheet" href="css/community-pages.css?v=1.32.0"><script defer src="js/community-review-hero.js?v=1.32.0"></script>
 </head>
 <body class="reviews-page">
   <div id="wrap">
@@ -40,13 +42,12 @@
     </header>
 
     <main data-km-board="static">
-      <section class="reviews-hero">
-        <div class="inner">
-          <p class="reviews-hero__eyebrow">KONG MATH STORIES</p>
-          <h2>학생과 학부모의<br><span>실제 이야기</span>를 담습니다.</h2>
-          <p class="reviews-hero__desc">재학생·졸업생·학부모가 전하는 공쌤 수업의 경험을 모았습니다.</p><nav class="community-tabs" aria-label="오랜 교실 게시판"><a href="family.html">안부 나누기</a><a href="reviews.html" aria-current="page">수업 후기</a></nav>
-        </div>
-      </section>
+      <section class="community-review-hero" aria-labelledby="community-review-title">
+ <div class="community-hero-row"><div class="hero-copy"><p class="eyebrow">KONG MATH · OUR LITTLE COMMUNITY</p><h1 id="community-review-title">공쌤의 <em>오랜 교실</em></h1><p class="hero-description" data-review-hero="description">함께 공부하며 달라진 순간들,
+학생과 학부모의 목소리를 담습니다.</p><a class="community-read" href="#review-list-title" data-review-hero="button">수업 후기 읽기</a></div>
+ <div class="hero-art" aria-hidden="true"><div class="paper paper-back"></div><div class="paper paper-front"><span class="paper-pin"></span><small data-review-hero="recipient">TO. 공쌤 가족에게</small><strong data-review-hero="paper">공쌤과 함께한 시간은
+어땠나요?</strong><div class="paper-line"></div><span class="hand-sign" data-review-hero="signature">공쌤의 교실에서 ♡</span></div></div></div>
+ <nav class="community-tabs" aria-label="오랜 교실 게시판"><a href="reviews.html" aria-current="page">수업 후기</a><a href="family.html">안부 나누기</a></nav></section>
 
       
 
@@ -57,7 +58,7 @@
             <h2 id="review-list-title">수업 후기</h2>
             <p>네이버에서 남겨주신 후기는 작은 출처 표시와 함께 소개합니다.</p>
           </div>
-          <form id="review-search" class="review-tools" role="search" aria-label="수업 후기 찾기"><label for="review-keyword">후기 내용 검색</label><input id="review-keyword" type="search" placeholder="후기 내용 검색" maxlength="100"><button type="submit">검색</button><button type="button" id="review-reset">초기화</button></form><p id="review-status" role="status">후기를 불러오는 중입니다.</p><button type="button" id="review-retry" hidden>다시 불러오기</button><div class="review-grid" data-review-list></div><nav class="review-pages" id="review-pages" aria-label="후기 목록 페이지"></nav>
+          <div class="review-toolbar"><form id="review-search" class="review-tools" role="search" aria-label="수업 후기 찾기"><label for="review-keyword">후기 내용 검색</label><input id="review-keyword" type="search" placeholder="후기 내용 검색" maxlength="100"><button type="submit">검색</button><button type="button" id="review-reset">초기화</button></form><a class="community-write" href="https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_reviews&amp;write=1#write-review">후기 쓰기</a></div><p id="review-status" role="status">후기를 불러오는 중입니다.</p><button type="button" id="review-retry" hidden>다시 불러오기</button><div class="review-grid" data-review-list></div><nav class="review-pages" id="review-pages" aria-label="후기 목록 페이지"></nav>
           <div class="reviews-empty" data-review-empty hidden>
             <h3>등록된 후기가 준비 중입니다.</h3>
             <p>상담을 통해 실제 학습 경험을 확인해보세요.</p>
