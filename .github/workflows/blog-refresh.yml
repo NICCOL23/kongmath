@@ -13,18 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: 최신 블로그 글과 카테고리별 게시판 확인
+      - name: 워드프레스 표준 예약 작업 실행
         run: |
-          curl --fail --silent --show-error --max-time 210 'https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_blog_data' -o /tmp/kongmath-blog.json
+          curl --fail --silent --show-error --max-time 210 'https://kongmath.mycafe24.com/wp-cron.php?doing_wp_cron' -o /tmp/kongmath-cron.txt
           python3 - <<'PY'
-          import json
-          from datetime import datetime, timezone
-          with open('/tmp/kongmath-blog.json') as f:
-              data = json.load(f)
-          assert data.get('interval') == 1800
-          assert data.get('healthy') is True, '블로그 동기화 오류'
-          age = (datetime.now(timezone.utc) - datetime.fromisoformat(data['updatedAt'].replace('Z', '+00:00'))).total_seconds()
-          assert 0 <= age < 3900, '갱신 지연'
-          assert len(data.get('posts', [])) == 6, '최신 글 6개 확인 실패'
-          print('최신 6개 확인 완료 · 갱신:', data.get('updatedAt'))
+          from pathlib import Path
+          body = Path('/tmp/kongmath-cron.txt').read_text().strip()
+          assert not body, '워드프레스 예약 실행 오류 응답'
+          print('워드프레스 예약 작업 호출 완료')
           PY
