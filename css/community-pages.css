@@ -40,6 +40,6 @@ main[data-km-board]>.hero .hero-copy>.eyebrow,.community-review-hero .hero-copy>
 @media(max-width:680px){.reviews-page main[data-km-board]>.reviews-section{padding-top:24px!important}.reviews-page .review-toolbar{margin-top:12px}}
 
 /* Match greeting board title-to-search spacing to the review board. */
-main[data-km-board] #family-feed .feed-heading{margin-bottom:0}
-main[data-km-board] #family-feed .family-search{margin-top:16px}
-@media(max-width:680px){main[data-km-board] #family-feed .family-search{margin-top:12px}}
+main[data-km-board] #family-feed .feed-heading{margin-bottom:0!important}
+main[data-km-board] #family-feed .family-search{margin-top:16px!important}
+@media(max-width:680px){main[data-km-board] #family-feed .family-search{margin-top:12px!important}}
