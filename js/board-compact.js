@@ -44,3 +44,26 @@
  });}
  scan();new MutationObserver(scan).observe(root,{childList:true,subtree:true});
 })();
+
+(()=>{'use strict';
+ if(window.kmDailyNoticeViewer)return;
+ const daily=document.querySelector('#academy-daily #post-list');
+ const notice=document.querySelector('main[data-km-board] .notice-body');
+ const list=daily||(notice&&notice.closest('main'));if(!list)return;window.kmDailyNoticeViewer=true;
+ const css=document.createElement('link');css.rel='stylesheet';css.href='https://kongmath.com/css/report-image-viewer.css?v=1';document.head.append(css);
+ const imageSelector=daily?'.post-body img':'.notice-body img';
+ let viewer,photo,stage,label,minus,plus,reset,origin,scale=1,previousOverflow='';
+ const isAnalysis=image=>{try{const u=new URL(image.currentSrc||image.src);return /^https?:$/.test(u.protocol)&&!image.classList.contains('report-sticker')&&!/sticker|ogq_|staticmap/i.test(u.pathname)&&!/(^|\.)(storep-phinf|simg)\.pstatic\.net$/i.test(u.hostname);}catch{return false;}};
+ function resize(){if(!photo?.naturalWidth)return;const fit=Math.min(photo.naturalWidth,Math.max(1,stage.clientWidth-32));photo.style.width=Math.round(fit*scale)+'px';label.textContent=Math.round(scale*100)+'%';minus.disabled=scale<=1;plus.disabled=scale>=4;reset.disabled=scale===1;}
+ function build(){viewer=document.createElement('dialog');viewer.className='km-report-viewer';viewer.setAttribute('aria-label','게시판 사진 확대');
+ const toolbar=document.createElement('div');toolbar.className='km-report-viewer__toolbar';const title=document.createElement('strong');title.textContent='사진';const controls=document.createElement('div');controls.className='km-report-viewer__controls';
+ const button=(text,name,fn)=>{const b=document.createElement('button');b.type='button';b.textContent=text;b.setAttribute('aria-label',name);b.addEventListener('click',fn);return b;};
+ minus=button('−','사진 축소',()=>{scale=Math.max(1,scale-.5);resize();});plus=button('+','사진 확대',()=>{scale=Math.min(4,scale+.5);resize();});reset=button('맞춤','화면에 맞추기',()=>{scale=1;resize();stage.scrollTo(0,0);});label=document.createElement('span');label.setAttribute('aria-live','polite');const close=button('닫기 ×','확대 사진 닫기',()=>viewer.close());controls.append(minus,label,plus,reset,close);toolbar.append(title,controls);
+ stage=document.createElement('div');stage.className='km-report-viewer__stage';stage.tabIndex=0;stage.setAttribute('aria-label','확대한 사진. 확대 후 상하좌우로 이동할 수 있습니다.');photo=document.createElement('img');photo.alt='게시판 사진';photo.referrerPolicy='no-referrer';photo.addEventListener('load',resize);stage.append(photo);viewer.append(toolbar,stage);document.body.append(viewer);
+ viewer.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;photo.removeAttribute('src');origin?.isConnected&&origin.focus({preventScroll:true});});window.addEventListener('resize',()=>{if(viewer.open)resize();});}
+ function open(image){if(!viewer)build();origin=image.closest('a')||image;scale=1;previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';photo.alt=image.alt||'게시판 사진';photo.src=image.currentSrc||image.src;viewer.showModal();resize();stage.scrollTo(0,0);}
+ function decorate(){list.querySelectorAll(imageSelector).forEach(image=>{if(!isAnalysis(image)||image.dataset.kmBoardZoom)return;image.dataset.kmBoardZoom='1';image.classList.add('km-report-zoomable');const trigger=image.closest('a')||image;trigger.setAttribute('role','button');trigger.setAttribute('tabindex','0');trigger.setAttribute('aria-label',(image.alt||'사진')+' 크게 보기');trigger.setAttribute('aria-haspopup','dialog');});}
+ list.addEventListener('click',event=>{const image=event.target.closest('img[data-km-board-zoom]');if(!image)return;event.preventDefault();open(image);});
+ list.addEventListener('keydown',event=>{if(event.key!=='Enter'&&event.key!==' ')return;const trigger=event.target.closest('[aria-haspopup="dialog"]');const image=trigger?.matches('img')?trigger:trigger?.querySelector('img[data-km-board-zoom]');if(!image)return;event.preventDefault();open(image);});
+ decorate();new MutationObserver(decorate).observe(list,{childList:true,subtree:true});
+})();
