@@ -1,0 +1,8 @@
+.km-board-pagination{display:flex!important;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px!important;margin:24px 0!important;padding:0!important;clear:both}
+.km-board-pagination:empty{display:none!important}
+.km-board-pagination>a,.km-board-pagination>button,.km-board-pagination>span{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin:0!important;padding:8px 12px!important;border:1px solid #d2dce6!important;border-radius:6px!important;background:#fff!important;color:#173c56!important;font:inherit!important;font-size:15px!important;line-height:1.4!important;text-decoration:none!important;cursor:pointer}
+.km-board-pagination>[aria-current="page"],.km-board-pagination>.current{background:#0068dc!important;border-color:#0068dc!important;color:#fff!important;font-weight:700!important}
+.km-board-pagination>.dots{min-width:20px;border-color:transparent!important;background:transparent!important;padding:8px 2px!important;cursor:default}
+.km-board-pagination>a:hover,.km-board-pagination>button:hover{border-color:#0068dc!important}
+.km-board-pagination>a:focus-visible,.km-board-pagination>button:focus-visible{outline:3px solid #0068dc;outline-offset:2px}
+@media(max-width:480px){.km-board-pagination{gap:4px!important}.km-board-pagination>a,.km-board-pagination>button,.km-board-pagination>span{padding:8px!important;min-width:40px}}

@@ -179,17 +179,7 @@
   function renderPaging(page, pages) {
     paging.replaceChildren();
     if (pages < 2) return;
-    for (const [label, destination] of [['이전', page - 1], ['다음', page + 1]]) {
-      if (destination < 1 || destination > pages) continue;
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.textContent = label;
-      button.addEventListener('click', () => {
-        loadReports(destination);
-        form.scrollIntoView({ block: 'start' });
-      });
-      paging.append(button);
-    }
+    window.kmRenderBoardPagination(paging,{page,pages,onPage:async n=>{await loadReports(n);paging.querySelector('[aria-current="page"]')?.focus({preventScroll:true});form.scrollIntoView({block:'start'});}});
   }
 
   async function loadReports(page = 1, findAnchor = false) {
