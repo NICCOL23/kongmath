@@ -30,3 +30,5 @@ body.reviews-page main[data-km-board] .review-card .review-card__content,body.re
 main[data-km-board]>.hero .hero-copy>.eyebrow,.community-review-hero .hero-copy>.eyebrow{display:none}
 
 .reviews-page .reviews-section>.inner>.eyebrow{display:none}
+
+.reviews-page .reviews-section__eyebrow{display:none}
