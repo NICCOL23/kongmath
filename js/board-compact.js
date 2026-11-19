@@ -38,7 +38,7 @@
   if(!body||!summary||body.querySelector(':scope > .km-post-close-actions'))return;
   if(!details.id)details.id='km-notice-close-'+(++serial);
   const actions=document.createElement('div');actions.className='exam-report-actions km-post-close-actions';
-  const button=document.createElement('button');button.type='button';button.className='exam-report-close';button.textContent='글 접고 목록으로 ↑';button.setAttribute('aria-controls',details.id);
+  const button=document.createElement('button');button.type='button';button.className='exam-report-close';button.style.color='#fff';button.textContent='글 접고 목록으로 ↑';button.setAttribute('aria-controls',details.id);
   button.addEventListener('click',()=>{details.open=false;summary.focus({preventScroll:true});const headerBottom=Math.max(0,document.querySelector('header')?.getBoundingClientRect().bottom||0);const top=summary.getBoundingClientRect().top+window.scrollY-headerBottom-16;window.scrollTo({top:Math.max(0,top),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
   actions.append(button);body.append(actions);
  });}
