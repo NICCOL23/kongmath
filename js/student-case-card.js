@@ -8,11 +8,11 @@
 
   const renderPreviewCard = (item, index) => {
     const previewNumber = Number(item.previewNumber) || (item.id === "224369881711" ? 5 : index + 1);
-    return `<article class="student-preview-card">
-    <a class="student-preview-card__visual" href="${escapeHtml(item.href || `students.html#student-${item.id}`)}">
+    return `<article class="student-preview-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${escapeHtml(item.title)} 사진 크게 보기" data-km-image="${escapeHtml(item.images[0] || "")}">
+    <span class="student-preview-card__visual">
       <img src="${escapeHtml(item.images[0] || "")}" alt="${escapeHtml(item.title)} 대표 이미지" loading="lazy" decoding="async">
       <span class="student-preview-card__number">${String(previewNumber).padStart(2, "0")} / 09</span>
-    </a>
+    </span>
     <div class="student-preview-card__body">
       <div class="student-preview-card__head">
         <p class="student-preview-card__meta">${escapeHtml(item.typeLabel)}</p>
