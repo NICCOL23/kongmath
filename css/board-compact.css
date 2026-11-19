@@ -1,6 +1,7 @@
 /* Reading spacing only. Existing records, access rules and images are untouched. */
 :is(main[data-km-board],#academy-daily) :is(.post-body,.story-body,.notice-body,.exam-report-body,.km-example-body,.student-case-body,.km-compact-content){line-height:1.5}
 main[data-km-board] article details :is(p.message,p.review){line-height:1.5;margin-block:0 8px}
+main[data-km-board] .student-case-card__expanded p,main[data-km-board=native] section>p.copy{font-size:var(--km-compact-body,15px);line-height:1.5;margin-block:0 8px}
 :is(main[data-km-board],#academy-daily) :is(.post-body,.story-body,.notice-body,.exam-report-body,.km-example-body,.student-case-body,.review-card__content) p{line-height:1.5;margin-block:0 8px}
 :is(main[data-km-board],#academy-daily) :is(.post-body,.notice-body,.exam-report-body,.km-example-body){padding:16px 20px 12px;min-height:0}
 :is(main[data-km-board],#academy-daily) :is(.story-body,.review-card__content) p:last-child{margin-bottom:0}
