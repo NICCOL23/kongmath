@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "lastMaintenanceAt": "2026-11-19T06:17:01.085044+00:00",
+  "refreshIntervalSeconds": 1800,
+  "maintenanceIntervalDays": 7,
+  "cronOutcome": "success"
+}
