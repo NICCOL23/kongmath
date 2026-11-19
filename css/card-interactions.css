@@ -6,3 +6,5 @@
 .km-card-all:focus-visible{outline:3px solid #0068dc;outline-offset:3px}
 .student-preview-card{cursor:default}
 .academy-card__body>.km-card-detail-link{margin-top:4px}.academy-card__body>.km-card-detail-link::after{content:"→"}
+
+.km-card-title-link,.km-card-description-link{display:block}
