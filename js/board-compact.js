@@ -1,7 +1,7 @@
 (()=>{'use strict';
  if(window.kmCompactBoards)return;window.kmCompactBoards=true;
  const main=document.querySelector('main[data-km-board],#academy-daily');if(!main)return;
- const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='https://kongmath.com/css/board-compact.css?v=1.31.1';document.head.append(sheet);
+ const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='https://kongmath.com/css/board-compact.css?v=1.31.2';document.head.append(sheet);
  function wrap(card,kind){
   if(card.dataset.kmCompact)return;card.dataset.kmCompact='1';
   const title=kind==='family'?card.querySelector(':scope>h4'):card.querySelector('.review-card__content');if(!title)return;

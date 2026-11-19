@@ -18,6 +18,7 @@ main[data-km-board] .km-compact-meta :is(p,time,span){margin:0;padding:0;font-si
 main[data-km-board] .km-compact-content{padding:16px 20px 12px;border-top:1px solid #dfe6ed;font-size:15px}
 main[data-km-board] .km-compact-content>.story-top,main[data-km-board] .km-compact-content>h4{display:none}
 main[data-km-board] .km-compact-content .story-body{padding:0;margin:0;background:transparent;line-height:1.5}
+main[data-km-board] .km-compact-content :is(.story-body,.story-body p,.reply p){white-space:normal}
 main[data-km-board] .km-compact-content .reply{padding:12px 14px;margin:16px 0 8px;line-height:1.5}
 main[data-km-board] .km-compact-content .reply>strong{display:block;margin-bottom:4px}
 main[data-km-board] .km-compact-content .reply p{margin:0;line-height:1.5}
