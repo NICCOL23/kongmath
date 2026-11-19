@@ -43,3 +43,19 @@ main[data-km-board]>.hero .hero-copy>.eyebrow,.community-review-hero .hero-copy>
 main[data-km-board] #family-feed .feed-heading{margin-bottom:0!important}
 main[data-km-board] #family-feed .family-search{margin-top:16px!important}
 @media(max-width:680px){main[data-km-board] #family-feed .family-search{margin-top:12px!important}}
+/* Community pages: reduce only vertical whitespace, preserving content and controls. */
+body main[data-km-board]>.hero{min-height:260px!important;padding-top:17px!important;padding-bottom:28px!important}
+body main[data-km-board]>.hero .hero-art{min-height:189px!important}
+body main[data-km-board]>.hero .paper{padding-top:20px!important;padding-bottom:20px!important}
+body main[data-km-board]>.community-review-hero{padding-top:25px!important}
+body main[data-km-board] .community-review-hero .community-hero-row{min-height:260px!important;padding-bottom:32px!important}
+body main[data-km-board] .community-review-hero .hero-art{min-height:189px!important}
+body main[data-km-board] .community-review-hero .paper{padding-top:20px!important;padding-bottom:20px!important}
+body main[data-km-board] .community-review-hero .paper-front{min-height:172px!important}
+body main[data-km-board] .community-review-hero .paper-back{height:210px!important}
+body main[data-km-board]>.community-tabs,body main[data-km-board] .community-review-hero .community-tabs{margin-top:17px!important;margin-bottom:17px!important}
+body main[data-km-board]>.family-layout{padding-top:34px!important;padding-bottom:34px!important}
+body.reviews-page main[data-km-board]>.reviews-section{padding-top:22px!important;padding-bottom:34px!important}
+body main[data-km-board] #family-feed .feed-heading{margin-bottom:0!important}
+body main[data-km-board] #family-feed .family-search{margin-top:16px!important}
+@media(max-width:680px){body main[data-km-board]>.hero{min-height:0!important;padding-top:17px!important;padding-bottom:21px!important}body main[data-km-board]>.community-review-hero{padding-top:21px!important}body main[data-km-board] .community-review-hero .community-hero-row{min-height:0!important;padding-bottom:21px!important}body main[data-km-board]>.family-layout{padding-top:24px!important;padding-bottom:24px!important}body.reviews-page main[data-km-board]>.reviews-section{padding-top:17px!important;padding-bottom:24px!important}body main[data-km-board] #family-feed .family-search{margin-top:12px!important}}
