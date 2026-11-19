@@ -1,0 +1,37 @@
+/* Reading spacing only. Existing records, access rules and images are untouched. */
+:is(main[data-km-board],#academy-daily) :is(.post-body,.story-body,.notice-body,.exam-report-body,.km-example-body,.student-case-body,.km-compact-content){line-height:1.5}
+main[data-km-board] article details :is(p.message,p.review){line-height:1.5;margin-block:0 8px}
+:is(main[data-km-board],#academy-daily) :is(.post-body,.story-body,.notice-body,.exam-report-body,.km-example-body,.student-case-body,.review-card__content) p{line-height:1.5;margin-block:0 8px}
+:is(main[data-km-board],#academy-daily) :is(.post-body,.notice-body,.exam-report-body,.km-example-body){padding:16px 20px 12px;min-height:0}
+:is(main[data-km-board],#academy-daily) :is(.story-body,.review-card__content) p:last-child{margin-bottom:0}
+main[data-km-board] :is(.story,.review-card)[data-km-compact]{padding:0;border:1px solid #dfe6ed;border-radius:8px;background:#fff;box-shadow:none;margin-block:0 10px;overflow:hidden}
+main[data-km-board] [data-review-list]:has(.km-compact-post){display:block}
+main[data-km-board] .km-compact-post{margin:0;padding:0;border:0;background:transparent}
+main[data-km-board] .km-compact-post>summary{position:relative;display:block;list-style:none;padding:16px 48px 14px 20px;cursor:pointer;line-height:1.5;min-height:0}
+main[data-km-board] .km-compact-post>summary::-webkit-details-marker{display:none}
+main[data-km-board] .km-compact-post>summary::after{content:'+';position:absolute;right:20px;top:18px;color:#102f53;font-size:20px;font-weight:400}
+main[data-km-board] .km-compact-post[open]>summary::after{content:'−'}
+main[data-km-board] .km-compact-post>summary:focus-visible{outline:2px solid #0068dc;outline-offset:-3px}
+main[data-km-board] .km-compact-title{display:block;color:#102f53;font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+main[data-km-board] .km-compact-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin-top:5px;color:#596b7c;font-size:12px;font-weight:400}
+main[data-km-board] .km-compact-meta :is(p,time,span){margin:0;padding:0;font-size:12px;line-height:1.5;color:#596b7c}
+main[data-km-board] .km-compact-content{padding:16px 20px 12px;border-top:1px solid #dfe6ed;font-size:15px}
+main[data-km-board] .km-compact-content>.story-top,main[data-km-board] .km-compact-content>h4{display:none}
+main[data-km-board] .km-compact-content .story-body{padding:0;margin:0;background:transparent;line-height:1.5}
+main[data-km-board] .km-compact-content .reply{padding:12px 14px;margin:16px 0 8px;line-height:1.5}
+main[data-km-board] .km-compact-content .reply>strong{display:block;margin-bottom:4px}
+main[data-km-board] .km-compact-content .reply p{margin:0;line-height:1.5}
+main[data-km-board] .km-compact-content .live-comment{margin:12px 0 0;padding-top:8px}
+main[data-km-board] .km-compact-content .uploaded-photos:empty{display:none}
+main[data-km-board] .km-compact-title{font-size:var(--km-compact-list,16px);color:var(--navy,#102f53)}
+main[data-km-board] .km-compact-post>summary{padding-block:var(--km-compact-row,16px)}
+main[data-km-board] .km-compact-content{font-size:var(--km-compact-body,16px)}
+main[data-km-board] :is(.story,.review-card)[data-km-compact]{border-color:var(--line,#dfe6ed);background:var(--paper,#fff)}
+main[data-km-board] .km-compact-content{border-color:var(--line,#dfe6ed)}
+@media(max-width:760px){
+ main[data-km-board] .km-compact-post>summary{padding:14px 42px 12px 16px}
+ main[data-km-board] .km-compact-title{font-size:var(--km-compact-mobile-list,15px);white-space:normal;overflow-wrap:anywhere}
+ main[data-km-board] .km-compact-post>summary{padding-block:var(--km-compact-mobile-row,14px)}
+ main[data-km-board] .km-compact-content{padding:14px 16px 10px}
+ :is(main[data-km-board],#academy-daily) :is(.post-body,.notice-body,.exam-report-body,.km-example-body){padding:14px 16px 10px}
+}
