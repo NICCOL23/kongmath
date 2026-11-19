@@ -88,3 +88,5 @@
  list.addEventListener('keydown',event=>{if(event.key!=='Enter'&&event.key!==' ')return;const trigger=event.target.closest('[aria-haspopup="dialog"]');const image=trigger?.matches('img')?trigger:trigger?.querySelector('img[data-km-board-zoom]');if(!image)return;event.preventDefault();open(image);});
  decorate();new MutationObserver(decorate).observe(list,{childList:true,subtree:true});
 })();
+
+(()=>{if(window.kmSiteImageViewer||document.querySelector('script[data-km-site-viewer]'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/site-image-viewer.js?v=1';s.dataset.kmSiteViewer='1';s.defer=true;document.body.append(s);})();
