@@ -1,0 +1,30 @@
+name: 공쌤 블로그 30분 자동 갱신
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: kongmath-blog-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: 최신 블로그 글과 카테고리별 게시판 확인
+        run: |
+          curl --fail --silent --show-error --max-time 210 'https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_blog_data' -o /tmp/kongmath-blog.json
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          with open('/tmp/kongmath-blog.json') as f:
+              data = json.load(f)
+          assert data.get('interval') == 1800
+          assert data.get('healthy') is True, '블로그 동기화 오류'
+          age = (datetime.now(timezone.utc) - datetime.fromisoformat(data['updatedAt'].replace('Z', '+00:00'))).total_seconds()
+          assert 0 <= age < 3900, '갱신 지연'
+          assert len(data.get('posts', [])) == 6, '최신 글 6개 확인 실패'
+          print('최신 6개 확인 완료 · 갱신:', data.get('updatedAt'))
+          PY
