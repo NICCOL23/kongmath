@@ -32,3 +32,9 @@ main[data-km-board]>.hero .hero-copy>.eyebrow,.community-review-hero .hero-copy>
 .reviews-page .reviews-section>.inner>.eyebrow{display:none}
 
 .reviews-page .reviews-section__eyebrow{display:none}
+
+/* Tighten spacing after removal of the section captions. */
+.reviews-page main[data-km-board]>.reviews-section{padding-top:32px}
+.reviews-page .reviews-section__heading{margin-bottom:0}
+.reviews-page .review-toolbar{margin-top:16px;margin-bottom:12px}
+@media(max-width:680px){.reviews-page main[data-km-board]>.reviews-section{padding-top:24px}.reviews-page .review-toolbar{margin-top:12px}}
