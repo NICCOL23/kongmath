@@ -155,6 +155,22 @@
       paragraph.append(link);
       body.append(paragraph);
     }
+    const actions = document.createElement('div');
+    actions.className = 'exam-report-actions';
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'exam-report-close';
+    close.textContent = '글 접고 목록으로 ↑';
+    close.setAttribute('aria-controls', report.id);
+    close.addEventListener('click', () => {
+      details.open = false;
+      summary.focus({ preventScroll: true });
+      const headerBottom = Math.max(0, document.querySelector('header')?.getBoundingClientRect().bottom || 0);
+      const top = summary.getBoundingClientRect().top + window.scrollY - headerBottom - 16;
+      window.scrollTo({ top: Math.max(0, top), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    });
+    actions.append(close);
+    body.append(actions);
     details.append(summary, body);
     item.append(details);
     return item;
