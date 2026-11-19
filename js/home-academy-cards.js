@@ -32,7 +32,7 @@
   };
 
   const asElement = target => target instanceof Element ? target : null;
-  const isInsideAcademyDetails = target => Boolean(asElement(target)?.closest(".academy-card details"));
+  const isInsideAcademyDetails = target => Boolean(asElement(target)?.closest(".academy-card details, .academy-card__image"));
   const closeOtherAcademyDetails = currentDetails => {
     document.querySelectorAll(".academy-card details[open]").forEach(details => {
       if (details !== currentDetails) details.open = false;
@@ -40,23 +40,27 @@
   };
   const handleAcademyPointer = event => {
     const target = asElement(event.target);
+    if(target?.closest(".km-report-viewer"))return;
     const summary = target?.closest(".academy-card details > summary");
     if (summary) {
       closeOtherAcademyDetails(summary.parentElement);
       return;
     }
-    if (!isInsideAcademyDetails(event.target)) closeAcademyDetails();
+    if (!event.target.closest(".km-report-viewer") && !isInsideAcademyDetails(event.target)) closeAcademyDetails();
   };
   document.addEventListener("pointerdown", handleAcademyPointer, true);
   document.addEventListener("click", handleAcademyPointer, true);
   document.addEventListener("touchstart", handleAcademyPointer, { capture: true, passive: true });
   document.addEventListener("focusin", event => {
-    if (!isInsideAcademyDetails(event.target)) closeAcademyDetails();
+    if (!event.target.closest(".km-report-viewer") && !isInsideAcademyDetails(event.target)) closeAcademyDetails();
   });
   document.addEventListener("keydown", event => {
-    if (event.key === "Escape") closeAcademyDetails();
+    if (event.key === "Escape" && !document.querySelector(".km-report-viewer[open]")) closeAcademyDetails();
   });
-  window.addEventListener("scroll", closeAcademyDetails, { passive: true });
+  let linkedOpening=false;
+  // Keep the opened article while scrolling or viewing its photo.
+  function openArchiveCard(){if(!archiveRoot||!location.hash)return;let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}const card=document.getElementById(id);if(!card||!archiveRoot.contains(card))return;const details=card.querySelector('details');if(!details)return;linkedOpening=true;card.scrollIntoView({block:'center',behavior:'instant'});details.open=true;setTimeout(()=>{linkedOpening=false;},400);}
+  if(archiveRoot){new MutationObserver(openArchiveCard).observe(archiveRoot,{childList:true});window.addEventListener('hashchange',openArchiveCard);archiveRoot.addEventListener('click',event=>{const link=event.target.closest('.km-card-title-link,.km-card-description-link');if(!link)return;const u=new URL(link.href);if(u.pathname===location.pathname&&u.hash){event.preventDefault();history.replaceState(null,'',u.hash);openArchiveCard();}});}
 
   function renderDetails(card) {
     const paragraphs = (card.paragraphs || []).map(text => `<p>${escapeHtml(text)}</p>`).join("");
@@ -67,21 +71,20 @@
     return `<div class="academy-card__detail">${paragraphs}${list}${links}${gallery}${afterGallery}</div>`;
   }
 
+  function detailURL(card){try{const u=new URL(card.href,location.href);if(!/\.(jpe?g|png|webp|gif|avif|svg)$/i.test(u.pathname))return card.href;}catch{}return 'academy.html#'+encodeURIComponent(card.id);}
+  function photoURL(card){try{const u=new URL(card.href,location.href);if(/\.(jpe?g|png|webp|gif|avif|svg)$/i.test(u.pathname))return card.href;}catch{}return card.image;}
   function renderCard(card, options = {}) {
     const slideClass = options.slide ? " swiper-slide" : "";
     const posterClass = card.poster ? " academy-card__image--poster" : "";
     return `<article class="academy-card${slideClass}" id="${escapeHtml(card.id)}">
-      <a class="academy-card__image${posterClass}" href="${escapeHtml(card.href)}"${linkAttributes(card.href)}>
+      <a class="academy-card__image${posterClass}" href="${escapeHtml(photoURL(card))}" aria-label="${escapeHtml(card.title)} 사진 확대" title="사진 확대">
         <img src="${escapeHtml(card.image)}" width="${Number(card.width)||900}" height="${Number(card.height)||900}" alt="${escapeHtml(card.alt)}" loading="${options.slide ? "eager" : "lazy"}" decoding="async">
       </a>
       <div class="academy-card__body">
         <p class="academy-card__category">${escapeHtml(card.category)} <time datetime="${escapeHtml(card.date.replaceAll(".", "-"))}">${escapeHtml(card.date)}</time></p>
-        <h3 class="academy-card__title">${escapeHtml(card.title)}</h3>
-        <p class="academy-card__description">${escapeHtml(card.description)}</p>
-        <details>
-          <summary class="academy-card__link">본문 읽기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></summary>
-          ${renderDetails(card)}
-        </details>
+        <h3 class="academy-card__title"><a class="km-card-title-link" href="${escapeHtml(detailURL(card))}">${escapeHtml(card.title)}</a></h3>
+        <p class="academy-card__description"><a class="km-card-description-link" href="${escapeHtml(detailURL(card))}">${escapeHtml(card.description)}</a></p>
+        ${options.slide ? `<a class="academy-card__link km-card-detail-link" href="${escapeHtml(detailURL(card))}">자세히 보기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></a>` : `<details><summary class="academy-card__link">본문 읽기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></summary>${renderDetails(card)}</details>`}
       </div>
     </article>`;
   }

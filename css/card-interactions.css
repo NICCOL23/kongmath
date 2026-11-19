@@ -1,0 +1,8 @@
+.km-card-title-link,.km-card-description-link{color:inherit!important;font:inherit!important;letter-spacing:inherit;text-decoration:none}
+.km-card-title-link:hover,.km-card-description-link:hover{text-decoration:underline;text-underline-offset:3px}
+.km-card-title-link:focus-visible,.km-card-description-link:focus-visible{outline:2px solid #0068dc;outline-offset:3px}
+.academy-preview-all{text-align:center;margin:20px 0 0}
+.km-card-all{display:inline-flex!important;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;min-height:44px;padding:10px 20px!important;border:1px solid #0068dc!important;border-radius:6px!important;background:#0068dc!important;color:#fff!important;font-family:inherit;font-size:15px;font-weight:600;line-height:1.5;text-decoration:none!important}
+.km-card-all:focus-visible{outline:3px solid #0068dc;outline-offset:3px}
+.student-preview-card{cursor:default}
+.academy-card__body>.km-card-detail-link{margin-top:4px}.academy-card__body>.km-card-detail-link::after{content:"→"}

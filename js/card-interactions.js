@@ -1,0 +1,1 @@
+(()=>{'use strict';const scan=()=>document.querySelectorAll('.reviews-preview__footer a,.report-preview-all a,.academy-preview-all a').forEach(link=>link.classList.add('km-card-all'));scan();new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});})();
