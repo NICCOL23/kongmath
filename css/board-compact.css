@@ -26,6 +26,7 @@ main[data-km-board] .km-compact-content .uploaded-photos:empty{display:none}
 main[data-km-board] .km-compact-title{font-size:var(--km-compact-list,16px);color:var(--navy,#102f53)}
 main[data-km-board] .km-compact-post>summary{padding-block:var(--km-compact-row,16px)}
 main[data-km-board] .km-compact-content{font-size:var(--km-compact-body,16px)}
+main[data-km-board] .km-compact-content .review-card__content{font-size:var(--km-compact-body,15px);line-height:1.5;margin:0}
 main[data-km-board] :is(.story,.review-card)[data-km-compact]{border-color:var(--line,#dfe6ed);background:var(--paper,#fff)}
 main[data-km-board] .km-compact-content{border-color:var(--line,#dfe6ed)}
 @media(max-width:760px){

@@ -213,4 +213,4 @@ if(!document.querySelector('#km-community-menu-style')){const style=document.cre
  clean();new MutationObserver(records=>{if(records.some(r=>r.addedNodes.length))clean();}).observe(document.body,{childList:true,subtree:true});
 })();
 
-(()=>{if(!document.querySelector('main[data-km-board],#academy-daily'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/board-compact.js?v=1.31.0';s.defer=true;document.body.append(s);})();
+(()=>{if(!document.querySelector('main[data-km-board],#academy-daily'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/board-compact.js?v=1.31.1';s.defer=true;document.body.append(s);})();
