@@ -1,4 +1,4 @@
-(()=>{if(window.kmContactUI||document.querySelector('script[data-km-contact]'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/contact-map.js?v=1';s.dataset.kmContact='1';document.head.append(s);})();
+(()=>{if(window.kmContactUI||document.querySelector('script[data-km-contact]'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/contact-map.js?v=2';s.dataset.kmContact='1';document.head.append(s);})();
 (()=>{'use strict';if(window.kmArticleReader)return;
  const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='https://kongmath.com/css/article-reader.css?v=1';document.head.append(sheet);
  const sourceSelector='details.student-case-card,details.exam-report,#post-list>details,#notice-results details,details.km-compact-post,.academy-card details,main[data-km-board] details';
@@ -30,3 +30,4 @@
  function schedule(){if(!scanQueued){scanQueued=true;queueMicrotask(scan);}}
  window.addEventListener('hashchange',()=>{pendingHash=true;schedule();});window.addEventListener('pagehide',()=>close(false,true));new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});window.kmArticleReader=Object.freeze({open:openDetails,close,refresh:schedule,isTagList:isTags});scan();
 })();
+
