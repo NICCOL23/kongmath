@@ -179,7 +179,7 @@ if(!document.querySelector('#km-community-menu-style')){const style=document.cre
   if (floatingChat) {
     const desktopHref = floatingChat.getAttribute("href") || "index.html";
     const mobileHref = floatingChat.dataset.mobileHref || "tel:0519137159";
-    const floatingMedia = matchMedia("(max-width: 768px)");
+    const floatingMedia = matchMedia("(max-width: 960px)");
     const updateFloatingChat = () => {
       const isMobile = floatingMedia.matches;
       floatingChat.setAttribute("href", isMobile ? mobileHref : desktopHref);

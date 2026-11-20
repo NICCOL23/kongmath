@@ -1,0 +1,20 @@
+a.km-phone-static,a.km-phone-static:hover,a.km-phone-static:focus{text-decoration:none!important;cursor:text!important}
+[data-km-phone-icon].km-phone-static{display:none!important}
+.km-detected-phone{color:inherit}
+.km-location-dialog{position:fixed;inset:0;margin:auto;width:min(960px,calc(100vw - 64px));max-width:none;height:min(760px,calc(100dvh - 64px));max-height:none;padding:0;border:0;border-radius:16px;background:#fff;color:#102f53;box-shadow:0 20px 80px #08182d55;overflow:hidden;font-family:pretendard,'Malgun Gothic',sans-serif;box-sizing:border-box}
+.km-location-dialog[open]{display:flex;flex-direction:column}
+.km-location-dialog::backdrop{background:rgba(10,23,43,.45)}
+.km-location-dialog__header{display:flex;flex-shrink:0;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-bottom:1px solid #dfe6ed;background:#fff}
+.km-location-dialog__header h2{margin:0;font-size:21px;line-height:1.4;color:#102f53}
+.km-location-dialog__header button{min-width:76px;min-height:44px;padding:8px 12px;border:1px solid #cbd6e2;border-radius:7px;background:#fff;color:#183252;font:inherit;cursor:pointer}
+.km-location-dialog__scroll{min-height:0;overflow:auto;overscroll-behavior:contain;padding:24px}
+.km-location-map{position:relative;min-height:320px;height:380px;border:1px solid #dfe6ed;border-radius:8px;background:#f2f6fa;overflow:hidden}
+.km-location-map iframe{width:100%;height:100%;border:0;display:block}
+.km-location-map [role=status]{position:absolute;inset:auto 12px 12px;margin:0;padding:12px;background:#fffffff2;border-radius:6px;color:#52647a;font-size:14px;line-height:1.5}
+.km-location-address{padding-top:22px}.km-location-address strong{font-size:21px}.km-location-address p{margin:8px 0;color:#52647a;font-size:15px;line-height:1.5}
+.km-location-address a{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;margin-top:12px;padding:10px 16px;border-radius:6px;background:#0068dc;color:#fff;text-decoration:none;font-size:15px;font-weight:700}
+.km-location-dialog :focus-visible{outline:3px solid #0878ee;outline-offset:3px}
+@media(max-width:960px){.km-location-dialog{inset:0;width:100vw;height:100dvh;margin:0;border-radius:0}.km-location-dialog__header{padding:12px 18px}.km-location-dialog__header h2{font-size:18px}.km-location-dialog__scroll{padding:18px}.km-location-map{min-height:260px;height:45dvh}}
+.km-location-map iframe[hidden],.km-location-map [role=status][hidden]{display:none!important}
+@media(max-width:960px){.floating-chat[data-mobile-href][data-desktop-label] .floating-chat__icon--phone{display:inline-flex}.floating-chat[data-mobile-href][data-desktop-label] .floating-chat__icon--chat{display:none}}
+.km-article-reader__body a[data-km-map]{display:inline-block;max-width:100%}
