@@ -18,3 +18,7 @@
 .student-preview-card__description,.student-case-card__summary{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .student-card-illustration-label{position:absolute;left:12px;bottom:12px;padding:4px 7px;border-radius:4px;background:rgba(9,24,64,.8);color:white;font-size:11px;line-height:1.3}
 @media(max-width:640px){.student-preview-card__body{height:250px}.student-case-card__body{height:280px}}
+/* 이미지 준비 중에도 새 카드의 외곽 규격을 유지한다. */
+.student-preview-card--text::before,.student-case-card--text::before{content:"";display:block;aspect-ratio:3/2;background:#eef3f9}
+.student-preview-card--text .student-preview-card__body{min-height:0;height:250px;padding-top:24px}
+.student-case-card--text .student-case-card__body{min-height:0;height:280px}
