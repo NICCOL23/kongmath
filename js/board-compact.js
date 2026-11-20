@@ -1,4 +1,4 @@
-(()=>{if(window.kmArticleReader||document.querySelector('script[data-km-article-reader]'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/article-reader.js?v=contact-1';s.dataset.kmArticleReader='1';document.body.append(s);})();
+(()=>{if(window.kmArticleReader||document.querySelector('script[data-km-article-reader]'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/article-reader.js?v=contact-2';s.dataset.kmArticleReader='1';document.body.append(s);})();
 (()=>{'use strict';
  if(window.kmCompactBoards)return;window.kmCompactBoards=true;
  const main=document.querySelector('main[data-km-board],#academy-daily');if(!main)return;
@@ -91,3 +91,4 @@
 })();
 
 (()=>{if(window.kmSiteImageViewer||document.querySelector('script[data-km-site-viewer]'))return;const s=document.createElement('script');s.src='https://kongmath.com/js/site-image-viewer.js?v=1';s.dataset.kmSiteViewer='1';s.defer=true;document.body.append(s);})();
+
