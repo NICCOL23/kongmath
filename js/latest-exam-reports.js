@@ -44,7 +44,7 @@
         const row = document.createElement('li');
         row.className = 'exam-report';
         const link = document.createElement('a');
-        link.className = 'report-preview-link';
+        link.className = 'report-preview-link';link.dataset.kmReaderTrigger='1';
         link.href = 'reports.html?year=#' + report.id;
         const title = document.createElement('span');
         title.textContent = report.title;
@@ -52,7 +52,7 @@
         date.textContent = report.date || '';
         if (/^\d{4}-\d{2}-\d{2}$/.test(report.datetime)) date.dateTime = report.datetime;
         link.append(title, date);
-        row.append(link);
+        const template=document.createElement('template');template.dataset.kmReaderTemplate='1';template.innerHTML=report.body;row.append(link,template);
         return row;
       });
       if (rows.length) list.replaceChildren(...rows);

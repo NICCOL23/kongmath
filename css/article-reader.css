@@ -1,0 +1,30 @@
+@media(min-width:641px){html:has(.km-article-reader[open]){scrollbar-gutter:stable}}
+.km-article-reader{position:fixed;inset:0 0 0 auto;margin:0;width:min(720px,100%);max-width:100%;height:100dvh;max-height:100dvh;padding:0;border:0;background:#fff;color:#102449;box-shadow:-12px 0 48px #08182d33;overflow:hidden;transform:translateX(100%);transition:transform 240ms ease;box-sizing:border-box;font-family:pretendard,'Malgun Gothic',sans-serif}
+.km-article-reader.is-open{transform:translateX(0)}
+.km-article-reader::backdrop{background:rgba(10,23,43,.42)}
+.km-article-reader__header{display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 32px;border-bottom:1px solid #e1e8f0;box-sizing:border-box;background:#fff;font-size:15px}
+.km-article-reader__header button{min-height:44px;padding:8px 14px;border:1px solid #d4deea;border-radius:8px;background:#fff;color:#183252;font:inherit;cursor:pointer}
+.km-article-reader__scroll{height:calc(100dvh - 76px);overflow:auto;overscroll-behavior:contain;padding:32px 40px 56px;box-sizing:border-box;scrollbar-gutter:stable}
+.km-article-reader__meta{margin:0 0 12px;color:#0878ee;font-size:13px;line-height:1.5}
+.km-article-reader h2{margin:0 0 28px;font-size:28px;line-height:1.4;letter-spacing:-.04em;word-break:keep-all;color:#102449}
+.km-article-reader__body{font-size:15px;line-height:1.5;color:#34475c;overflow-wrap:anywhere}
+.km-article-reader__body :is(.exam-report-body,.post-body,.notice-body,.km-compact-content,.student-case-card__expanded,.academy-card__detail,.km-example-body,.review,.message){margin:0;padding:0;background:transparent;border:0;white-space:normal}
+.km-article-reader__body p{margin:0 0 8px;font-size:15px;line-height:1.5}
+.km-article-reader__body :is(p:empty,.exam-report-actions,.km-post-close-actions){display:none}
+.km-article-reader__body img{display:block;max-width:100%;height:auto;margin:16px auto}
+.km-article-reader__body img[src*=storep-phinf]{width:auto;max-width:160px}
+.km-article-reader__body table{display:block;max-width:100%;overflow:auto}
+.km-article-reader__body .student-case-card__gallery,.km-article-reader__body .academy-card__gallery{display:block}
+.km-article-reader__body .km-compact-content>:is(.story-top,h4){display:none}
+.km-article-reader__body :is(.uploaded-photos,.reply){margin-top:16px}
+.km-article-reader__body .reply{padding:16px;background:#f6f9fc;border:1px solid #dfe6ed;border-radius:4px}
+.km-article-reader__body label{display:block;margin:12px 0}
+.km-article-reader__body :is(input:not([type=checkbox]):not([type=hidden]),textarea){display:block;box-sizing:border-box;max-width:100%;width:100%;padding:10px;border:1px solid #b7c3d2;border-radius:4px;font:inherit}
+.km-article-reader__body button{min-height:44px;padding:8px 14px;font:inherit;cursor:pointer}
+[data-km-hidden-hashtags="1"]{display:none!important}
+[data-km-reader]>summary .km-reader-hint{font-size:12px;font-weight:600;color:#0068dc;margin-left:12px;white-space:nowrap}
+[data-km-reader] .student-case-card__detail::after{content:"→"}
+.km-article-reader :focus-visible{outline:3px solid #0878ee;outline-offset:3px}
+@media(max-width:640px){.km-article-reader{inset:0;width:100vw;max-width:100vw}.km-article-reader__header{height:64px;padding:0 20px}.km-article-reader__scroll{height:calc(100dvh - 64px);padding:24px 22px 40px}.km-article-reader h2{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.km-article-reader{transition:none}}
+.km-article-reader__body :is(.message,.review){white-space:pre-wrap}

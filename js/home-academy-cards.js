@@ -84,7 +84,7 @@
         <p class="academy-card__category">${escapeHtml(card.category)} <time datetime="${escapeHtml(card.date.replaceAll(".", "-"))}">${escapeHtml(card.date)}</time></p>
         <h3 class="academy-card__title"><a class="km-card-title-link" href="${escapeHtml(detailURL(card))}">${escapeHtml(card.title)}</a></h3>
         <p class="academy-card__description"><a class="km-card-description-link" href="${escapeHtml(detailURL(card))}">${escapeHtml(card.description)}</a></p>
-        ${options.slide ? `<a class="academy-card__link km-card-detail-link" href="${escapeHtml(detailURL(card))}">자세히 보기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></a>` : `<details><summary class="academy-card__link">본문 읽기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></summary>${renderDetails(card)}</details>`}
+        ${options.slide ? `<template data-km-reader-template>${renderDetails(card)}</template><a class="academy-card__link km-card-detail-link" href="${escapeHtml(detailURL(card))}">본문 읽기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></a>` : `<details><summary class="academy-card__link">본문 읽기<span class="academy-card__sr"> – ${escapeHtml(card.title)}</span></summary>${renderDetails(card)}</details>`}
       </div>
     </article>`;
   }
