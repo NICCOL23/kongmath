@@ -1,23 +1,4 @@
-(() => {
-  const grid = document.querySelector("[data-student-preview-grid]");
-  if (!grid) return;
-
-  Promise.all([fetch("data/student-cases.json?v=homepage-preview-05"),window.kmHomeContentRequest||Promise.resolve(null)])
-    .then(async ([response,managed]) => {
-      if(managed?.results)return {managed:true,cards:managed.results.cards};
-      if (!response.ok) throw new Error("student-cases.json을 불러오지 못했습니다.");
-      return response.json();
-    })
-    .then(items => {
-      // 메인 미리보기는 노출 순서를 별도로 관리합니다. 전체 기록의 순서는 유지하면서
-      // 두 번째 카드에는 05/09 기말고사 장학금 사례를 노출합니다.
-      const previewIds = ["224470495734", "224369881711", "224369893942"];
-      if(items.managed){grid.innerHTML=items.cards.map(StudentCaseCard.renderPreviewCard).join("");return;}
-      const byId = new Map(items.filter(item => item.type === "achievement").map(item => [item.id, item]));
-      const achievements = previewIds.map(id => byId.get(id)).filter(Boolean);
-      grid.innerHTML = achievements.map(StudentCaseCard.renderPreviewCard).join("");
-    })
-    .catch(error => {
-      grid.innerHTML = `<p class="student-preview-error">${StudentCaseCard.escapeHtml(error.message)}</p>`;
-    });
+(()=>{'use strict';const grid=document.querySelector('[data-student-preview-grid]');if(!grid)return;let busy=false;
+ async function load(){if(busy)return;busy=true;try{const [response]=await Promise.all([fetch('https://kongmath.mycafe24.com/wp-admin/admin-post.php?action=km_student_corner_data&view=latest',{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(15000)}),window.kmHomeContentRequest||Promise.resolve(null)]);if(!response.ok)throw Error();const data=await response.json();if(!Array.isArray(data.posts))throw Error();grid.innerHTML=data.posts.map((item,index)=>StudentCaseCard.renderPreviewCard(item,index,data.allTotal)).join('');if(!data.posts.length)grid.innerHTML='<p class="reviews-empty">아직 공개된 학생 코너 글이 없습니다.</p>';const title=document.querySelector('#student-results-title');if(title)title.textContent='공쌤수학원생 코너';const desc=document.querySelector('.reviews-preview__heading > div > p:last-child');if(desc)desc.textContent='학습 성과와 장학금, 응원과 학생들의 이야기를 전합니다.';const link=document.querySelector('.reviews-preview__footer a');if(link){link.textContent='공쌤수학원생 코너 전체 보기';link.href='students.html';}}catch{if(!grid.querySelector('.student-preview-card'))grid.innerHTML='<p class="student-preview-error">학생 코너 글을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>';}finally{busy=false;}}
+ load();setInterval(load,1800000);
 })();

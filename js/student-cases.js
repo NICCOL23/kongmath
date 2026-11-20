@@ -1,25 +1,7 @@
-(() => {
-  const grid = document.querySelector("[data-student-case-grid]");
-  const filters = [...document.querySelectorAll("[data-case-filter]")];
-  const count = document.querySelector("[data-case-count]");
-  if (!grid) return;
-  fetch("data/student-cases.json").then(response => { if (!response.ok) throw new Error("student-cases.json을 불러오지 못했습니다."); return response.json(); }).then(items => {
-    grid.innerHTML = items.map(StudentCaseCard.renderArchiveCard).join("");
-    grid.querySelectorAll(".student-case-card").forEach(card => {
-      card.addEventListener("toggle", () => {
-        if (!card.open) return;
-        grid.querySelectorAll(".student-case-card[open]").forEach(other => {
-          if (other !== card) other.removeAttribute("open");
-        });
-      });
-    });
-    if (count) count.textContent = items.length;
-    filters.forEach(filter => filter.addEventListener("click", () => { const selected = filter.dataset.caseFilter; filters.forEach(button => button.setAttribute("aria-pressed", String(button === filter))); grid.querySelectorAll("[data-case-type]").forEach(card => { card.hidden = selected !== "all" && card.dataset.caseType !== selected; }); }));
-    const hashId = decodeURIComponent(window.location.hash.slice(1));
-    const linkedCard = hashId ? document.getElementById(hashId) : null;
-    if (linkedCard?.matches(".student-case-card")) {
-      linkedCard.open = true;
-      requestAnimationFrame(() => linkedCard.scrollIntoView({ block: "center", behavior: "smooth" }));
-    }
-  }).catch(error => { grid.innerHTML = `<p class="student-cases-error">${StudentCaseCard.escapeHtml(error.message)}</p>`; });
+(()=>{'use strict';const grid=document.querySelector('[data-student-case-grid]'),form=document.querySelector('#student-corner-search'),input=document.querySelector('#student-corner-keyword'),paging=document.querySelector('#student-corner-pages'),status=document.querySelector('#student-corner-status'),filters=[...document.querySelectorAll('[data-case-filter]')];if(!grid||!form)return;let page=1,group='all',q='',sequence=0;const endpoint='https://kongmath.mycafe24.com/wp-admin/admin-post.php';
+ const safeAnchor=()=>/^#student-(?:\d{9,15}|wp-\d+)$/.test(location.hash)?location.hash.slice(1):'';
+ function metrics(data){for(const e of document.querySelectorAll('[data-case-count]'))e.textContent=data.allTotal;const achievement=document.querySelector('[data-achievement-count]'),story=document.querySelector('[data-story-count]');if(achievement)achievement.textContent=data.counts.achievement;if(story)story.textContent=data.counts.story;for(const button of filters){const key=button.dataset.caseFilter;button.setAttribute('aria-pressed',String(key===group));button.textContent=key==='all'?'전체 '+data.allTotal+'건':key==='achievement'?'학습 성과·장학금 '+data.counts.achievement+'건':'응원·학생 이야기 '+data.counts.story+'건';}}
+ async function load(destination=1,anchor=''){const request=++sequence;page=destination;grid.setAttribute('aria-busy','true');document.querySelector('#student-corner-retry').hidden=true;const params=new URLSearchParams({action:'km_student_corner_data',page:String(page)});if(group!=='all')params.set('group',group);if(q)params.set('q',q);if(anchor)params.set('anchor',anchor);try{const response=await fetch(endpoint+'?'+params,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error();const data=await response.json();if(request!==sequence)return;if(!Array.isArray(data.posts))throw Error();page=data.page;grid.innerHTML=data.posts.map((item,index)=>StudentCaseCard.renderArchiveCard(item,(page-1)*10+index,data.allTotal)).join('');status.textContent=`전체 ${data.total}건${data.total?' · 최신순 · '+page+'/'+data.pages+'페이지':''}`;if(!data.posts.length)grid.innerHTML='<p class="student-cases-error">조건에 맞는 글이 없습니다.</p>';metrics(data);window.kmRenderBoardPagination(paging,{page,pages:data.pages,onPage:async n=>{await load(n);document.querySelector('#student-cases-title').scrollIntoView({block:'start'});paging.querySelector('[aria-current="page"]')?.focus({preventScroll:true});}});if(anchor){const card=document.getElementById(anchor);if(card){card.open=true;requestAnimationFrame(()=>card.scrollIntoView({block:'center'}));}}}catch{if(request===sequence){document.querySelector('#student-corner-retry').hidden=false;status.textContent='글을 불러오지 못했습니다. 다시 불러오기를 눌러 주세요.';}}finally{if(request===sequence)grid.removeAttribute('aria-busy');}}
+ grid.addEventListener('toggle',event=>{if(!event.target.matches('.student-case-card')||!event.target.open)return;grid.querySelectorAll('.student-case-card[open]').forEach(e=>{if(e!==event.target)e.open=false;});},true);
+ form.addEventListener('submit',event=>{event.preventDefault();q=input.value.trim();history.replaceState(null,'',location.origin+location.pathname);load(1);});filters.forEach(button=>button.addEventListener('click',()=>{group=button.dataset.caseFilter;history.replaceState(null,'',location.origin+location.pathname);load(1);}));document.querySelector('#student-corner-reset').addEventListener('click',()=>{group='all';q='';input.value='';history.replaceState(null,'',location.origin+location.pathname);load(1);});document.querySelector('#student-corner-retry').addEventListener('click',()=>load(page,safeAnchor()));window.addEventListener('hashchange',()=>{const anchor=safeAnchor();if(anchor){group='all';q='';input.value='';load(1,anchor);}});load(1,safeAnchor());
 })();

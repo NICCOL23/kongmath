@@ -1,0 +1,10 @@
+.student-preview-card--text .student-preview-card__body{min-height:330px;padding-top:28px}
+.student-case-card--text .student-case-card__body{min-height:240px}
+.student-case-card__expanded img{display:block;max-width:100%;height:auto;margin:12px auto}
+.student-case-card__expanded p+p{margin-top:8px}
+.student-corner-search{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 20px}
+.student-corner-search input{box-sizing:border-box;width:min(100%,360px);min-height:44px;padding:10px 12px;border:1px solid #d8e3f0;border-radius:6px;background:#fff;color:#14233d;font:inherit;font-size:15px}
+.student-corner-search button{min-height:44px;padding:10px 16px;border:1px solid #0878ee;border-radius:6px;background:#0878ee;color:#fff;font:inherit;font-size:15px;cursor:pointer}
+.student-corner-search button[type=button]{background:#fff;color:#14233d;border-color:#d8e3f0}
+#student-corner-status{margin:0 0 20px;color:#6d7b8f;font-size:14px}
+@media(max-width:640px){.student-corner-search input{width:100%}.student-preview-card--text .student-preview-card__body{min-height:240px}}
